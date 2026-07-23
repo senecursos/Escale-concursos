@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escale Concursos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEU_ID_AQUI"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SEU_ID_AQUI');
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --cor-principal: #5B6643;
+            --cor-profunda: #0F110D;
+            --marca-azul: #E29D00;
+            --marca-azul-vibrante: #C78A00;
+            --superficie-clara: #F4F5F0;
+            --texto-titulo: #18181B;
+            --texto-suporte: #52525B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1, h2, h3, h4, .titulo-forte {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--superficie-clara);
+            color: var(--texto-titulo);
+            line-height: 1.6;
+        }
+
+        .area-restrita {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- TOPO INSTITUCIONAL --- */
+        .barra-topo {
+            background-color: var(--cor-principal); 
+            padding: 15px 0 25px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: relative;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .alinhamento-topo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* BLOCO DA MARCA / LOGO */
+        .bloco-marca {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--cor-profunda);
+            padding: 12px 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            max-width: 380px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .imagem-logo-topo {
+            width: calc(100% + 16px);
+            margin-left: -8px;
+            margin-right: -8px;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            object-fit: contain;
+        }
+
+        .slogan-marca {
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            letter-spacing: 0.2px;
+        }
+
+        .autor-marca {
+            font-size: 12px;
+            color: var(--marca-azul);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .menu-navegacao {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-navegacao a {
+            text-decoration: none;
+            color: #ffffff; 
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 12px;
+            transition: color 0.2s ease;
+        }
+
+        .menu-navegacao a:hover {
+            color: #F5B000;
+        }
+
+        /* --- BARRA DE PESQUISA --- */
+        .container-busca-topo {
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-left: 8px;
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            padding-left: 16px;
+        }
+
+        .input-busca-topo {
+            width: 40px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 0 12px 0 35px;
+            font-size: 12px;
+            color: #ffffff;
+            outline: none;
+            cursor: pointer;
+            transition: width 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .input-busca-topo::placeholder {
+            color: #CBD5E1;
+        }
+
+        .input-busca-topo:focus,
+        .input-busca-topo:not(:placeholder-shown) {
+            width: 180px;
+            cursor: text;
+            background-color: #ffffff;
+            border-color: var(--marca-azul);
+            color: var(--texto-titulo);
+        }
+
+        .icone-busca-topo {
+            position: absolute;
+            left: 28px;
+            color: #CBD5E1;
+            font-size: 13px;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+
+        .input-busca-topo:focus + .icone-busca-topo {
+            color: var(--cor-principal);
+        }
+
+        @keyframes destaqueCard {
+            0% { transform: scale(1); box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+            50% { transform: scale(1.03); border-color: var(--marca-azul); box-shadow: 0 0 20px rgba(226, 157, 0, 0.4); }
+            100% { transform: scale(1); box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+        }
+
+        .card-pesquisado-destaque {
+            animation: destaqueCard 1.5s ease-in-out 2;
+        }
+
+        /* --- CONTAINER DOS BOTÕES E NOVO TÍTULO --- */
+        .botoes-topo-container {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-width: 300px;
+            width: 100%;
+        }
+
+        .titulo-botoes-topo {
+            font-size: 12px;
+            font-weight: 800;
+            color: #F5B000;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            margin-bottom: 2px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .chamada-topo {
+            background-color: var(--marca-azul);
+            color: #0F110D;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 800;
+            padding: 10px 16px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px; 
+            text-align: center;
+        }
+
+        .chamada-topo:hover {
+            transform: translateY(-1px);
+        }
+
+        .miniatura-botao-topo {
+            width: 22px;
+            height: 22px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .chamada-topo.btn-aconselhamento-topo {
+            background-color: #ffffff; 
+            color: var(--cor-profunda); 
+            font-weight: 800;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .chamada-topo.btn-aconselhamento-topo:hover {
+            background-color: #E2E8F0;
+        }
+
+        .chamada-topo.btn-curso-topo {
+            background-color: #F5B000;
+            color: var(--cor-profunda);
+            font-weight: 800;
+        }
+        .chamada-topo.btn-curso-topo:hover {
+            background-color: #E29D00;
+        }
+
+        .chamada-topo.btn-mentoria-topo {
+            background-color: #3B4428;
+            color: #ffffff;
+            font-weight: 800;
+        }
+        .chamada-topo.btn-mentoria-topo:hover {
+            background-color: #2D341E;
+        }
+
+        .chamada-topo.btn-extra-1 {
+            background-color: #4A5335;
+            color: #ffffff;
+            font-weight: 800;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .chamada-topo.btn-extra-1:hover {
+            background-color: #3B4428;
+        }
+
+        .chamada-topo.btn-extra-2 {
+            background-color: #0F110D;
+            color: #F5B000;
+            font-weight: 800;
+        }
+        .chamada-topo.btn-extra-2:hover {
+            background-color: #1A1D17;
+        }
+
+        .chamada-topo.btn-extra-3 {
+            background-color: #ffffff;
+            color: var(--cor-principal);
+            font-weight: 800;
+        }
+        .chamada-topo.btn-extra-3:hover {
+            background-color: #F4F5F0;
+        }
+
+        /* --- SEÇÃO 2: VITRINE PRINCIPAL --- */
+        .secao-principal {
+            padding: 40px 0 60px 0;
+            display: flex;
+            flex-wrap: wrap-reverse;
+            align-items: center;
+        }
+
+        .lado-esquerdo {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 20px;
+        }
+
+        .lado-direito {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .secao-principal h2 {
+            font-size: 44px;
+            font-weight: 900;
+            color: var(--texto-titulo);
+            line-height: 1.1;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+
+        .secao-principal h2 span {
+            color: var(--cor-principal);
+        }
+
+        .wrapper-apresentacao {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 25px;
+            align-items: center;
+        }
+
+        .arte-principal {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .texto-principal {
+            font-size: 14px;
+            color: var(--texto-titulo);
+            font-weight: 400;
+            flex: 1;
+            text-align: justify;
+        }
+
+        /* GRUPO DE TRÊS BOTÕES DA VITRINE */
+        .grupo-botoes-vitrine {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .btn-acao-vendas {
+            display: block;
+            width: 100%;
+            background-color: var(--marca-azul); 
+            color: #0F110D;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 12px;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(226, 157, 0, 0.25);
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-acao-vendas:hover {
+            background-color: var(--marca-azul-vibrante);
+            transform: translateY(-2px);
+        }
+
+        .molde-foto {
+            width: 330px;
+            height: 330px;
+            background: linear-gradient(45deg, #E2E8F0, #ffffff);
+            border-radius: 24px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .imagem-mestre {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            height: auto;
+        }
+
+        /* --- FAIXA CENTRAL LINK DESIGN --- */
+        .painel-vantagens-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--cor-principal); 
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin-top: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            text-align: center;
+        }
+
+        .painel-vantagens-link:hover {
+            transform: translateY(-3px);
+            background-color: #4A5335;
+        }
+
+        .painel-vantagens-link .linha-forte {
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+
+        .painel-vantagens-link .linha-media {
+            color: #E2E8F0;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .painel-vantagens-link .linha-discreta {
+            color: #CBD5E1;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .btn-interno-dourado {
+            display: inline-block;
+            background-color: #F5B000;
+            color: #0F110D;
+            border: 2px solid #0F110D;
+            padding: 10px 24px;
+            font-weight: 800;
+            font-size: 13px;
+            text-transform: uppercase;
+            border-radius: 6px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        /* --- TÍTULOS --- */
+        .rotulo-secao {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--texto-titulo);
+            margin: 80px 0 40px 0;
+            position: relative;
+        }
+
+        /* --- MURAL DE VÍDEOS --- */
+        #videos {
+            margin-bottom: 80px; 
+        }
+
+        .mural-videos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+        }
+
+        .card-multimidia {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            width: calc(50% - 12px);
+            min-width: 280px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            transition: transform 0.2s;
+        }
+
+        .card-multimidia:hover {
+            transform: translateY(-4px);
+        }
+
+        .player-video {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            background-color: #000;
+        }
+
+        .player-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .detalhe-video {
+            padding: 18px;
+        }
+
+        .detalhe-video h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--texto-titulo);
+            margin-bottom: 6px;
+        }
+
+        .detalhe-video p {
+            font-size: 12px;
+            color: var(--texto-suporte);
+        }
+
+        /* --- HUB DE CURSOS (ESPAÇAMENTO OTIMIZADO E MAIS PRÓXIMO) --- */
+        .hub-produtos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .box-oferta {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 28px 24px; /* Padding interno mais compacto */
+            width: calc(38% - 15px);
+            min-width: 350px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.04);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid rgba(0,0,0,0.06);
+            transition: border-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .box-oferta:hover {
+            transform: translateY(-3px);
+        }
+
+        .capa-produto {
+            width: 100%;
+            max-width: 240px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 12px; /* Reduzido para aproximar do título */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.11);
+        }
+
+        .box-oferta h3 {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--texto-titulo);
+            margin-bottom: 8px; /* Título mais próximo da capa e da descrição */
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box-oferta .legenda-oferta {
+            font-size: 13px;
+            color: var(--texto-suporte);
+            margin-bottom: 15px; /* Descrição mais próxima dos botões/fim do texto */
+        }
+
+        .valor-tag {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--texto-titulo);
+            margin-bottom: 10px;
+            margin-top: auto;
+        }
+
+        .valor-subtag {
+            font-size: 11px;
+            color: var(--texto-suporte);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-top: -8px;
+            margin-bottom: 12px;
+        }
+
+        .box-oferta .btn-acao-vendas {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 12px;
+            margin-top: auto;
+        }
+
+        .grupo-botoes-duplos {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 8px; /* Botões mais próximos entre si */
+            margin-top: 5px;
+        }
+        
+        /* NOVO BOTÃO VERDE PARA "CURSO ONLINE AO VIVO" */
+        .btn-online-verde {
+            background-color: #16A34A !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.25) !important;
+        }
+
+        .btn-online-verde:hover {
+            background-color: #15803D !important;
+        }
+
+        .btn-info-secundario {
+            background-color: #E2E8F0 !important;
+            color: var(--texto-titulo) !important;
+            box-shadow: none !important;
+        }
+        
+        .btn-info-secundario:hover {
+            background-color: #CBD5E1 !important;
+        }
+
+        /* --- SISTEMA DE COMENTÁRIOS --- */
+        .area-comentarios {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 80px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .form-comentario {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .form-comentario textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(10, 10, 10, 0.1);
+            border-radius: 8px;
+            resize: none;
+            height: 100px;
+            font-size: 14px;
+        }
+
+        .linha-inputs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .linha-inputs input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 15px;
+            border: 2px solid rgba(10, 10, 10, 0.1);
+            border-radius: 8px;
+        }
+
+        .btn-comentar {
+            align-self: flex-end;
+            background-color: var(--texto-titulo);
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .lista-comentarios .item-comentario {
+            border-top: 1px solid #EDF2F7;
+            padding: 18px 0;
+        }
+
+        .item-comentario h4 {
+            font-size: 14px;
+            color: var(--texto-titulo);
+            margin-bottom: 4px;
+        }
+
+        .item-comentario p {
+            font-size: 13px;
+            color: var(--texto-titulo);
+        }
+
+        /* --- MODAIS --- */
+        .janela-modal-pix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .janela-modal-pix.modal-ativo {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .conteudo-modal-pix {
+            background-color: #ffffff;
+            padding: 32px 24px;
+            border-radius: 16px;
+            max-width: 440px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            text-align: center;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .janela-modal-pix.modal-ativo .conteudo-modal-pix {
+            transform: scale(1);
+        }
+
+        .btn-fechar-modal {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--texto-suporte);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .btn-fechar-modal:hover {
+            color: #E11D48;
+        }
+
+        .conteudo-modal-pix h3 {
+            font-size: 20px;
+            color: var(--texto-titulo);
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .conteudo-modal-pix p {
+            font-size: 13px;
+            color: var(--texto-suporte);
+            margin-bottom: 20px;
+        }
+
+        .box-qr-code {
+            width: 180px;
+            height: 180px;
+            background-color: #F1F5F9;
+            margin: 0 auto 20px auto;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #E2E8F0;
+            overflow: hidden;
+        }
+
+        .box-qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .container-chave-pix {
+            background-color: var(--superficie-clara);
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .texto-chave-pix {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--texto-titulo);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            user-select: all;
+        }
+
+        .btn-copiar-chave {
+            background-color: var(--marca-azul);
+            color: #0F110D;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-copiar-chave:hover {
+            background-color: var(--marca-azul-vibrante);
+        }
+
+        .alerta-notificacao {
+            background-color: #DCFCE7;
+            color: #15803D;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .aviso-comprovante {
+            font-size: 12px;
+            color: #15803D;
+            background-color: #DCFCE7;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--cor-profunda); 
+            color: #ffffff;
+            padding: 50px 0 25px 0;
+            font-size: 13px;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .canais-comunicacao {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .canais-comunicacao a {
+            color: #E2E8F0;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.2s;
+        }
+
+        .canais-comunicacao a:hover {
+            color: #F5B000;
+        }
+
+        .perfil-instagram {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .link-destacado {
+            font-weight: 600;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .assinatura-professor {
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 35px;
+            text-transform: none;
+        }
+
+        .assinatura-professor span {
+            color: #F5B000;
+        }
+
+        .direitos-reservados {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 25px;
+            text-align: center;
+            color: #94A3B8;
+            font-size: 11px;
+            text-transform: none;
+        }
+
+        .direitos-reservados a {
+            color: #F5B000;
+            text-decoration: none;
+        }
+
+        @media (max-width: 992px) {
+            .box-oferta { width: 100%; max-width: 450px; }
+        }
+
+        @media (max-width: 768px) {
+            .area-restrita { padding: 0 16px; }
+            .bloco-marca { max-width: 380px; width: 100%; margin: 0 auto; }
+            
+            .secao-principal { 
+                flex-direction: column-reverse; 
+                text-align: center; 
+                padding-top: 90px; 
+                margin-top: 10px;
+            }
+            .lado-esquerdo { padding-right: 0; width: 100%; }
+            .lado-direito { width: 100%; }
+            .wrapper-apresentacao { flex-direction: column; align-items: center; width: 100%; }
+            .arte-principal { max-width: 100%; height: auto; }
+            .grupo-botoes-vitrine { margin: 0 auto; }
+            .molde-foto { width: 280px; height: 280px; margin-bottom: 30px; border-radius: 16px; }
+            .card-multimidia, .box-oferta { width: 100%; }
+            .alinhamento-topo { flex-direction: column; gap: 16px; text-align: center; }
+            .menu-navegacao { margin: 4px 0; justify-content: center; flex-wrap: wrap; gap: 8px; }
+            .container-busca-topo { border-left: none; padding-left: 0; margin-left: 0; margin-top: 5px; }
+            .botoes-topo-container { width: 100%; max-width: 100%; margin-top: 10px; }
+            .chamada-topo { padding: 12px; }
+            .slogan-marca { white-space: normal; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="barra-topo">
+        <div class="area-restrita alinhamento-topo">
+            <div class="bloco-marca">
+                <img src="Logo1.jpg" alt="Logo" class="imagem-logo-topo">
+                <div class="slogan-marca">Aqui se constrói uma aprovação.</div>
+                <div class="autor-marca"></div>
+            </div>
+            
+            <nav class="menu-navegacao">
+                <a href="#cursos">Cursos ao vivo</a>
+                <a href="#videos">Vídeos</a>
+                <a href="#card-socio">Seja Sócio</a>
+                
+                <div class="container-busca-topo">
+                    <input type="text" id="campoBusca" class="input-busca-topo" placeholder="Buscar no site..." onkeydown="verificarTeclaBusca(event)">
+                    <i class="fa-solid fa-magnifying-glass icone-busca-topo"></i>
+                </div>
+            </nav>
+            
+            <div class="botoes-topo-container">
+                <div class="titulo-botoes-topo">Principais concursos abertos no Brasil</div>
+                <a href="paginabotao1.html" class="chamada-topo btn-aconselhamento-topo">
+                    <img src="7.jpg" alt="Miniatura" class="miniatura-botao-topo" onerror="this.style.display='none'">
+                    PMMA - Ver Edital Estratégico
+                </a>
+                <a href="paginabotao2.html" class="chamada-topo btn-curso-topo">
+                    <img src="4.jpg" alt="Miniatura Supermente" class="miniatura-botao-topo" onerror="this.style.display='none'">
+                    EM BREVE
+                </a>
+                <a href="paginabotao3.html" class="chamada-topo btn-mentoria-topo">
+                    <img src="5.jpg" alt="Miniatura Manual do Amor" class="miniatura-botao-topo" onerror="this.style.display='none'">
+                    EM BREVE
+                </a>
+                <a href="paginabotao4.html" class="chamada-topo btn-extra-1">
+                    EM BREVE
+                </a>
+                <a href="paginabotao5.html" class="chamada-topo btn-extra-2">
+                    EM BREVE
+                </a>
+                <a href="paginabotao6.html" class="chamada-topo btn-extra-3">
+                    EM BREVE
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="area-restrita">
+        
+        <section id="bloco-principal" class="secao-principal">
+            <div class="lado-esquerdo">
+                <h2>É hora de conquistar a sua vaga</h2>
+                
+                <div class="wrapper-apresentacao">
+                    <img src="imagem2.jpg" alt="Capa" class="arte-principal">
+                    <div class="texto-principal">
+                        <p>Com Professor William Queiroz, você estudará de forma eficiente e com a melhor técnica de aprendizado que será desenvolvida baseada nas suas habilidades e tempo disponível para estudo. Na Mentoria Black Premium, você receberá todo o acompanhamento pedagógico necessário para criar o melhor plano de estudo para cada uma das matérias cobradas no edital e conquistar a sua tão almejada vaga.</p>
+                    </div>
+                </div>
+                
+                <div class="grupo-botoes-vitrine">
+                    <a href="mentoria.html" class="btn-acao-vendas">Maiores Informações</a>
+                    <a href="https://pay.hotmart.com/P106115838M" target="_blank" class="btn-acao-vendas">Contratar via Cartão</a>
+                    <button type="button" onclick="abrirModalPix()" class="btn-acao-vendas">Contratar pelo Pix</button>
+                </div>
+            </div>
+            
+            <div class="lado-direito">
+                <div class="molde-foto">
+                    <img src="imagem1.jpg" alt="William Queiroz" class="imagem-mestre">
+                </div>
+            </div>
+        </section>
+
+        <a href="https://www.senebr.com.br" class="painel-vantagens-link">
+            <div class="linha-forte">Conheça a SENE</div>
+            <div class="linha-media">Conheça também o Português Estratégico</div>
+            <div class="linha-discreta"></div>
+            <div class="btn-interno-dourado">Clique aqui</div>
+        </a>
+
+        <section id="cursos">
+            <h2 class="rotulo-secao">Meus Cursos</h2>
+            <div class="hub-produtos">
+                
+                <div class="box-oferta" id="produto-extra-1">
+                    <img src="imagem3.jpg" alt="Produto 1" class="capa-produto">
+                    <h3>Cursos Preparatório</h3>
+                    <div class="legenda-oferta" style="text-align: justify; padding: 0 10px; font-size: 13px; color: var(--texto-titulo); line-height: 1.5; margin-bottom: 12px;">
+                        Descrição genérica
+                    </div>
+                    <div class="valor-tag"></div>
+                    <div class="valor-subtag"></div>
+                    <div class="grupo-botoes-duplos">
+                        <a href="#" class="btn-acao-vendas">Turma Presencial em sua Cidade</a>
+                        <a href="#" class="btn-acao-vendas btn-online-verde">Curso Online ao Vivo</a>
+                    </div>
+                </div>
+
+                <div class="box-oferta" id="produto-extra-2">
+                    <img src="imagem4.jpg" alt="Produto 2" class="capa-produto">
+                    <h3>Português Estratégico</h3>
+                    <div class="legenda-oferta" style="text-align: justify; padding: 0 10px; font-size: 13px; color: var(--texto-titulo); line-height: 1.5; margin-bottom: 12px;">
+                        Tudo que você precisa para gabaritar LÍNGUA PORTUGUESA e tirar nota máxima em REDAÇÃO.
+                    </div>
+                    <div class="valor-tag"></div>
+                    <div class="valor-subtag"></div>
+                    <a href="https://portugues.senebr.com.br" class="btn-acao-vendas">Quero Conhecer</a>
+                </div>
+
+                <div class="box-oferta" id="card-socio">
+                    <img src="socio.jpg" alt="Seja Meu Sócio" class="capa-produto">
+                    <h3>Parceria de Alto Nível:<br>Seja meu Sócio.</h3>
+                    <div class="legenda-oferta" style="text-align: justify; padding: 0 10px; font-size: 13px; color: var(--texto-titulo); line-height: 1.5; margin-bottom: 12px;">
+                        "Eu não quero apenas alunos; eu quero parceiros comprometidos em crescer comigo. Ao investir apenas R$ 50,00, você recebe o meu treinamento prático de vendas e ganha o direito de ser meu sócio, garantindo 40% de participação em cada venda do curso Português Estratégico. Eu te ensino a estratégia que uso, te dou o material de apoio e você lucra comigo. É um negócio real, testado e pronto para você começar hoje."
+                    </div>
+                    <div class="valor-tag">R$ 50,00</div>
+                    <div class="valor-subtag">Investimento Único</div>
+                    <div class="grupo-botoes-duplos">
+                        <a href="seja-socio.html" class="btn-acao-vendas btn-info-secundario">Informações</a>
+                        <a href="https://pay.hotmart.com/P106115838M" target="_blank" class="btn-acao-vendas">Quero ser seu sócio agora</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="videos">
+            <h2 class="rotulo-secao">Vídeos</h2>
+            <div class="mural-videos">
+                
+                <div class="card-multimidia">
+                    <div class="player-video">Link do Video
+                        
+                    </div>
+                    <div class="detalhe-video">
+                        <h3>EM BREVE</h3>
+                        <p>Com William Queiroz</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="area-comentarios">
+            <h3 style="margin-bottom: 15px; color: var(--texto-titulo);">Espaço do visitante</h3>
+            <p style="font-size: 13px; margin-bottom: 20px; color: var(--texto-suporte);">Deixe suas dúvidas ou depoimentos abaixo. Seu comentário passará por moderação antes de ir ao ar.</p>
+            
+            <form class="form-comentario" onsubmit="alert('Obrigado! Seu comentário foi enviado para moderação e aparecerá em breve.'); this.reset(); return false;">
+                <textarea placeholder="Escreva seu comentário ou dúvida..." required></textarea>
+                <div class="linha-inputs">
+                    <input type="text" placeholder="Seu nome" required>
+                    <input type="email" placeholder="Seu e-mail (não será exposto)" required>
+                    <button type="submit" class="btn-comentar">Enviar Comentário</button>
+                </div>
+            </form>
+
+            <div class="lista-comentarios">
+                <div class="item-comentario">
+                    <h4>Marcelo Castro</h4>
+                    <p>Finalmente um cursinho Preparatório para concursos que vai para cidades pequenas. Escale Concursos só podia ser da SENE, a única que trabalha em cidades pequenas nordeste a fora. Bom demais. </p>
+                </div>
+            </div>
+        </section>
+
+    </div> 
+
+    <footer>
+        <div class="area-restrita">
+            <div class="canais-comunicacao">
+                <a href="mailto:cursos.sene@gmail.com" class="link-destacado"><i class="fa-regular fa-envelope"></i>cursos.sene@gmail.com</a>
+                <a href="https:/w.facebook.com/profile.php?id=61591785681232" target="_blank" class="link-destacado"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                <a href="https://www.tikto.com/@manuald
+                idade" target="_blank" class="link-destacado"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                <a href="https://www.youte.com/@ManualdaMaturidade" target="_blank" class="link-destacado"><i class="fa-brands fa-youtube"></i>Escale Concursos</a>
+            </div>
+            
+            <div class="perfil-instagram">
+                <a href="https://www.instagram.com/showdeportugues?igsh=MWJ4aWF5MGk2eWZkNg==" target="_blank" class="link-destacado"><i class="fa-brands fa-instagram"></i>Escale Concursos</a>
+            </div>
+            
+            <div class="assinatura-professor">
+                Escale Concursos — <span>Aqui você constroi uma aprovação.</span>
+            </div>
+            
+            <div class="direitos-reservados">
+                © 2026 | Desenvolvido por <a href="#">William Queiroz</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="modalPix" class="janela-modal-pix">
+        <div class="conteudo-modal-pix">
+            <button onclick="fecharModalPix()" class="btn-fechar-modal"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="modalTituloProduto">Mentoria Black Premium</h3>
+            <p>Escaneie o QR Code ou copie a chave aleatória abaixo para realizar o pagamento.</p>
+            <div class="box-qr-code">
+                <img src="qrcode.jpg" alt="QR Code Pix" onerror="this.style.display='none'; this.parentNode.innerText='[ Espaço para o seu QR Code ]';">
+            </div>
+            <div class="container-chave-pix">
+                <span id="chavePixTexto" class="texto-chave-pix">e4d58a2f-7c19-4b82-96ed-3faef2918804</span>
+                <button onclick="copiarChavePix()" class="btn-copiar-chave">Copiar Chave</button>
+            </div>
+            <div id="alertaSucessoPix" class="alerta-notificacao">Chave Pix copiada com sucesso!</div>
+            <div class="aviso-comprovante">
+                <i class="fa-brands fa-whatsapp"></i> 1) Pague o valor referente ao plano escolhido. 2) Envie o comprovante para o nosso WhatsApp (88)994409549. 3) Agendaremos o início dos seus estudos.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function abrirModalPix() {
+            document.getElementById('modalPix').classList.add('modal-ativo');
+        }
+
+        function fecharModalPix() {
+            document.getElementById('modalPix').classList.remove('modal-ativo');
+        }
+
+        function copiarChavePix() {
+            const chaveText = document.getElementById('chavePixTexto').innerText;
+            navigator.clipboard.writeText(chaveText).then(() => {
+                const alerta = document.getElementById('alertaSucessoPix');
+                alerta.style.display = 'block';
+                setTimeout(() => {
+                    alerta.style.display = 'none';
+                }, 3000);
+            });
+        }
+
+        window.onclick = function(event) {
+            const modalPix = document.getElementById('modalPix');
+            if (event.target == modalPix) {
+                fecharModalPix();
+            }
+        }
+
+        function verificarTeclaBusca(event) {
+            if (event.key === 'Enter') {
+                executarBuscaNoSite();
+            }
+        }
+
+        function executarBuscaNoSite() {
+            const termoBusca = document.getElementById('campoBusca').value.toLowerCase().trim();
+            if (termoBusca === "") return;
+
+            const cardsProdutos = document.querySelectorAll('.box-oferta');
+            let itemEncontrado = null;
+
+            for (let card of cardsProdutos) {
+                const titulo = card.querySelector('h3')?.innerText.toLowerCase() || '';
+                const legenda = card.querySelector('.legenda-oferta')?.innerText.toLowerCase() || '';
+                
+                if (titulo.includes(termoBusca) || legenda.includes(termoBusca)) {
+                    itemEncontrado = card;
+                    break;
+                }
+            }
+
+            if (itemEncontrado) {
+                const topoCard = itemEncontrado.getBoundingClientRect().top + window.scrollY - 50;
+                
+                window.scrollTo({
+                    top: topoCard,
+                    behavior: 'smooth'
+                });
+
+                itemEncontrado.classList.add('card-pesquisado-destaque');
+                setTimeout(() => {
+                    itemEncontrado.classList.remove('card-pesquisado-destaque');
+                }, 3000);
+            } else {
+                alert('Nenhum curso ou serviço específico foi encontrado para o termo pesquisado.');
+            }
+        }
+    </script>
+
+</body>
+</html>
