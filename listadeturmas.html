@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turmas Presenciais | Escale Concursos</title>
+  <style>
+    /* ======================================================
+       PALETA DE CORES E VARIÁVEIS
+       ====================================================== */
+    :root {
+      --cor-primaria: #1A365D;       /* Azul escuro institucional */
+      --cor-secundaria: #D69E2E;     /* Dourado/Amarelo de destaque */
+      --cor-fundo: #F7FAFC;          /* Fundo suave da página */
+      --cor-card: #FFFFFF;           /* Fundo dos cartões */
+      --cor-texto: #2D3748;          /* Texto principal */
+      --cor-texto-suave: #4A5568;    /* Texto secundário */
+      --cor-borda: #E2E8F0;          /* Cor das bordas */
+      --cor-whatsapp: #25D366;       /* Verde do WhatsApp */
+      --fonte-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+      font-family: var(--fonte-principal);
+      line-height: 1.6;
+      padding-bottom: 40px;
+    }
+
+    /* ======================================================
+       CABEÇALHO RESPONSIVO
+       ====================================================== */
+    header {
+      background-color: var(--cor-card);
+      border-bottom: 3px solid var(--cor-secundaria);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      padding: 12px 0;
+    }
+
+    .header-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .header-col {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .header-col.logo-marca img {
+      width: 100%;
+      max-width: 360px;
+      max-height: 120px;
+      object-fit: contain;
+    }
+
+    .mensagem-cabecalho {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--cor-primaria);
+      font-style: italic;
+      letter-spacing: 0.5px;
+      padding: 2px 10px;
+    }
+
+    .btn-voltar-site {
+      display: inline-block;
+      background-color: transparent;
+      color: var(--cor-texto-suave);
+      border: 1px solid var(--cor-borda);
+      padding: 7px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-voltar-site:hover {
+      background-color: var(--cor-borda);
+      color: var(--cor-texto);
+    }
+
+    @media (min-width: 768px) {
+      header {
+        padding: 15px 0;
+      }
+      .header-container {
+        flex-direction: row;
+        padding: 0 20px;
+      }
+      .header-col.logo-marca {
+        width: auto;
+        justify-content: flex-start;
+      }
+      .header-col.logo-marca img {
+        max-height: 80px;
+      }
+      .header-col.mensagem-col {
+        width: auto;
+        flex-grow: 1;
+      }
+      .header-col.btn-site-col {
+        width: auto;
+        justify-content: flex-end;
+      }
+    }
+
+    /* ======================================================
+       CONTEÚDO PRINCIPAL E SANFONA DE ESTADOS
+       ====================================================== */
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .titulo-principal {
+      text-align: center;
+      color: var(--cor-primaria);
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--cor-borda);
+    }
+
+    .lista-estados {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .estado-item {
+      background: var(--cor-card);
+      border-radius: 8px;
+      border: 1px solid var(--cor-borda);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+      overflow: hidden;
+    }
+
+    .estado-header {
+      width: 100%;
+      padding: 16px 20px;
+      background: var(--cor-card);
+      border: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--cor-primaria);
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s ease;
+    }
+
+    .estado-header:hover {
+      background-color: #F8FAFC;
+    }
+
+    .estado-header .icone {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .estado-item.ativo .estado-header .icone {
+      transform: rotate(180deg);
+    }
+
+    .estado-conteudo {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      background-color: #FAFAFA;
+      border-top: 1px solid transparent;
+    }
+
+    .estado-item.ativo .estado-conteudo {
+      border-top-color: var(--cor-borda);
+      padding: 20px;
+      max-height: 2000px;
+    }
+
+    /* ======================================================
+       CARDS DE TURMA E CHAMADA "SEJA SÓCIO"
+       ====================================================== */
+    .sem-turma-box {
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .sem-turma-box p {
+      color: var(--cor-texto-suave);
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+
+    .btn-socio {
+      display: inline-block;
+      background-color: var(--cor-secundaria);
+      color: #FFFFFF;
+      font-weight: bold;
+      padding: 10px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      transition: all 0.2s ease;
+    }
+
+    .btn-socio:hover {
+      filter: brightness(1.05);
+      transform: translateY(-2px);
+    }
+
+    .card-turma {
+      background: var(--cor-card);
+      border-left: 4px solid var(--cor-secundaria);
+      border-radius: 6px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-bottom: 15px;
+    }
+
+    .card-turma:last-child {
+      margin-bottom: 0;
+    }
+
+    .cidade-titulo {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--cor-primaria);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .info-turma-lista {
+      list-style: none;
+      margin-bottom: 18px;
+    }
+
+    .info-turma-lista li {
+      margin-bottom: 8px;
+      color: var(--cor-texto-suave);
+      font-size: 0.98rem;
+    }
+
+    .info-turma-lista strong {
+      color: var(--cor-texto);
+    }
+
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--cor-whatsapp);
+      color: #FFFFFF;
+      font-weight: bold;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1rem;
+      text-transform: uppercase;
+      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .btn-whatsapp:hover {
+      filter: brightness(1.05);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="header-container">
+      <div class="header-col logo-marca">
+        <img src="Logo1.jpg" alt="Logomarca Escale Concursos">
+      </div>
+
+      <div class="header-col mensagem-col">
+        <p class="mensagem-cabecalho">
+          <span style="font-size: 1.4rem; font-weight: bold; display: block;">PREPARE-SE COM QUEM SABE</span>
+          Persevere com fé, força e foco.
+        </p>
+      </div>
+
+      <div class="header-col btn-site-col">
+        <a href="https://escaleconcursos.senebr.com.br" class="btn-voltar-site">Ir para o site</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="container">
+
+    <h1 class="titulo-principal">
+      Cidades em que temos turmas presenciais para iniciar ou em andamento
+    </h1>
+
+    <div class="lista-estados">
+
+      <!-- AC -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Acre (AC)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- AL -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Alagoas (AL)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- AP -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Amapá (AP)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- AM -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Amazonas (AM)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BA -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Bahia (BA)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CE -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Ceará (CE)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- DF -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Distrito Federal (DF)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ES -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Espírito Santo (ES)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- GO -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Goiás (GO)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MA -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Maranhão (MA)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MT -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Mato Grosso (MT)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MS -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Mato Grosso do Sul (MS)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MG -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Minas Gerais (MG)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PA -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Pará (PA)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PB -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Paraíba (PB)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PR -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Paraná (PR)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PE -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Pernambuco (PE)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PI -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Piauí (PI)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RJ -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Rio de Janeiro (RJ)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RN -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Rio Grande do Norte (RN)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RS -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Rio Grande do Sul (RS)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RO -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Rondônia (RO)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RR -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Roraima (RR)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SC -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Santa Catarina (SC)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SP -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>São Paulo (SP)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SE -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Sergipe (SE)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TO -->
+      <div class="estado-item">
+        <button class="estado-header" onclick="toggleEstado(this)">
+          <span>Tocantins (TO)</span>
+          <span class="icone">▼</span>
+        </button>
+        <div class="estado-conteudo">
+          <div class="sem-turma-box">
+            <p>Ainda não temos turma neste estado, mas você pode nos ajudar a formá-la!</p>
+            <a href="https://escaleconcursos.senebr.com.br/#seja-socio" class="btn-socio">Seja nosso sócio</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- SCRIPT PARA ABRIR/FECHAR SANFONA -->
+  <script>
+    function toggleEstado(element) {
+      const item = element.parentElement;
+      item.classList.toggle('ativo');
+    }
+  </script>
+
+</body>
+</html>
