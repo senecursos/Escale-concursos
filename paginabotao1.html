@@ -210,6 +210,17 @@
       display: block;
     }
 
+    /* Links dentro do card */
+    .secao-card a {
+      color: var(--cor-primaria);
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    .secao-card a:hover {
+      color: var(--cor-secundaria);
+    }
+
     /* ======================================================
        BLOCO DE BOTÕES DE AÇÃO (CTA & COMPARTILHAR)
        ====================================================== */
@@ -278,12 +289,11 @@
 
       <!-- 2. Espaço para Mensagem / Slogan (Abaixo da logo e acima do botão) -->
       <div class="header-col mensagem-col">
-  <p class="mensagem-cabecalho">
-    <span style="font-size: 1.4rem; font-weight: bold; display: block;">PREPARE-SE COM QUEM SABE</span>
-    Persevere com fé, força e foco.
-  </p>
-</div>
-
+        <p class="mensagem-cabecalho">
+          <span style="font-size: 1.4rem; font-weight: bold; display: block;">PREPARE-SE COM QUEM SABE</span>
+          Persevere com fé, força e foco.
+        </p>
+      </div>
 
       <!-- 3. Botão Ir Para o Site -->
       <div class="header-col btn-site-col">
@@ -301,15 +311,17 @@
       <h1 class="subtitulo-edital">Resumo Prático do Edital Nº 1-PMMA</h1>
     </div>
 
-    <!-- 1. CRONOGRAMA -->
+    <!-- 1. CRONOGRAMA, BANCA E INSCRIÇÕES -->
     <section class="secao-card">
-      <h2>1. Cronograma de Inscrições e Pagamento</h2>
+      <h2>1. Cronograma, Banca e Inscrições</h2>
       <ul>
+        <li><strong>Banca Organizadora:</strong> Cebraspe (Centro Brasileiro de Pesquisa em Avaliação e Seleção e de Promoção de Eventos)</li>
         <li><strong>Início das Inscrições:</strong> 20 de julho de 2026 (às 10h)</li>
         <li><strong>Término das Inscrições:</strong> 14 de agosto de 2026 (às 18h)</li>
         <li><strong>Período de Solicitação de Isenção:</strong> 20 de julho a 29 de julho de 2026</li>
         <li><strong>Data Limite para Pagamento da Taxa (DARE):</strong> 02 de setembro de 2026</li>
         <li><strong>Valor da Taxa de Inscrição:</strong> R$ 120,00</li>
+        <li><strong>Onde se inscrever:</strong> Exclusivamente via internet, no site oficial da banca Cebraspe (<a href="http://www.cebraspe.org.br/concursos/pm_ma_26" target="_blank" rel="noopener noreferrer">cebraspe.org.br/concursos/pm_ma_26</a>)</li>
       </ul>
     </section>
 
@@ -380,12 +392,21 @@
     <!-- 4. ESTRUTURA DA PROVA -->
     <section class="secao-card">
       <h2>4. Estrutura da Prova e Quantidade de Questões</h2>
+      <div class="sub-secao">
+        <h3>Prova Objetiva</h3>
+      </p>
+      </div>
       <p style="margin-bottom: 10px;">A prova objetiva terá <strong>120 itens</strong> no modelo Certo (C) ou Errado (E):</p>
       <ul>
         <li><strong>Conhecimentos Básicos (40 questões):</strong> Língua Portuguesa, Raciocínio Lógico e Noções de Informática.</li>
         <li><strong>Conhecimentos Específicos (80 questões - Soldado QP):</strong> História do MA, Geografia do MA, Direito Constitucional, Direito Administrativo, Direito Penal e Processual Penal, Legislação Extravagante e Legislação Institucional (PMMA).</li>
         <li><strong>Conhecimentos Específicos (80 questões - Soldado Músico):</strong> Teoria Musical / Conhecimentos Específicos da Área e Legislação Institucional (PMMA).</li>
       </ul>
+
+      <div class="sub-secao">
+        <h3>Prova Discursiva</h3>
+        <p><strong>Não haverá prova discursiva/redação</strong> para este concurso.</p>
+      </div>
     </section>
 
     <!-- 5. CONTEÚDO PROGRAMÁTICO -->
