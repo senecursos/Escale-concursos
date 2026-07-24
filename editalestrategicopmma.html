@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edital Estratégico - PMMA | Escale Concursos</title>
+  <style>
+    /* ======================================================
+       PALETA DE CORES E VARIÁVEIS
+       ====================================================== */
+    :root {
+      --cor-primaria: #1A365D;       /* Azul escuro institucional */
+      --cor-secundaria: #D69E2E;     /* Dourado/Amarelo de destaque */
+      --cor-fundo: #F7FAFC;          /* Fundo suave da página */
+      --cor-card: #FFFFFF;           /* Fundo dos cartões */
+      --cor-texto: #2D3748;          /* Texto principal */
+      --cor-texto-suave: #4A5568;    /* Texto secundário */
+      --cor-borda: #E2E8F0;          /* Cor das bordas */
+      --cor-cinza-neutro: #718096;   /* Cinza social para botão compartilhar */
+      --fonte-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+      font-family: var(--fonte-principal);
+      line-height: 1.6;
+      padding-bottom: 40px;
+    }
+
+    /* ======================================================
+       CABEÇALHO RESPONSIVO
+       ====================================================== */
+    header {
+      background-color: var(--cor-card);
+      border-bottom: 3px solid var(--cor-secundaria);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      padding: 12px 0;
+    }
+
+    .header-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column; /* Mobile first: empilhado */
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .header-col {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Ajuste para a Logomarca ocupar bem o topo */
+    .header-col.logo-marca img {
+      width: 100%;
+      max-width: 360px; /* Expande bem as laterais no mobile */
+      max-height: 120px;
+      object-fit: contain;
+    }
+
+    /* Espaço para Mensagem/Slogan no Cabeçalho */
+    .mensagem-cabecalho {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--cor-primaria);
+      font-style: italic;
+      letter-spacing: 0.5px;
+      padding: 2px 10px;
+    }
+
+    /* Botão discreto no topo */
+    .btn-voltar-site {
+      display: inline-block;
+      background-color: transparent;
+      color: var(--cor-texto-suave);
+      border: 1px solid var(--cor-borda);
+      padding: 7px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-voltar-site:hover {
+      background-color: var(--cor-borda);
+      color: var(--cor-texto);
+    }
+
+    /* Desktop: Logomarca de um lado, Mensagem ao centro e Botão do outro */
+    @media (min-width: 768px) {
+      header {
+        padding: 15px 0;
+      }
+      .header-container {
+        flex-direction: row;
+        padding: 0 20px;
+      }
+      .header-col.logo-marca {
+        width: auto;
+        justify-content: flex-start;
+      }
+      .header-col.logo-marca img {
+        max-height: 80px;
+      }
+      .header-col.mensagem-col {
+        width: auto;
+        flex-grow: 1;
+      }
+      .header-col.btn-site-col {
+        width: auto;
+        justify-content: flex-end;
+      }
+    }
+
+    /* ======================================================
+       CONTEÚDO DO EDITAL E TÍTULOS
+       ====================================================== */
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .cabecalho-titulo {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid var(--cor-borda);
+      padding-bottom: 20px;
+    }
+
+    /* Destaque para Edital Estratégico */
+    .marca-edital-estrategico {
+      display: block;
+      color: var(--cor-secundaria);
+      font-size: 2.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 5px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .subtitulo-edital {
+      color: var(--cor-primaria);
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .secao-card {
+      background: var(--cor-card);
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      border-left: 4px solid var(--cor-primaria);
+    }
+
+    .secao-card h2 {
+      color: var(--cor-primaria);
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .secao-card ul {
+      list-style: none;
+    }
+
+    .secao-card li {
+      margin-bottom: 10px;
+      color: var(--cor-texto-suave);
+    }
+
+    .secao-card strong {
+      color: var(--cor-texto);
+    }
+
+    .sub-secao {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px dashed var(--cor-borda);
+    }
+
+    .sub-secao h3 {
+      color: var(--cor-secundaria);
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .materia-titulo {
+      font-weight: bold;
+      color: var(--cor-primaria);
+      margin-top: 12px;
+      display: block;
+    }
+
+    /* Links dentro do card */
+    .secao-card a {
+      color: var(--cor-primaria);
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    .secao-card a:hover {
+      color: var(--cor-secundaria);
+    }
+
+    /* ======================================================
+       BLOCO DE BOTÕES DE AÇÃO (CTA & COMPARTILHAR)
+       ====================================================== */
+    .cta-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 35px 0;
+    }
+
+    /* Botão Principal */
+    .btn-preparacao {
+      display: inline-block;
+      background-color: var(--cor-secundaria);
+      color: #FFFFFF;
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 16px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      text-transform: uppercase;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .btn-preparacao:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      filter: brightness(1.05);
+    }
+
+    /* Botão Compartilhar (Menor e Discreto) */
+    .btn-compartilhar {
+      background-color: transparent;
+      color: var(--cor-cinza-neutro);
+      border: 1px solid var(--cor-cinza-neutro);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-compartilhar:hover {
+      background-color: var(--cor-cinza-neutro);
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="header-container">
+      <!-- 1. Logomarca Ampliada -->
+      <div class="header-col logo-marca">
+        <img src="Logo1.jpg" alt="Logomarca Escale Concursos">
+      </div>
+
+      <!-- 2. Espaço para Mensagem / Slogan (Abaixo da logo e acima do botão) -->
+      <div class="header-col mensagem-col">
+        <p class="mensagem-cabecalho">
+          <span style="font-size: 1.4rem; font-weight: bold; display: block;">PREPARE-SE COM QUEM SABE</span>
+          Persevere com fé, força e foco.
+        </p>
+      </div>
+
+      <!-- 3. Botão Ir Para o Site -->
+      <div class="header-col btn-site-col">
+        <a href="https://escaleconcursos.senebr.com.br" class="btn-voltar-site">Ir para o site</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="container">
+
+    <!-- TÍTULOS -->
+    <div class="cabecalho-titulo">
+      <span class="marca-edital-estrategico">Edital Estratégico</span>
+      <h1 class="subtitulo-edital">Resumo Prático do Edital Nº 1-PMMA</h1>
+    </div>
+
+    <!-- 1. CRONOGRAMA, BANCA E INSCRIÇÕES -->
+    <section class="secao-card">
+      <h2>1. Cronograma, Banca e Inscrições</h2>
+      <ul>
+        <li><strong>Banca Organizadora:</strong> Cebraspe (Centro Brasileiro de Pesquisa em Avaliação e Seleção e de Promoção de Eventos)</li>
+        <li><strong>Início das Inscrições:</strong> 20 de julho de 2026 (às 10h)</li>
+        <li><strong>Término das Inscrições:</strong> 14 de agosto de 2026 (às 18h)</li>
+        <li><strong>Período de Solicitação de Isenção:</strong> 20 de julho a 29 de julho de 2026</li>
+        <li><strong>Data Limite para Pagamento da Taxa (DARE):</strong> 02 de setembro de 2026</li>
+        <li><strong>Valor da Taxa de Inscrição:</strong> R$ 120,00</li>
+        <li><strong>Onde se inscrever:</strong> Exclusivamente via internet, no site oficial da banca Cebraspe (<a href="http://www.cebraspe.org.br/concursos/pm_ma_26" target="_blank" rel="noopener noreferrer">cebraspe.org.br/concursos/pm_ma_26</a>)</li>
+      </ul>
+    </section>
+
+    <!-- 2. PROVA OBJETIVA -->
+    <section class="secao-card">
+      <h2>2. Data, Horário e Locais da Prova Objetiva</h2>
+      <ul>
+        <li><strong>Data da Prova:</strong> 25 de outubro de 2026</li>
+        <li><strong>Turno e Duração:</strong> Turno da Tarde / Duração de 3h30min</li>
+        <li><strong>Cidades de Aplicação:</strong> Balsas/MA, Barra do Corda/MA, Caxias/MA, Colinas/MA, Imperatriz/MA, Pinheiro/MA e São Luís/MA.</li>
+      </ul>
+    </section>
+
+    <!-- 3. QUANTIDADE DE VAGAS E REQUISITOS BÁSICOS -->
+    <section class="secao-card">
+      <h2>3. Quantidade de Vagas e Requisitos Básicos</h2>
+      
+      <div class="sub-secao" style="margin-top: 0; padding-top: 0; border-top: none;">
+        <h3>Requisitos Gerais para Ingresso (Todos os Cargos)</h3>
+        <ul>
+          <li><strong>Escolaridade:</strong> Ensino Médio Completo (comprovado no ato da posse/incorporação)</li>
+          <li><strong>Idade:</strong> Mínimo de 18 anos e Máximo de 35 anos até a data de inscrição</li>
+          <li><strong>Carteira Nacional de Habilitação (CNH):</strong> Categoria "B", no mínimo</li>
+        </ul>
+      </div>
+
+      <p style="margin-top: 15px; font-size: 1.1rem;"><strong>Total Geral de Vagas Imediatas:</strong> 1.000 vagas</p>
+      
+      <div class="sub-secao">
+        <h3>Cargo 1: Soldado do Quadro de Praças (QP) - Total: 970 vagas</h3>
+        <p style="margin-bottom: 8px;"><strong>Requisito Específico:</strong> Ensino Médio Completo + CNH B + Idade de 18 a 35 anos</p>
+        <ul>
+          <li><strong>Ampla Concorrência (AC):</strong> 679 vagas</li>
+          <li><strong>Pessoas com Deficiência (PCD):</strong> 97 vagas</li>
+          <li><strong>Pessoas Pretas e Pardas (PP):</strong> 194 vagas</li>
+        </ul>
+      </div>
+
+      <div class="sub-secao">
+        <h3>Cargos 2 a 12: Soldado do Quadro de Praças Músicos (QPMus) - Total: 30 vagas</h3>
+        <p style="margin-bottom: 8px;"><strong>Requisito Específico:</strong> Ensino Médio Completo + Teste Prático de Música + CNH B + Idade de 18 a 35 anos</p>
+        <ul>
+          <li>Bombardino Eufônico: 3 vagas (2 AC, 1 PP)</li>
+          <li>Clarinete: 3 vagas (2 AC, 1 PP)</li>
+          <li>Flauta/Flautim: 3 vagas (2 AC, 1 PP)</li>
+          <li>Percussão: 1 vaga (1 AC)</li>
+          <li>Saxofone Alto: 4 vagas (3 AC, 1 PP)</li>
+          <li>Saxofone Barítono: 3 vagas (2 AC, 1 PP)</li>
+          <li>Saxofone Tenor: 3 vagas (2 AC, 1 PP)</li>
+          <li>Trombone Tenor: 2 vagas (2 AC)</li>
+          <li>Trompa: 3 vagas (2 AC, 1 PP)</li>
+          <li>Trompete: 2 vagas (2 AC)</li>
+          <li>Tuba: 3 vagas (2 AC, 1 PP)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- BLOCO DE AÇÃO 1 -->
+    <div class="cta-container">
+      <a href="https://go.hotmart.com/P106115838M?dp=1" class="btn-preparacao" target="_blank">
+        Iniciar Preparação
+      </a>
+      <button onclick="compartilharPagina()" class="btn-compartilhar">
+        🔗 Compartilhar Edital
+      </button>
+    </div>
+
+    <!-- 4. ESTRUTURA DA PROVA -->
+    <section class="secao-card">
+      <h2>4. Estrutura da Prova e Quantidade de Questões</h2>
+      <div class="sub-secao">
+        <h3>Prova Objetiva</h3>
+      </p>
+      </div>
+      <p style="margin-bottom: 10px;">A prova objetiva terá <strong>120 itens</strong> no modelo Certo (C) ou Errado (E):</p>
+      <ul>
+        <li><strong>Conhecimentos Básicos (40 questões):</strong> Língua Portuguesa, Raciocínio Lógico e Noções de Informática.</li>
+        <li><strong>Conhecimentos Específicos (80 questões - Soldado QP):</strong> História do MA, Geografia do MA, Direito Constitucional, Direito Administrativo, Direito Penal e Processual Penal, Legislação Extravagante e Legislação Institucional (PMMA).</li>
+        <li><strong>Conhecimentos Específicos (80 questões - Soldado Músico):</strong> Teoria Musical / Conhecimentos Específicos da Área e Legislação Institucional (PMMA).</li>
+      </ul>
+
+      <div class="sub-secao">
+        <h3>Prova Discursiva</h3>
+        <p><strong>Não haverá prova discursiva/redação</strong> para este concurso.</p>
+      </div>
+    </section>
+
+    <!-- 5. CONTEÚDO PROGRAMÁTICO -->
+    <section class="secao-card">
+      <h2>5. Conteúdo Programático</h2>
+
+      <!-- A) Conhecimentos Básicos -->
+      <div class="sub-secao">
+        <h3>A) Conhecimentos Básicos (Para Todos os Cargos)</h3>
+        
+        <span class="materia-titulo">LÍNGUA PORTUGUESA:</span>
+        <p>1 Compreensão e interpretação de textos de gêneros variados. 2 Reconhecimento de tipos e gêneros textuais. 3 Domínio da ortografia oficial. 4 Domínio dos mecanismos de coesão textual: emprego de elementos de referenciação, substituição e repetição, de conectores e de outros elementos de sequenciação textual; referência anafórica e catafórica; coesão lexical. 5 Domínio da estrutura morfossintática do período: emprego das classes de palavras; relações de regência verbal e nominal; emprego do sinal indicativo de crase; relações de concordância verbal e nominal; colocação dos pronomes átonos. 6 Reescrita de frases e parágrafos do texto: significação das palavras; substituição de palavras ou de trechos de texto; reorganização da estrutura de orações e de períodos do texto; reescrita de textos de diferentes gêneros e níveis de formalidade.</p>
+
+        <span class="materia-titulo">RACIOCÍNIO LÓGICO:</span>
+        <p>1 Estruturas lógicas. 2 Lógica de argumentação: analogias, inferências, deduções e conclusões. 3 Lógica sentencial (ou proposicional): proposições simples e compostas; tabelas-verdade; equivalências; leis de De Morgan; diagramas lógicos. 4 Lógica de primeira ordem. 5 Operações com conjuntos. 6 Raciocínio lógico envolvendo problemas numéricos, quantitativos e combinatórios.</p>
+
+        <span class="materia-titulo">NOÇÕES DE INFORMÁTICA:</span>
+        <p>1 Conceitos de internet e intranet. 2 Conceitos básicos e modos de utilização de tecnologias, ferramentas, aplicativos e procedimentos de informática: tipos de computadores, conceitos de hardware e de software. 3 Edição de textos, planilhas e apresentações (ambientes Microsoft Office e LibreOffice). 4 Sistemas operacionais (Windows 10 e Windows 11). 5 Noções de vírus, worms e pragas virtuais. 6 Aplicativos para segurança (antivírus, firewall, anti-spyware etc.). 7 Procedimentos de backup.</p>
+      </div>
+
+      <!-- B) Específicos Soldado QP -->
+      <div class="sub-secao">
+        <h3>B) Conhecimentos Específicos - Soldado do Quadro de Praças (QP)</h3>
+        
+        <span class="materia-titulo">HISTÓRIA DO MARANHÃO:</span>
+        <p>1 O processo de ocupação do território maranhense: povos indígenas e a conquista europeia. 2 A presença francesa e holandesa no Maranhão colonial. 3 A economia colonial: o algodão e a escravidão. 4 A Balaiada: causas, desenvolvimento e consequências. 5 O Maranhão na República: elites políticas, movimentos sociais e transformações econômicas no século XX e XXI.</p>
+
+        <span class="materia-titulo">GEOGRAFIA DO MARANHÃO:</span>
+        <p>1 O espaço físico maranhense: relevo, clima, hidrografia, vegetação e solos. 2 Os ecossistemas maranhenses: Cerrado, Amazônia e zona costeira. 3 A população do Maranhão: dinâmica demográfica, urbanização e migrações. 4 A economia do Maranhão: agricultura, pecuária, extrativismo, indústria e o Complexo Portuário de Itaqui. 5 Regionalização do estado e integração infraestrutural.</p>
+
+        <span class="materia-titulo">NOÇÕES DE DIREITO CONSTITUCIONAL:</span>
+        <p>1 Constituição da República Federativa do Brasil de 1988: princípios fundamentais. 2 Direitos e garantias fundamentais: direitos e deveres individuais e coletivos; direitos sociais; nacionalidade; direitos políticos. 3 Organização do Estado: Organização Político-Administrativa; União, Estados Federados, Municípios e Distrito Federal. 4 Administração Pública: disposições gerais; servidores públicos. 5 Defesa do Estado e das Instituições Democráticas: das Forças Armadas; da Segurança Pública (Art. 144).</p>
+
+        <span class="materia-titulo">NOÇÕES DE DIREITO ADMINISTRATIVO:</span>
+        <p>1 Estado, governo e administração pública: conceitos, elementos, poderes e organização. 2 Direito administrativo: conceito, fontes e princípios. 3 Agentes públicos: espécies e classificação, direitos, deveres e prerrogativas, cargo, emprego e função públicos, processo administrativo disciplinar. 4 Poderes administrativos: poder vinculado, poder discricionário, poder hierárquico, poder disciplinar, poder regulamentar e poder de polícia. 5 Ato administrativo: conceito, requisitos, atributos, classificação e espécies. 6 Responsabilidade civil do Estado.</p>
+
+        <span class="materia-titulo">NOÇÕES DE DIREITO PENAL E PROCESSUAL PENAL:</span>
+        <p>1 Direito Penal: Aplicação da lei penal; crime (conceito, elementos, consumação e tentativa); imputabilidade penal; das penas. 2 Crimes contra a pessoa. 3 Crimes contra o patrimônio. 4 Crimes contra a Administração Pública. 5 Direito Processual Penal: Inquérito policial; Ação penal. 6 Prisão em flagrante, prisão preventiva e prisão temporária.</p>
+
+        <span class="materia-titulo">LEGISLAÇÃO EXTRAVAGANTE:</span>
+        <p>1 Estatuto do Desarmamento (Lei nº 10.826/2003 e suas alterações). 2 Lei de Drogas (Lei nº 11.343/2006 e suas alterações). 3 Lei de Abuso de Autoridade (Lei nº 13.869/2019). 4 Lei de Crimes Ambientais (Lei nº 9.605/1998). 5 Crimes de Tortura (Lei nº 9.455/1997). 6 Lei Maria da Penha (Lei nº 11.340/2006). 7 Crimes Resultantes de Preconceito de Raça ou de Cor (Lei nº 7.716/1989). 8 Estatuto da Criança e do Adolescente (Lei nº 8.069/1990). 9 Código de Trânsito Brasileiro (Lei nº 9.503/1997 - Dos crimes de trânsito).</p>
+
+        <span class="materia-titulo">LEGISLAÇÃO INSTITUCIONAL:</span>
+        <p>1 Constituição do Estado do Maranhão: Disposições relativas à Segurança Pública e à Polícia Militar. 2 Estatuto dos Policiais Militares da Polícia Militar do Maranhão (Lei Estadual nº 6.513/1995 e suas alterações). 3 Código de Ética e Disciplina dos Militares do Estado do Maranhão. 4 Organização Básica da Polícia Militar do Maranhão.</p>
+      </div>
+
+      <!-- C) Específicos Músico -->
+      <div class="sub-secao">
+        <h3>C) Conhecimentos Específicos - Soldado Músico (QPMus)</h3>
+        
+        <span class="materia-titulo">TEORIA MUSICAL E CONHECIMENTOS ESPECÍFICOS DA ÁREA:</span>
+        <p>1 Notação musical: claves, notas, figuras de valor, pausas e compassos simples e compostos. 2 Escalas diatônicas maiores e menores (homônimas, relativas, vizinhas). 3 Escala cromática, exotonal e modos gregos. 4 Intervalos: classificação, inversão, consonância e dissonância. 5 Acordes: tríades e tétrades, inversões, posições e encadeamento de acordes. 6 Tonalidade, transposição e modulação. 7 Ornamentos, andamentos, dinâmica e articulação musical. 8 Acústica musical: som, timbre, frequência, altura, intensidade e ressonância. 9 Histórias e características técnicas dos instrumentos de sopro e percussão de bandas de música. 10 Leitura e interpretação de partituras e arranjos para banda de música.</p>
+
+        <span class="materia-titulo">LEGISLAÇÃO INSTITUCIONAL:</span>
+        <p>1 Constituição do Estado do Maranhão: Disposições relativas à Segurança Pública e à Polícia Militar. 2 Estatuto dos Policiais Militares da Polícia Militar do Maranhão (Lei Estadual nº 6.513/1995 e suas alterações). 3 Código de Ética e Disciplina dos Militares do Estado do Maranhão.</p>
+      </div>
+    </section>
+
+    <!-- BLOCO DE AÇÃO 2 -->
+    <div class="cta-container">
+      <a href="https://go.hotmart.com/P106115838M?dp=1" class="btn-preparacao" target="_blank">
+        Iniciar Preparação
+      </a>
+      <button onclick="compartilharPagina()" class="btn-compartilhar">
+        🔗 Compartilhar Edital
+      </button>
+    </div>
+
+  </main>
+
+  <!-- SCRIPT DE COMPARTILHAMENTO -->
+  <script>
+    function compartilharPagina() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Edital Estratégico - PMMA',
+          text: 'Confira o resumo prático do Edital da Polícia Militar do Maranhão!',
+          url: window.location.href
+        }).catch(console.error);
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link do Edital copiado para a área de transferência!');
+      }
+    }
+  </script>
+
+</body>
+</html>

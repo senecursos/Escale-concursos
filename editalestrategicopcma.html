@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edital Estratégico - PC-MA | Escale Concursos</title>
+  <style>
+    /* ======================================================
+       PALETA DE CORES E VARIÁVEIS
+       ====================================================== */
+    :root {
+      --cor-primaria: #1A365D;       /* Azul escuro institucional */
+      --cor-secundaria: #D69E2E;     /* Dourado/Amarelo de destaque */
+      --cor-fundo: #F7FAFC;          /* Fundo suave da página */
+      --cor-card: #FFFFFF;           /* Fundo dos cartões */
+      --cor-texto: #2D3748;          /* Texto principal */
+      --cor-texto-suave: #4A5568;    /* Texto secundário */
+      --cor-borda: #E2E8F0;          /* Cor das bordas */
+      --cor-cinza-neutro: #718096;   /* Cinza social para botão compartilhar */
+      --fonte-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+      font-family: var(--fonte-principal);
+      line-height: 1.6;
+      padding-bottom: 40px;
+    }
+
+    /* ======================================================
+       CABEÇALHO RESPONSIVO
+       ====================================================== */
+    header {
+      background-color: var(--cor-card);
+      border-bottom: 3px solid var(--cor-secundaria);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      padding: 12px 0;
+    }
+
+    .header-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column; /* Mobile first: empilhado */
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .header-col {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Ajuste para a Logomarca ocupar bem o topo */
+    .header-col.logo-marca img {
+      width: 100%;
+      max-width: 360px; /* Expande bem as laterais no mobile */
+      max-height: 120px;
+      object-fit: contain;
+    }
+
+    /* Espaço para Mensagem/Slogan no Cabeçalho */
+    .mensagem-cabecalho {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--cor-primaria);
+      font-style: italic;
+      letter-spacing: 0.5px;
+      padding: 2px 10px;
+    }
+
+    /* Botão discreto no topo */
+    .btn-voltar-site {
+      display: inline-block;
+      background-color: transparent;
+      color: var(--cor-texto-suave);
+      border: 1px solid var(--cor-borda);
+      padding: 7px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-voltar-site:hover {
+      background-color: var(--cor-borda);
+      color: var(--cor-texto);
+    }
+
+    /* Desktop: Logomarca de um lado, Mensagem ao centro e Botão do outro */
+    @media (min-width: 768px) {
+      header {
+        padding: 15px 0;
+      }
+      .header-container {
+        flex-direction: row;
+        padding: 0 20px;
+      }
+      .header-col.logo-marca {
+        width: auto;
+        justify-content: flex-start;
+      }
+      .header-col.logo-marca img {
+        max-height: 80px;
+      }
+      .header-col.mensagem-col {
+        width: auto;
+        flex-grow: 1;
+      }
+      .header-col.btn-site-col {
+        width: auto;
+        justify-content: flex-end;
+      }
+    }
+
+    /* ======================================================
+       CONTEÚDO DO EDITAL E TÍTULOS
+       ====================================================== */
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .cabecalho-titulo {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid var(--cor-borda);
+      padding-bottom: 20px;
+    }
+
+    /* Destaque para Edital Estratégico */
+    .marca-edital-estrategico {
+      display: block;
+      color: var(--cor-secundaria);
+      font-size: 2.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 5px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .subtitulo-edital {
+      color: var(--cor-primaria);
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .secao-card {
+      background: var(--cor-card);
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      border-left: 4px solid var(--cor-primaria);
+      /* Previne estouro de links longos e palavras contínuas */
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .secao-card h2 {
+      color: var(--cor-primaria);
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .secao-card ul {
+      list-style: none;
+    }
+
+    .secao-card li {
+      margin-bottom: 10px;
+      color: var(--cor-texto-suave);
+    }
+
+    .secao-card strong {
+      color: var(--cor-texto);
+    }
+
+    .sub-secao {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px dashed var(--cor-borda);
+    }
+
+    .sub-secao h3 {
+      color: var(--cor-secundaria);
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .materia-titulo {
+      font-weight: bold;
+      color: var(--cor-primaria);
+      margin-top: 12px;
+      display: block;
+    }
+
+    /* Links dentro do card */
+    .secao-card a {
+      color: var(--cor-primaria);
+      font-weight: bold;
+      text-decoration: underline;
+      /* Garante a quebra de URLs muito extensas no mobile */
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .secao-card a:hover {
+      color: var(--cor-secundaria);
+    }
+
+    /* ======================================================
+       BLOCO DE BOTÕES DE AÇÃO (CTA & COMPARTILHAR)
+       ====================================================== */
+    .cta-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 35px 0;
+    }
+
+    /* Botão Principal */
+    .btn-preparacao {
+      display: inline-block;
+      background-color: var(--cor-secundaria);
+      color: #FFFFFF;
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 16px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      text-transform: uppercase;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .btn-preparacao:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      filter: brightness(1.05);
+    }
+
+    /* Botão Compartilhar (Menor e Discreto) */
+    .btn-compartilhar {
+      background-color: transparent;
+      color: var(--cor-cinza-neutro);
+      border: 1px solid var(--cor-cinza-neutro);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-compartilhar:hover {
+      background-color: var(--cor-cinza-neutro);
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="header-container">
+      <!-- 1. Logomarca Alterada para imagem1.jpg -->
+      <div class="header-col logo-marca">
+        <img src="logo1.jpg" alt="Logomarca Escale Concursos">
+      </div>
+
+      <!-- 2. Espaço para Mensagem / Slogan -->
+      <div class="header-col mensagem-col">
+        <p class="mensagem-cabecalho">
+          <span style="font-size: 1.4rem; font-weight: bold; display: block;">PREPARE-SE COM QUEM SABE</span>
+          Persevere com fé, força e foco.
+        </p>
+      </div>
+
+      <!-- 3. Botão Ir Para o Site -->
+      <div class="header-col btn-site-col">
+        <a href="https://escaleconcursos.senebr.com.br" class="btn-voltar-site">Ir para o site</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="container">
+
+    <!-- TÍTULOS -->
+    <div class="cabecalho-titulo">
+      <span class="marca-edital-estrategico">Edital Estratégico</span>
+      <h1 class="subtitulo-edital">Resumo Prático do Edital Nº 1-PCMA/2026 - Polícia Civil do Maranhão</h1>
+    </div>
+
+    <!-- 1. CRONOGRAMA, BANCA E INSCRIÇÕES -->
+    <section class="secao-card">
+      <h2>1. Cronograma, Banca e Inscrições</h2>
+      <ul>
+        <li><strong>Banca Organizadora:</strong> Cebraspe</li>
+        <li><strong>Início das Inscrições:</strong> Consultar cronograma detalhado no site da banca</li>
+        <li><strong>Término das Inscrições:</strong> Consultar cronograma detalhado no site da banca</li>
+        <li><strong>Período de Solicitação de Isenção:</strong> Consultar edital no site da banca</li>
+        <li><strong>Data Limite para Pagamento da Taxa:</strong> Consultar data do boleto no site da banca</li>
+        <li><strong>Valor da Taxa de Inscrição:</strong> R$ 250,00</li>
+        <li><strong>Onde se inscrever:</strong> Exclusivamente via internet, no site oficial da banca Cebraspe (<a href="http://www.cebraspe.org.br/concursos/pc_ma_26_delegado" target="_blank" rel="noopener noreferrer">cebraspe.org.br/concursos/pc_ma_26_delegado</a>)</li>
+      </ul>
+    </section>
+
+    <!-- 2. DATA, HORÁRIO E LOCAIS DA PROVA -->
+    <section class="secao-card">
+      <h2>2. Data, Horário e Locais da Prova Objetiva</h2>
+      <ul>
+        <li><strong>Data exata da aplicação das provas:</strong> Consultar cronograma oficial no site da banca</li>
+        <li><strong>Turno e Duração Total:</strong>
+          <br>- Prova Objetiva (P1): Duração de 5 horas
+          <br>- Prova Discursiva (P2): Duração de 4 horas
+        </li>
+        <li><strong>Cidades de Aplicação das Provas (1ª Etapa):</strong> Caxias/MA, Colinas/MA, Imperatriz/MA, Pinheiro/MA e São Luís/MA.</li>
+        <li><strong>Observações sobre Fases Subsequentes:</strong> As demais fases da 1ª etapa (Exame Médico, TAF, Avaliação Psicológica, Prova Oral, Investigação Social e Títulos) serão realizadas exclusivamente na cidade de São Luís/MA.</li>
+      </ul>
+    </section>
+
+    <!-- 3. QUANTIDADE DE VAGAS E REQUISITOS BÁSICOS -->
+    <section class="secao-card">
+      <h2>3. Quantidade de Vagas e Requisitos Básicos</h2>
+      
+      <div class="sub-secao" style="margin-top: 0; padding-top: 0; border-top: none;">
+        <h3>Requisitos de Ingresso</h3>
+        <ul>
+          <li><strong>Escolaridade:</strong> Diploma de graduação em Direito (Bacharelado)</li>
+          <li><strong>Prática Profissional:</strong> 3 anos de atividade jurídica ou policial</li>
+          <li><strong>CNH:</strong> Carteira Nacional de Habilitação exigida</li>
+          <li><strong>Idade:</strong> Mínima de 18 anos na data da posse</li>
+        </ul>
+      </div>
+
+      <p style="margin-top: 15px; font-size: 1.1rem;"><strong>Total Geral de Vagas:</strong> 58 vagas imediatas + 174 em cadastro de reserva</p>
+      <p style="margin-bottom: 15px;"><strong>Cargo:</strong> Delegado de Polícia Civil - 3ª Classe</p>
+      
+      <div class="sub-secao">
+        <h3>Divisão de Vagas Imediatas (58 vagas)</h3>
+        <ul>
+          <li><strong>Ampla Concorrência (AC):</strong> 40 vagas</li>
+          <li><strong>Pessoas com Deficiência (PCD):</strong> 6 vagas</li>
+          <li><strong>Pessoas Pretas e Pardas (PP):</strong> 12 vagas</li>
+        </ul>
+      </div>
+
+      <div class="sub-secao">
+        <h3>Divisão de Cadastro de Reserva (174 vagas)</h3>
+        <ul>
+          <li><strong>Ampla Concorrência (AC):</strong> 121 vagas</li>
+          <li><strong>Pessoas com Deficiência (PCD):</strong> 18 vagas</li>
+          <li><strong>Pessoas Pretas e Pardas (PP):</strong> 35 vagas</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- BLOCO DE AÇÃO 1 -->
+    <div class="cta-container">
+      <a href="https://go.hotmart.com/P106115838M?dp=1" class="btn-preparacao" target="_blank">
+        Iniciar Preparação
+      </a>
+      <button onclick="compartilharPagina()" class="btn-compartilhar">
+        🔗 Compartilhar Edital
+      </button>
+    </div>
+
+    <!-- 4. ESTRUTURA DAS PROVAS -->
+    <section class="secao-card">
+      <h2>4. Estrutura das Provas (Objetiva e Discursiva)</h2>
+      
+      <div class="sub-secao" style="margin-top: 0; padding-top: 0; border-top: none;">
+        <h3>Prova Objetiva</h3>
+        <ul>
+          <li><strong>Modelo da banca:</strong> Múltipla escolha (A/B/C/D/E)</li>
+          <li><strong>Quantidade total de questões:</strong> 100 questões</li>
+          <li><strong>Grupo I (20 questões):</strong> Direito Digital, Direito Civil, Direito Processual Civil, Direito Agrário e Direito Ambiental</li>
+          <li><strong>Grupo II (32 questões):</strong> Direito Administrativo, Direito Constitucional, Medicina Legal e Direitos Humanos</li>
+          <li><strong>Grupo III (48 questões):</strong> Direito Penal, Direito Processual Penal, Legislação Penal e Processual Penal e Criminologia</li>
+          <li><strong>Pontuação mínima:</strong> 50,00 pontos</li>
+        </ul>
+      </div>
+
+      <div class="sub-secao">
+        <h3>Prova Discursiva</h3>
+        <ul>
+          <li><strong>Tipo da Prova:</strong> 4 questões discursivas + 1 peça prático-profissional</li>
+          <li><strong>Tema:</strong> Matérias específicas da carreira</li>
+          <li><strong>Regras do Texto:</strong> Questões de até 15 linhas cada; Peça prático-profissional de até 60 linhas</li>
+          <li><strong>Pontuação e Crivo de Eliminação:</strong> Questões valendo 5,00 pontos cada (total 20,00) e Peça valendo 20,00 pontos; Nota mínima para aprovação é 20,00 pontos no total</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5. CONTEÚDO PROGRAMÁTICO -->
+    <section class="secao-card">
+      <h2>5. Conteúdo Programático (Assuntos por Disciplina)</h2>
+
+      <!-- A) Grupo I -->
+      <div class="sub-secao" style="margin-top: 0; padding-top: 0; border-top: none;">
+        <h3>A) Grupo I</h3>
+        <ul>
+          <li>Direito Digital</li>
+          <li>Direito Civil</li>
+          <li>Direito Processual Civil</li>
+          <li>Direito Agrário</li>
+          <li>Direito Ambiental</li>
+        </ul>
+      </div>
+
+      <!-- B) Grupo II -->
+      <div class="sub-secao">
+        <h3>B) Grupo II</h3>
+        <ul>
+          <li>Direito Administrativo</li>
+          <li>Direito Constitucional</li>
+          <li>Medicina Legal</li>
+          <li>Direitos Humanos</li>
+        </ul>
+      </div>
+
+      <!-- C) Grupo III -->
+      <div class="sub-secao">
+        <h3>C) Grupo III</h3>
+        <ul>
+          <li>Direito Penal</li>
+          <li>Direito Processual Penal</li>
+          <li>Legislação Penal e Processual Penal</li>
+          <li>Criminologia</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- BLOCO DE AÇÃO 2 -->
+    <div class="cta-container">
+      <a href="https://go.hotmart.com/P106115838M?dp=1" class="btn-preparacao" target="_blank">
+        Iniciar Preparação
+      </a>
+      <button onclick="compartilharPagina()" class="btn-compartilhar">
+        🔗 Compartilhar Edital
+      </button>
+    </div>
+
+  </main>
+
+  <!-- SCRIPT DE COMPARTILHAMENTO -->
+  <script>
+    function compartilharPagina() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Edital Estratégico - PC-MA (Delegado)',
+          text: 'Confira o resumo prático do Edital de Delegado da Polícia Civil do Maranhão!',
+          url: window.location.href
+        }).catch(console.error);
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link do Edital copiado para a área de transferência!');
+      }
+    }
+  </script>
+
+</body>
+</html>
