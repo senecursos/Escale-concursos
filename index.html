@@ -56,7 +56,7 @@
         /* --- TOPO INSTITUCIONAL --- */
         .barra-topo {
             background-color: var(--cor-principal); 
-            padding: 15px 0 25px 0;
+            padding: 20px 0;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             position: relative;
             width: 100%;
@@ -66,7 +66,9 @@
         .alinhamento-topo {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         /* BLOCO DA MARCA / LOGO */
@@ -79,9 +81,10 @@
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            max-width: 380px;
+            max-width: 320px;
             width: 100%;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .imagem-logo-topo {
@@ -100,22 +103,15 @@
             color: #ffffff;
             font-weight: 700;
             line-height: 1.2;
-            margin-bottom: 4px;
             white-space: nowrap;
             letter-spacing: 0.2px;
-        }
-
-        .autor-marca {
-            font-size: 12px;
-            color: var(--marca-azul);
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
         }
 
         .menu-navegacao {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .menu-navegacao a {
@@ -123,7 +119,7 @@
             color: #ffffff; 
             font-size: 14px;
             font-weight: 600;
-            margin: 0 12px;
+            margin: 0 8px;
             transition: color 0.2s ease;
         }
 
@@ -192,12 +188,22 @@
         }
 
         /* --- CONTAINER DOS BOTÕES E NOVO TÍTULO --- */
+        .painel-botoes-topo {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+            min-width: 300px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
         .botoes-topo-container {
             display: flex;
             flex-direction: column;
             gap: 6px;
-            min-width: 300px;
-            width: 100%;
+            flex: 1;
+            min-width: 240px;
+            max-width: 320px;
         }
 
         .titulo-botoes-topo {
@@ -296,35 +302,38 @@
             background-color: #F4F5F0;
         }
 
-        /* --- SEÇÃO 2: VITRINE PRINCIPAL --- */
+        /* --- SEÇÃO 2: VITRINE PRINCIPAL (CORRIGIDA) --- */
         .secao-principal {
             padding: 40px 0 60px 0;
             display: flex;
-            flex-wrap: wrap-reverse;
+            flex-wrap: wrap;
             align-items: center;
+            gap: 40px;
         }
 
         .lado-esquerdo {
             flex: 1;
-            min-width: 300px;
-            padding-right: 20px;
+            min-width: 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .lado-direito {
             flex: 1;
-            min-width: 300px;
+            min-width: 320px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .secao-principal h2 {
-            font-size: 44px;
+            font-size: 38px;
             font-weight: 900;
             color: var(--texto-titulo);
-            line-height: 1.1;
-            margin-bottom: 25px;
+            line-height: 1.15;
             letter-spacing: -1px;
+            margin-bottom: 5px;
         }
 
         .secao-principal h2 span {
@@ -333,26 +342,25 @@
 
         .wrapper-apresentacao {
             display: flex;
-            gap: 25px;
-            margin-bottom: 25px;
-            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
         }
 
         .arte-principal {
             width: 100%;
-            max-width: 320px;
+            max-width: 100%;
             height: auto;
             border-radius: 12px;
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
             display: block;
-            margin: 0 auto;
         }
 
         .texto-principal {
-            font-size: 14px;
+            font-size: 15px;
             color: var(--texto-titulo);
             font-weight: 400;
-            flex: 1;
+            line-height: 1.6;
             text-align: justify;
         }
 
@@ -360,9 +368,9 @@
         .grupo-botoes-vitrine {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
             width: 100%;
-            max-width: 360px;
+            margin-top: 10px;
         }
 
         .btn-acao-vendas {
@@ -372,8 +380,8 @@
             color: #0F110D;
             text-decoration: none;
             font-weight: 800;
-            font-size: 12px;
-            padding: 10px 16px;
+            font-size: 13px;
+            padding: 12px 16px;
             border-radius: 6px;
             text-transform: uppercase;
             box-shadow: 0 4px 12px rgba(226, 157, 0, 0.25);
@@ -389,8 +397,8 @@
         }
 
         .molde-foto {
-            width: 330px;
-            height: 330px;
+            width: 350px;
+            height: 350px;
             background: linear-gradient(45deg, #E2E8F0, #ffffff);
             border-radius: 24px;
             position: relative;
@@ -444,14 +452,6 @@
             margin-bottom: 6px;
         }
 
-        .painel-vantagens-link .linha-discreta {
-            color: #CBD5E1;
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
-        }
-
         .btn-interno-dourado {
             display: inline-block;
             background-color: #F5B000;
@@ -463,6 +463,7 @@
             text-transform: uppercase;
             border-radius: 6px;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            margin-top: 8px;
         }
 
         /* --- TÍTULOS --- */
@@ -507,15 +508,10 @@
             padding-bottom: 56.25%;
             height: 0;
             background-color: #000;
-        }
-
-        .player-video iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .detalhe-video {
@@ -534,7 +530,7 @@
             color: var(--texto-suporte);
         }
 
-        /* --- HUB DE CURSOS (ESPAÇAMENTO OTIMIZADO E MAIS PRÓXIMO) --- */
+        /* --- HUB DE CURSOS --- */
         .hub-produtos {
             display: flex;
             flex-wrap: wrap;
@@ -546,9 +542,9 @@
         .box-oferta {
             background: #ffffff;
             border-radius: 18px;
-            padding: 28px 24px; /* Padding interno mais compacto */
-            width: calc(38% - 15px);
-            min-width: 350px;
+            padding: 28px 24px;
+            width: calc(33.333% - 20px);
+            min-width: 300px;
             box-shadow: 0 12px 35px rgba(0,0,0,0.04);
             text-align: center;
             display: flex;
@@ -567,7 +563,7 @@
             max-width: 240px;
             height: auto;
             border-radius: 10px;
-            margin-bottom: 12px; /* Reduzido para aproximar do título */
+            margin-bottom: 12px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.11);
         }
 
@@ -575,8 +571,7 @@
             font-size: 18px;
             font-weight: 800;
             color: var(--texto-titulo);
-            margin-bottom: 8px; /* Título mais próximo da capa e da descrição */
-            min-height: auto;
+            margin-bottom: 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -586,7 +581,7 @@
         .box-oferta .legenda-oferta {
             font-size: 13px;
             color: var(--texto-suporte);
-            margin-bottom: 15px; /* Descrição mais próxima dos botões/fim do texto */
+            margin-bottom: 15px;
         }
 
         .valor-tag {
@@ -617,11 +612,10 @@
             display: flex;
             flex-direction: column;
             width: 100%;
-            gap: 8px; /* Botões mais próximos entre si */
+            gap: 8px;
             margin-top: 5px;
         }
         
-        /* NOVO BOTÃO VERDE PARA "CURSO ONLINE AO VIVO" */
         .btn-online-verde {
             background-color: #16A34A !important;
             color: #ffffff !important;
@@ -926,7 +920,8 @@
         }
 
         @media (max-width: 992px) {
-            .box-oferta { width: 100%; max-width: 450px; }
+            .box-oferta { width: calc(50% - 15px); }
+            .painel-botoes-topo { justify-content: center; }
         }
 
         @media (max-width: 768px) {
@@ -936,8 +931,7 @@
             .secao-principal { 
                 flex-direction: column-reverse; 
                 text-align: center; 
-                padding-top: 90px; 
-                margin-top: 10px;
+                padding-top: 40px; 
             }
             .lado-esquerdo { padding-right: 0; width: 100%; }
             .lado-direito { width: 100%; }
@@ -946,9 +940,10 @@
             .grupo-botoes-vitrine { margin: 0 auto; }
             .molde-foto { width: 280px; height: 280px; margin-bottom: 30px; border-radius: 16px; }
             .card-multimidia, .box-oferta { width: 100%; }
-            .alinhamento-topo { flex-direction: column; gap: 16px; text-align: center; }
-            .menu-navegacao { margin: 4px 0; justify-content: center; flex-wrap: wrap; gap: 8px; }
+            .alinhamento-topo { flex-direction: column; align-items: center; text-align: center; }
+            .menu-navegacao { margin: 4px 0; justify-content: center; width: 100%; }
             .container-busca-topo { border-left: none; padding-left: 0; margin-left: 0; margin-top: 5px; }
+            .painel-botoes-topo { width: 100%; flex-direction: column; align-items: center; }
             .botoes-topo-container { width: 100%; max-width: 100%; margin-top: 10px; }
             .chamada-topo { padding: 12px; }
             .slogan-marca { white-space: normal; }
@@ -962,7 +957,6 @@
             <div class="bloco-marca">
                 <img src="Logo1.jpg" alt="Logo" class="imagem-logo-topo">
                 <div class="slogan-marca">Aqui se constrói uma aprovação.</div>
-                <div class="autor-marca"></div>
             </div>
             
             <nav class="menu-navegacao">
@@ -976,48 +970,50 @@
                 </div>
             </nav>
             
-            <div class="botoes-topo-container">
-                <div class="titulo-botoes-topo">Principais concursos abertos no Brasil</div>
-                <a href="editalestrategicopmma.html" class="chamada-topo btn-aconselhamento-topo">
-                    <img src="7.jpg" alt="Miniatura" class="miniatura-botao-topo" onerror="this.style.display='none'">
-                    PMMA - Ver Edital Estratégico
-                </a>
-                <a href="editalestrategicopcma.html" class="chamada-topo btn-curso-topo">
-                    <img src="4.jpg" alt="Miniatura Supermente" class="miniatura-botao-topo" onerror="this.style.display='none'">
-                    PCMA - Ver Edital Estratégico
-                </a>
-                <a href="editalestrategicopmal.html" class="chamada-topo btn-mentoria-topo">
-                    <img src="5.jpg" alt="Miniatura Manual do Amor" class="miniatura-botao-topo" onerror="this.style.display='none'">
-                    PMAL - Ver Edital Estratégico
-                </a>
-                <a href="pmbaautorizado.html" class="chamada-topo btn-extra-1">
-                    PMBA - Autorizado (Clique e saiba mais)
-                </a>
-                <a href="editalestrategico.html" class="chamada-topo btn-extra-2">
-                    EM BREVE
-                </a>
-                <a href="editalestrategico.html" class="chamada-topo btn-extra-3">
-                    EM BREVE
-                </a>
-            </div>
+            <div class="painel-botoes-topo">
+                <div class="botoes-topo-container">
+                    <div class="titulo-botoes-topo">Principais concursos abertos no Brasil</div>
+                    <a href="editalestrategicopmma.html" class="chamada-topo btn-aconselhamento-topo">
+                        <img src="7.jpg" alt="Miniatura" class="miniatura-botao-topo" onerror="this.style.display='none'">
+                        PMMA - Ver Edital Estratégico
+                    </a>
+                    <a href="editalestrategicopcma.html" class="chamada-topo btn-curso-topo">
+                        <img src="4.jpg" alt="Miniatura Supermente" class="miniatura-botao-topo" onerror="this.style.display='none'">
+                        PCMA - Ver Edital Estratégico
+                    </a>
+                    <a href="editalestrategicopmal.html" class="chamada-topo btn-mentoria-topo">
+                        <img src="5.jpg" alt="Miniatura Manual do Amor" class="miniatura-botao-topo" onerror="this.style.display='none'">
+                        PMAL - Ver Edital Estratégico
+                    </a>
+                    <a href="pmbaautorizado.html" class="chamada-topo btn-extra-1">
+                        PMBA - Autorizado (Clique e saiba mais)
+                    </a>
+                    <a href="editalestrategico.html" class="chamada-topo btn-extra-2">
+                        EM BREVE
+                    </a>
+                    <a href="editalestrategico.html" class="chamada-topo btn-extra-3">
+                        EM BREVE
+                    </a>
+                </div>
 
-            <div class="botoes-topo-container" style="margin-top: 12px;">
-                <div class="titulo-botoes-topo">Principais Concursos Regionais Abertos</div>
-                <a href="#" class="chamada-topo btn-aconselhamento-topo">
-                    EM BREVE
-                </a>
-                <a href="#" class="chamada-topo btn-curso-topo">
-                    EM BREVE
-                </a>
-                <a href="#" class="chamada-topo btn-mentoria-topo">
-                    EM BREVE
-                </a>
-                <a href="#" class="chamada-topo btn-extra-1">
-                    EM BREVE
-                </a>
-                <a href="#" class="chamada-topo btn-extra-2">
-                    EM BREVE
-                </a>
+                <div class="botoes-topo-container">
+                    <div class="titulo-botoes-topo">Principais Concursos Regionais Abertos</div>
+                    <a href="#" class="chamada-topo btn-aconselhamento-topo">
+                        EM BREVE
+                    </a>
+                    <a href="#" class="chamada-topo btn-curso-topo">
+                        EM BREVE
+                    </a>
+                    <a href="#" class="chamada-topo btn-mentoria-topo">
+                        EM BREVE
+                    </a>
+                    <a href="#" class="chamada-topo btn-extra-1">
+                        EM BREVE
+                    </a>
+                    <a href="#" class="chamada-topo btn-extra-2">
+                        EM BREVE
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -1052,7 +1048,6 @@
         <a href="https://www.senebr.com.br" class="painel-vantagens-link">
             <div class="linha-forte">Conheça a SENE</div>
             <div class="linha-media">Conheça também o Português Estratégico</div>
-            <div class="linha-discreta"></div>
             <div class="btn-interno-dourado">Clique aqui</div>
         </a>
 
@@ -1066,8 +1061,6 @@
                     <div class="legenda-oferta" style="text-align: justify; padding: 0 10px; font-size: 13px; color: var(--texto-titulo); line-height: 1.5; margin-bottom: 12px;">
                         Veja onde a nossa turma presencial está em sua cidade ou entre para a turma online. Prepare-se e conquiste a sua vaga.
                     </div>
-                    <div class="valor-tag"></div>
-                    <div class="valor-subtag"></div>
                     <div class="grupo-botoes-duplos">
                         <a href="listadeturmas.html" class="btn-acao-vendas">Turma Presencial em sua Cidade</a>
                         <a href="#" class="btn-acao-vendas btn-online-verde">Curso Online ao Vivo</a>
@@ -1080,8 +1073,6 @@
                     <div class="legenda-oferta" style="text-align: justify; padding: 0 10px; font-size: 13px; color: var(--texto-titulo); line-height: 1.5; margin-bottom: 12px;">
                         Prepare-se com a melhor didática do Brasil criada pelo Professor William Queiroz. Clique em "quero conhecer" e tenha em sua mão tudo que você precisa para gabaritar LÍNGUA PORTUGUESA e tirar nota máxima em REDAÇÃO.
                     </div>
-                    <div class="valor-tag"></div>
-                    <div class="valor-subtag"></div>
                     <a href="https://portugues.senebr.com.br" class="btn-acao-vendas">Quero Conhecer</a>
                 </div>
 
@@ -1107,8 +1098,8 @@
             <div class="mural-videos">
                 
                 <div class="card-multimidia">
-                    <div class="player-video">Link do Video
-                        
+                    <div class="player-video">
+                        <span>Link do Video</span>
                     </div>
                     <div class="detalhe-video">
                         <h3>EM BREVE</h3>
@@ -1135,7 +1126,7 @@
             <div class="lista-comentarios">
                 <div class="item-comentario">
                     <h4>Marcelo Castro</h4>
-                    <p>Finalmente um cursinho Preparatório para concursos que vai para cidades pequenas. Escale Concursos só podia ser da SENE, a única que trabalha em cidades pequenas nordeste a fora. Bom demais. </p>
+                    <p>Finalmente um cursinho Preparatório para concursos que vai para cidades pequenas. Escale Concursos só podia ser da SENE, a única que trabalha em cidades pequenas nordeste a fora. Bom demais.</p>
                 </div>
             </div>
         </section>
@@ -1147,8 +1138,7 @@
             <div class="canais-comunicacao">
                 <a href="mailto:cursos.sene@gmail.com" class="link-destacado"><i class="fa-regular fa-envelope"></i>cursos.sene@gmail.com</a>
                 <a href="https:/w.facebook.com/profile.php?id=61591785681232" target="_blank" class="link-destacado"><i class="fa-brands fa-facebook"></i> Facebook</a>
-                <a href="https://www.tikto.com/@manuald
-                idade" target="_blank" class="link-destacado"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                <a href="https://www.tikto.com/@manualdidade" target="_blank" class="link-destacado"><i class="fa-brands fa-tiktok"></i> TikTok</a>
                 <a href="https://www.youte.com/@ManualdaMaturidade" target="_blank" class="link-destacado"><i class="fa-brands fa-youtube"></i>Escale Concursos</a>
             </div>
             
