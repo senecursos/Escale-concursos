@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edital Estratégico - PM-AL | Escale Concursos</title>
+  <style>
+    /* ======================================================
+       PALETA DE CORES E VARIÁVEIS
+       ====================================================== */
+    :root {
+      --cor-primaria: #1A365D;       /* Azul escuro institucional */
+      --cor-secundaria: #D69E2E;     /* Dourado/Amarelo de destaque */
+      --cor-fundo: #F7FAFC;          /* Fundo suave da página */
+      --cor-card: #FFFFFF;           /* Fundo dos cartões */
+      --cor-texto: #2D3748;          /* Texto principal */
+      --cor-texto-suave: #4A5568;    /* Texto secundário */
+      --cor-borda: #E2E8F0;          /* Cor das bordas */
+      --cor-cinza-neutro: #718096;   /* Cinza social para botão compartilhar */
+      --fonte-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+      font-family: var(--fonte-principal);
+      line-height: 1.6;
+      padding-bottom: 40px;
+    }
+
+    /* ======================================================
+       CABEÇALHO RESPONSIVO
+       ====================================================== */
+    header {
+      background-color: var(--cor-card);
+      border-bottom: 3px solid var(--cor-secundaria);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      padding: 12px 0;
+    }
+
+    .header-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column; /* Mobile first: empilhado */
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .header-col {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Ajuste para a Logomarca ocupar bem o topo */
+    .header-col.logo-marca img {
+      width: 100%;
+      max-width: 360px; /* Expande bem as laterais no mobile */
+      max-height: 120px;
+      object-fit: contain;
+    }
+
+    /* Espaço para Mensagem/Slogan no Cabeçalho */
+    .mensagem-cabecalho {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--cor-primaria);
+      font-style: italic;
+      letter-spacing: 0.5px;
+      padding: 2px 10px;
+    }
+
+    /* Botão discreto no topo */
+    .btn-voltar-site {
+      display: inline-block;
+      background-color: transparent;
+      color: var(--cor-texto-suave);
+      border: 1px solid var(--cor-borda);
+      padding: 7px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-voltar-site:hover {
+      background-color: var(--cor-borda);
+      color: var(--cor-texto);
+    }
+
+    /* Desktop: Logomarca de um lado, Mensagem ao centro e Botão do outro */
+    @media (min-width: 768px) {
+      header {
+        padding: 15px 0;
+      }
+      .header-container {
+        flex-direction: row;
+        padding: 0 20px;
+      }
+      .header-col.logo-marca {
+        width: auto;
+        justify-content: flex-start;
+      }
+      .header-col.logo-marca img {
+        max-height: 80px;
+      }
+      .header-col.mensagem-col {
+        width: auto;
+        flex-grow: 1;
+      }
+      .header-col.btn-site-col {
+        width: auto;
+        justify-content: flex-end;
+      }
+    }
+
+    /* ======================================================
+       CONTEÚDO DO EDITAL E TÍTULOS
+       ====================================================== */
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .cabecalho-titulo {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid var(--cor-borda);
+      padding-bottom: 20px;
+    }
+
+    /* Destaque para Edital Estratégico */
+    .marca-edital-estrategico {
+      display: block;
+      color: var(--cor-secundaria);
+      font-size: 2.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 5px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .subtitulo-edital {
+      color: var(--cor-primaria);
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .secao-card {
+      background: var(--cor-card);
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      border-left: 4px solid var(--cor-primaria);
+      /* Previne estouro de links longos e palavras contínuas */
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .secao-card h2 {
+      color: var(--cor-primaria);
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .secao-card ul {
+      list-style: none;
+    }
+
+    .secao-card li {
+      margin-bottom: 10px;
+      color: var(--cor-texto-suave);
+    }
+
+    .secao-card strong {
+      color: var(--cor-texto);
+    }
+
+    .sub-secao {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px dashed var(--cor-borda);
+    }
+
+    .sub-secao h3 {
+      color: var(--cor-secundaria);
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .materia-titulo {
+      font-weight: bold;
+      color: var(--cor-primaria);
+      margin-top: 12px;
+      display: block;
+    }
+
+    /* Links dentro do card */
+    .secao-card a {
+      color: var(--cor-primaria);
+      font-weight: bold;
+      text-decoration: underline;
+      /* Garante a quebra de URLs muito extensas no mobile */
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .secao-card a:hover {
+      color: var(--cor-secundaria);
+    }
+
+    /* ======================================================
+       BLOCO DE BOTÕES DE AÇÃO (CTA & COMPARTILHAR)
+       ====================================================== */
+    .cta-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 35px 0;
+    }
+
+    /* Botão Principal */
+    .btn-preparacao {
+      display: inline-block;
+      background-color: var(--cor-secundaria);
+      color: #FFFFFF;
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 16px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      text-transform: uppercase;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .btn-preparacao:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      filter: brightness(1.05);
+    }
+
+    /* Botão Compartilhar (Menor e Discreto) */
+    .btn-compartilhar {
+      background-color: transparent;
+      color: var(--cor-cinza-neutro);
+      border: 1px solid var(--cor-cinza-neutro);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-compartilhar:hover {
+      background-color: var(--cor-cinza-neutro);
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="header-container">
+      <!-- 1. Logomarca -->
+      <div class="header-col logo-marca">
+        <img src="logo1.jpg" alt="Logomarca Escale Concursos">
+      </div>
+
+      <!-- 2. Espaço para Mensagem / Slogan -->
+      <div class="header-col mensagem-col">
+        <p class="mensagem-cabecalho">
+          <span style="font-size: 1.4rem; font-weight: bold; display: block;">PREPARE-SE COM QUEM SABE</span>
+          Persevere com fé, força e foco.
+        </p>
+      </div>
+
+      <!-- 3. Botão Ir Para o Site -->
+      <div class="header-col btn-site-col">
+        <a href="https://escaleconcursos.senebr.com.br" class="btn-voltar-site">Ir para o site</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="container">
+
+    <!-- TÍTULOS -->
+    <div class="cabecalho-titulo">
+      <span class="marca-edital-estrategico">Edital Estratégico</span>
+      <h1 class="subtitulo-edital">Resumo Prático do Edital Nº 1-PMAL/2026 - Polícia Militar de Alagoas</h1>
+    </div>
+
+    <!-- 1. CRONOGRAMA, BANCA E INSCRIÇÕES -->
+    <section class="secao-card">
+      <h2>1. Cronograma, Banca e Inscrições</h2>
+      <ul>
+        <li><strong>Banca Organizadora:</strong> Cebraspe</li>
+        <li><strong>Início das Inscrições:</strong> Consultar cronograma detalhado no site da banca</li>
+        <li><strong>Término das Inscrições:</strong> Consultar cronograma detalhado no site da banca</li>
+        <li><strong>Período de Solicitação de Isenção:</strong> Consultar edital no site da banca</li>
+        <li><strong>Data Limite para Pagamento da Taxa:</strong> Consultar data do boleto no site da banca</li>
+        <li><strong>Valor da Taxa de Inscrição:</strong> R$ 150,00</li>
+        <li><strong>Onde se inscrever:</strong> Exclusivamente via internet, no site oficial da banca Cebraspe (<a href="http://www.cebraspe.org.br/concursos/pm_al_26" target="_blank" rel="noopener noreferrer">cebraspe.org.br/concursos/pm_al_26</a>)</li>
+      </ul>
+    </section>
+
+    <!-- 2. DATA, HORÁRIO E LOCAIS DA PROVA -->
+    <section class="secao-card">
+      <h2>2. Data, Horário e Locais da Prova Objetiva</h2>
+      <ul>
+        <li><strong>Data exata da aplicação das provas:</strong> Consultar cronograma oficial no site da banca</li>
+        <li><strong>Turno e Duração Total:</strong>
+          <br>- Prova Objetiva e Discursiva: Duração total de 4 horas e 30 minutos (Manhã para Oficial e Tarde para Soldado)
+        </li>
+        <li><strong>Cidades de Aplicação das Provas:</strong> Maceió/AL e Arapiraca/AL</li>
+        <li><strong>Observações sobre Fases Subsequentes:</strong> As demais etapas (TAF, Avaliação Médica, Avaliação Psicológica, Investigação Social e Exame Toxicológico) serão realizadas exclusivamente na cidade de Maceió/AL.</li>
+      </ul>
+    </section>
+
+    <!-- 3. QUANTIDADE DE VAGAS E REQUISITOS BÁSICOS -->
+    <section class="secao-card">
+      <h2>3. Quantidade de Vagas e Requisitos Básicos</h2>
+      
+      <div class="sub-secao" style="margin-top: 0; padding-top: 0; border-top: none;">
+        <h3>Requisitos de Ingresso</h3>
+        <ul>
+          <li><strong>Escolaridade:</strong> Nível Médio completo</li>
+          <li><strong>Idade:</strong> Mínima de 18 anos na data de matrícula no curso de formação e máxima de 30 anos completos até a data limite de inscrição</li>
+          <li><strong>Altura Mínima:</strong> 1,60m (masculino) e 1,55m (feminino)</li>
+          <li><strong>CNH:</strong> Carteira Nacional de Habilitação exigida (mínimo categoria "B")</li>
+          <li><strong>Outros:</strong> Não possuir tatuagens que façam apologia a ideologias terroristas, violência, drogas ou discriminação</li>
+        </ul>
+      </div>
+
+      <p style="margin-top: 15px; font-size: 1.1rem;"><strong>Total Geral de Vagas:</strong> 1.060 vagas (Oficial + Soldado)</p>
+      
+      <div class="sub-secao">
+        <h3>1. Oficial de Estado-Maior (Total: 60 vagas)</h3>
+        <p style="margin-bottom: 8px;"><strong>Remuneração:</strong> R$ 3.874,43 (como Cadete) | R$ 11.563,77 (após formado)</p>
+        <ul>
+          <li><strong>Ampla Concorrência (AC):</strong> 24 imediatas + 24 CR</li>
+          <li><strong>Pretas, Pardas, Indígenas e Quilombolas (PPIQ):</strong> 6 imediatas + 6 CR</li>
+        </ul>
+      </div>
+
+      <div class="sub-secao">
+        <h3>2. Soldado do Quadro de Praças (Total: 1.000 vagas)</h3>
+        <p style="margin-bottom: 8px;"><strong>Remuneração:</strong> R$ 2.354,67 (como Soldado-Aluno) | R$ 6.067,51 (após formado)</p>
+        <ul>
+          <li><strong>Ampla Concorrência (AC):</strong> 400 imediatas + 400 CR</li>
+          <li><strong>Pretas, Pardas, Indígenas e Quilombolas (PPIQ):</strong> 100 imediatas + 100 CR</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- BLOCO DE AÇÃO 1 -->
+    <div class="cta-container">
+      <a href="https://go.hotmart.com/P106115838M?dp=1" class="btn-preparacao" target="_blank">
+        Iniciar Preparação
+      </a>
+      <button onclick="compartilharPagina()" class="btn-compartilhar">
+        🔗 Compartilhar Edital
+      </button>
+    </div>
+
+    <!-- 4. ESTRUTURA DAS PROVAS -->
+    <section class="secao-card">
+      <h2>4. Estrutura das Provas (Objetiva e Discursiva)</h2>
+      
+      <div class="sub-secao" style="margin-top: 0; padding-top: 0; border-top: none;">
+        <h3>Prova Objetiva</h3>
+        <ul>
+          <li><strong>Modelo da banca:</strong> Certo / Errado (padrão tradicional Cebraspe)</li>
+          <li><strong>Quantidade total de questões:</strong> 120 itens</li>
+          <li><strong>Conhecimentos Básicos (P1):</strong> 50 itens</li>
+          <li><strong>Conhecimentos Específicos (P2):</strong> 70 itens</li>
+          <li><strong>Pontuação mínima:</strong> Consultar critérios de eliminação no edital corporativo</li>
+        </ul>
+      </div>
+
+      <div class="sub-secao">
+        <h3>Prova Discursiva (P3)</h3>
+        <ul>
+          <li><strong>Tipo da Prova:</strong> Texto dissertativo</li>
+          <li><strong>Tema:</strong> Atualidades</li>
+          <li><strong>Regras do Texto:</strong> Até 30 linhas</li>
+          <li><strong>Pontuação e Crivo de Eliminação:</strong> Vale 30,00 pontos; Nota mínima para aprovação é 15,00 pontos</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5. CONTEÚDO PROGRAMÁTICO E FASES COMPLEMENTARES -->
+    <section class="secao-card">
+      <h2>5. Conteúdo Programático (Assuntos por Disciplina)</h2>
+
+      <!-- A) CONHECIMENTOS BÁSICOS -->
+      <div class="sub-secao" style="margin-top: 0; padding-top: 0; border-top: none;">
+        <h3>A) Conhecimentos Básicos (Comum a Todos os Cargos)</h3>
+        <span class="materia-titulo">Língua Portuguesa</span>
+        <p>Compreensão e interpretação de textos; tipologia textual; ortografia oficial; acentuação gráfica; emprego das classes de palavras; sintaxe da oração e do período; pontuação; concordância nominal e verbal; regência nominal e verbal; sinal indicativo de crase; reescrita de frases.</p>
+
+        <span class="materia-titulo">Noções de Informática</span>
+        <p>Conceitos básicos de sistemas operacionais (Windows e Linux); ferramentas de escritório (Word/Office e LibreOffice); redes de computadores e internet; segurança da informação e procedimentos de backup.</p>
+
+        <span class="materia-titulo">Atualidades (Apenas para a Prova Discursiva)</span>
+        <p>Tópicos relevantes e atuais de diversas áreas, tais como segurança pública, economia, sociedade, educação, tecnologia, energia, relações internacionais e meio ambiente.</p>
+      </div>
+
+      <!-- B) CONHECIMENTOS ESPECÍFICOS - SOLDADO -->
+      <div class="sub-secao">
+        <h3>B) Conhecimentos Específicos - Soldado do Quadro de Praças</h3>
+        <span class="materia-titulo">História de Alagoas</span>
+        <p>Formação territorial de Alagoas; processo de emancipação política; movimentos sociais e revoltas locais (ex: Quilombo dos Palmares, Guerra dos Cabanos); aspectos históricos e culturais regionais.</p>
+
+        <span class="materia-titulo">Geografia de Alagoas</span>
+        <p>Aspectos físicos (relevo, clima, vegetação e hidrografia); organização espacial e demografia; economia do estado e principais atividades produtivas; regionalização e municípios alagoanos.</p>
+
+        <span class="materia-titulo">Legislação Institucional</span>
+        <p>Estatuto dos Policiais Militares do Estado de Alagoas (Lei Estadual nº 5.346/1992 e alterações); Regulamento Disciplinar da PMAL; atribuições constitucionais e organizacionais da corporação.</p>
+
+        <span class="materia-titulo">Noções de Direito Constitucional</span>
+        <p>Direitos e garantias fundamentais; garantias constitucionais e direitos sociais; organização do Estado; defesa do Estado e das instituições democráticas (Segurança Pública e Forças Armadas).</p>
+
+        <span class="materia-titulo">Noções de Direito Administrativo</span>
+        <p>Princípios básicos da Administração Pública; atos administrativos; poderes administrativos; agentes públicos; responsabilidade civil do Estado.</p>
+
+        <span class="materia-titulo">Noções de Direito Penal e Processual Penal</span>
+        <p>Conceitos fundamentais do crime; penas e suas aplicações; crimes contra a pessoa e contra o patrimônio; prisão em flagrante e inquérito policial.</p>
+
+        <span class="materia-titulo">Direitos Humanos</span>
+        <p>Conceito e evolução dos Direitos Humanos; Declaração Universal dos Direitos Humanos; Direitos Humanos na Constituição Federal de 1988; atuação policial e respeito aos Direitos Humanos.</p>
+      </div>
+
+      <!-- C) CONHECIMENTOS ESPECÍFICOS - OFICIAL -->
+      <div class="sub-secao">
+        <h3>C) Conhecimentos Específicos - Oficial de Estado-Maior (CFO)</h3>
+        <span class="materia-titulo">Direito Constitucional</span>
+        <p>Teoria da Constituição; direitos e deveres individuais e coletivos; controle de constitucionalidade; organização do Estado e dos Poderes; Defesa do Estado e Segurança Pública.</p>
+
+        <span class="materia-titulo">Direito Administrativo</span>
+        <p>Regime jurídico-administrativo; licitações e contratos administrativos; serviços públicos; bens públicos; processo administrativo; improbidade administrativa.</p>
+
+        <span class="materia-titulo">Direito Penal</span>
+        <p>Aplicação da lei penal; teoria do crime; ilicitude e culpabilidade; crimes contra a pessoa, patrimônio, fé pública e administração pública; legislação penal extravagante.</p>
+
+        <span class="materia-titulo">Direito Processual Penal</span>
+        <p>Inquérito policial; ação penal; jurisdição e competência; prova; prisões cautelares e liberdade provisória; habeas corpus.</p>
+
+        <span class="materia-titulo">Direito Penal Militar</span>
+        <p>Aplicação da lei penal militar; crimes militares em tempo de paz e em tempo de guerra; crimes contra a autoridade ou disciplina militar; crimes contra o serviço e o dever militar.</p>
+
+        <span class="materia-titulo">Direito Processual Penal Militar</span>
+        <p>Polícia judiciária militar; inquérito policial militar; prisão em flagrante delito militar; menagem e prisões provisórias.</p>
+
+        <span class="materia-titulo">Legislação Institucional e Gestão Pública</span>
+        <p>Estatuto dos Policiais Militares de Alagoas (Lei nº 5.346/1992); estrutura e organização da PMAL; noções de planejamento estratégico, liderança e gestão de pessoas na administração pública.</p>
+
+        <span class="materia-titulo">Direitos Humanos</span>
+        <p>Proteção internacional e nacional dos Direitos Humanos; o uso progressivo da força na atividade policial; normativas internacionais sobre aplicação da lei.</p>
+      </div>
+
+      <!-- D) FASES COMPLEMENTARES -->
+      <div class="sub-secao">
+        <h3>D) Fases Complementares do Concurso</h3>
+        <ul>
+          <li><strong>Teste de Aptidão Física (TAF) - 3 Dias:</strong>
+            <br>- Dia 1: Abdominal supra + Barra fixa / Isometria
+            <br>- Dia 2: Shuttle run + Corrida (2.000m M / 1.800m F)
+            <br>- Dia 3: Natação de 50m em piscina
+          </li>
+          <li><strong>Avaliação Médica das Condições de Saúde Física e Mental</strong></li>
+          <li><strong>Avaliação Psicológica</strong></li>
+          <li><strong>Comprovação Documental e Investigação Social</strong></li>
+          <li><strong>Exame Toxicológico</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- BLOCO DE AÇÃO 2 -->
+    <div class="cta-container">
+      <a href="https://go.hotmart.com/P106115838M?dp=1" class="btn-preparacao" target="_blank">
+        Iniciar Preparação
+      </a>
+      <button onclick="compartilharPagina()" class="btn-compartilhar">
+        🔗 Compartilhar Edital
+      </button>
+    </div>
+
+  </main>
+
+  <!-- SCRIPT DE COMPARTILHAMENTO -->
+  <script>
+    function compartilharPagina() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Edital Estratégico - PM-AL',
+          text: 'Confira o resumo prático do Edital da Polícia Militar de Alagoas!',
+          url: window.location.href
+        }).catch(console.error);
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link do Edital copiado para a área de transferência!');
+      }
+    }
+  </script>
+
+</body>
+</html>
