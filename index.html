@@ -56,11 +56,12 @@
         /* --- TOPO INSTITUCIONAL --- */
         .barra-topo {
             background-color: var(--cor-principal); 
-            padding: 20px 0;
+            padding: 20px 0 20px 0;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             position: relative;
             width: 100%;
             z-index: 100;
+            margin-bottom: 40px !important;
         }
 
         .alinhamento-topo {
@@ -302,13 +303,16 @@
             background-color: #F4F5F0;
         }
 
-        /* --- SEÇÃO 2: VITRINE PRINCIPAL (CORRIGIDA) --- */
+        /* --- SEÇÃO 2: VITRINE PRINCIPAL --- */
         .secao-principal {
-            padding: 40px 0 60px 0;
+            padding-top: 0;
+            padding-bottom: 60px;
+            margin-top: 0;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             gap: 40px;
+            clear: both;
         }
 
         .lado-esquerdo {
@@ -364,7 +368,7 @@
             text-align: justify;
         }
 
-        /* GRUPO DE TRÊS BOTÕES DA VITRINE */
+        /* GRUPO DE BOTÕES DA VITRINE PRINCIPAL */
         .grupo-botoes-vitrine {
             display: flex;
             flex-direction: column;
@@ -613,7 +617,7 @@
             flex-direction: column;
             width: 100%;
             gap: 8px;
-            margin-top: 5px;
+            margin-top: auto;
         }
         
         .btn-online-verde {
@@ -928,11 +932,16 @@
             .area-restrita { padding: 0 16px; }
             .bloco-marca { max-width: 380px; width: 100%; margin: 0 auto; }
             
+            .barra-topo {
+                margin-bottom: 50px !important; /* EMPURRA O CONTEÚDO PARA BAIXO DA BARRA VERDE NO CELULAR */
+            }
+
             .secao-principal { 
                 flex-direction: column-reverse; 
                 text-align: center; 
-                padding-top: 40px; 
+                padding-top: 30px !important; /* CRIA O ESPAÇAMENTO NECESSÁRIO NO TOPO DA SEÇÃO */
             }
+            
             .lado-esquerdo { padding-right: 0; width: 100%; }
             .lado-direito { width: 100%; }
             .wrapper-apresentacao { flex-direction: column; align-items: center; width: 100%; }
@@ -960,9 +969,9 @@
             </div>
             
             <nav class="menu-navegacao">
-                <a href="#cursos">Cursos ao vivo</a>
+                <a href="#cursos">Cursos</a>
                 <a href="#videos">Vídeos</a>
-                <a href="#card-socio">Seja Sócio</a>
+                <a href="#card-socio">Seja Nosso Sócio</a>
                 
                 <div class="container-busca-topo">
                     <input type="text" id="campoBusca" class="input-busca-topo" placeholder="Buscar no site..." onkeydown="verificarTeclaBusca(event)">
@@ -988,8 +997,8 @@
                     <a href="pmbaautorizado.html" class="chamada-topo btn-extra-1">
                         PMBA - Autorizado (Clique e saiba mais)
                     </a>
-                    <a href="editalestrategico.html" class="chamada-topo btn-extra-2">
-                        EM BREVE
+                    <a href="pmpeautorizado.html" class="chamada-topo btn-extra-2">
+                        PMPE - Autorizado (Clique e saiba mais)
                     </a>
                     <a href="editalestrategico.html" class="chamada-topo btn-extra-3">
                         EM BREVE
@@ -997,7 +1006,7 @@
                 </div>
 
                 <div class="botoes-topo-container">
-                    <div class="titulo-botoes-topo">Principais Concursos Regionais Abertos</div>
+                    <div class="titulo-botoes-topo">Principais Concursos Abertos Regionais</div>
                     <a href="#" class="chamada-topo btn-aconselhamento-topo">
                         EM BREVE
                     </a>
@@ -1020,21 +1029,22 @@
 
     <div class="area-restrita">
         
+        <!-- SEÇÃO PRINCIPAL -->
         <section id="bloco-principal" class="secao-principal">
             <div class="lado-esquerdo">
                 <h2>É hora de conquistar a sua vaga</h2>
                 
                 <div class="wrapper-apresentacao">
-                    <img src="imagem2.jpg" alt="Capa" class="arte-principal">
+                    <img src="imagem3.jpg" alt="É hora de conquistar a sua vaga" class="arte-principal">
                     <div class="texto-principal">
-                        <p>Com Professor William Queiroz, você estudará de forma eficiente e com a melhor técnica de aprendizado que será desenvolvida baseada nas suas habilidades e tempo disponível para estudo. Na Mentoria Black Premium, você receberá todo o acompanhamento pedagógico necessário para criar o melhor plano de estudo para cada uma das matérias cobradas no edital e conquistar a sua tão almejada vaga.</p>
+                        <p>🎯 ✅ Veja onde a nossa turma presencial está em sua cidade ou entre para a turma online. Prepare-se e conquiste a sua vaga.<br>👉⭐ visite a seção "Cursos" para conhecer a MENTORIA BLACK PREMIUM e o PORTUGUÊS ESTRATÉGICO.</p>
+
                     </div>
                 </div>
                 
-                <div class="grupo-botoes-vitrine">
-                    <a href="mentoria.html" class="btn-acao-vendas">Maiores Informações</a>
-                    <a href="https://pay.hotmart.com/P106115838M" target="_blank" class="btn-acao-vendas">Contratar via Cartão</a>
-                    <button type="button" onclick="abrirModalPix()" class="btn-acao-vendas">Contratar pelo Pix</button>
+                <div class="grupo-botoes-duplos" style="margin-top: 10px;">
+                    <a href="listadeturmas.html" class="btn-acao-vendas">Turma Presencial em sua Cidade</a>
+                    <a href="#" class="btn-acao-vendas btn-online-verde">Curso Online ao Vivo</a>
                 </div>
             </div>
             
@@ -1047,28 +1057,32 @@
 
         <a href="https://www.senebr.com.br" class="painel-vantagens-link">
             <div class="linha-forte">Conheça a SENE</div>
-            <div class="linha-media">Conheça também o Português Estratégico</div>
+            <div class="linha-media">Conheça também nossa Mentoria Especializada e o Português Estratégico</div>
             <div class="btn-interno-dourado">Clique aqui</div>
         </a>
 
+        <!-- SEÇÃO MEUS CURSOS -->
         <section id="cursos">
-            <h2 class="rotulo-secao">Meus Cursos</h2>
+            <h2 class="rotulo-secao">Cursos</h2>
             <div class="hub-produtos">
                 
-                <div class="box-oferta" id="produto-extra-1">
-                    <img src="imagem3.jpg" alt="Produto 1" class="capa-produto">
-                    <h3>Cursos Preparatórios</h3>
+                <!-- CARD CURSOS PREPARATÓRIOS -->
+                <div class="box-oferta" id="produto-mentoria">
+                    <img src="imagem2.jpg" alt="Cursos Preparatórios" class="capa-produto">
+                    <h3>Mentoria Black Premium</h3>
                     <div class="legenda-oferta" style="text-align: justify; padding: 0 10px; font-size: 13px; color: var(--texto-titulo); line-height: 1.5; margin-bottom: 12px;">
-                        Veja onde a nossa turma presencial está em sua cidade ou entre para a turma online. Prepare-se e conquiste a sua vaga.
+                        Com Professor William Queiroz, você estudará de forma eficiente e com a melhor técnica de aprendizado que será desenvolvida baseada nas suas habilidades e tempo disponível para estudo. Na Mentoria Black Premium, você receberá todo o acompanhamento pedagógico necessário para criar o melhor plano de estudo para cada uma das matérias cobradas no edital e conquistar a sua tão almejada vaga.
                     </div>
-                    <div class="grupo-botoes-duplos">
-                        <a href="listadeturmas.html" class="btn-acao-vendas">Turma Presencial em sua Cidade</a>
-                        <a href="#" class="btn-acao-vendas btn-online-verde">Curso Online ao Vivo</a>
+                    <div class="grupo-botoes-vitrine">
+                        <a href="mentoria.html" class="btn-acao-vendas">Maiores Informações</a>
+                        <a href="https://pay.hotmart.com/P106115838M" target="_blank" class="btn-acao-vendas">Contratar via Cartão</a>
+                        <button type="button" onclick="abrirModalPix()" class="btn-acao-vendas">Contratar pelo Pix</button>
                     </div>
                 </div>
 
+                <!-- CARD PORTUGUÊS ESTRATÉGICO -->
                 <div class="box-oferta" id="produto-extra-2">
-                    <img src="imagem4.jpg" alt="Produto 2" class="capa-produto">
+                    <img src="imagem4.jpg" alt="Português Estratégico" class="capa-produto">
                     <h3>Português Estratégico</h3>
                     <div class="legenda-oferta" style="text-align: justify; padding: 0 10px; font-size: 13px; color: var(--texto-titulo); line-height: 1.5; margin-bottom: 12px;">
                         Prepare-se com a melhor didática do Brasil criada pelo Professor William Queiroz. Clique em "quero conhecer" e tenha em sua mão tudo que você precisa para gabaritar LÍNGUA PORTUGUESA e tirar nota máxima em REDAÇÃO.
@@ -1076,17 +1090,20 @@
                     <a href="https://portugues.senebr.com.br" class="btn-acao-vendas">Quero Conhecer</a>
                 </div>
 
+                <!-- CARD SEJA MEU SÓCIO -->
                 <div class="box-oferta" id="card-socio">
                     <img src="socio.jpg" alt="Seja Meu Sócio" class="capa-produto">
-                    <h3>Parceria de Alto Nível:<br>Seja meu Sócio.</h3>
+                    <h3>Parceria de Alto Nível:<br>Seja Nosso Sócio.</h3>
                     <div class="legenda-oferta" style="text-align: justify; padding: 0 10px; font-size: 13px; color: var(--texto-titulo); line-height: 1.5; margin-bottom: 12px;">
-                        "Eu não quero apenas alunos; eu quero parceiros comprometidos em crescer comigo. Ao investir apenas R$ 50,00, você recebe o meu treinamento prático de vendas e ganha o direito de ser meu sócio, garantindo 40% de participação em cada venda do curso Português Estratégico. Eu te ensino a estratégia que uso, te dou o material de apoio e você lucra comigo. É um negócio real, testado e pronto para você começar hoje."
+                        "Buscamos parceiros comprometidos em crescer conosco. Receba o nosso treinamento prático de vendas e ganhe o direito de ser sócio, garantindo até 40% de participação em cada venda do curso Português Estratégico. Você também pode levar uma turma presencial para a sua cidade ou região (em qualquer lugar do Brasil). Seja nosso sócio correspondente e vamos prosperar juntos levando educação para todos os lugares do Brasil. Te ensinaremos a estratégia que usamos, daremos o material de apoio e você prospera conosco. Comece hoje."
                     </div>
-                    <div class="valor-tag">R$ 50,00</div>
-                    <div class="valor-subtag">Investimento Único</div>
-                    <div class="grupo-botoes-duplos">
+                    <div class="valor-tag"></div>
+                    <div class="valor-subtag"></div>
+                    <div class="grupo-botoes-vitrine">
                         <a href="seja-socio.html" class="btn-acao-vendas btn-info-secundario">Informações</a>
                         <a href="https://pay.hotmart.com/P106115838M" target="_blank" class="btn-acao-vendas">Quero ser seu sócio agora</a>
+                        <a href="https://wa.me/5588994409549?text=Eu%20quero%20trazer%20uma%20turma%20para%20a%20minha%20cidade.%20O%20que%20preciso%20fazer%3F
+" target="_blank" class="btn-acao-vendas">Quero trazer uma turma para a minha cidade</a>
                     </div>
                 </div>
 
