@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edital Estratégico - Prefeitura de Exu-PE | Escale Concursos</title>
+  <style>
+    /* ======================================================
+       PALETA DE CORES E VARIÁVEIS
+       ====================================================== */
+    :root {
+      --cor-primaria: #1A365D;       /* Azul escuro institucional */
+      --cor-secundaria: #D69E2E;     /* Dourado/Amarelo de destaque */
+      --cor-fundo: #F7FAFC;          /* Fundo suave da página */
+      --cor-card: #FFFFFF;           /* Fundo dos cartões */
+      --cor-texto: #2D3748;          /* Texto principal */
+      --cor-texto-suave: #4A5568;    /* Texto secundário */
+      --cor-borda: #E2E8F0;          /* Cor das bordas */
+      --cor-cinza-neutro: #718096;   /* Cinza social para botão compartilhar */
+      --fonte-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+      font-family: var(--fonte-principal);
+      line-height: 1.6;
+      padding-bottom: 40px;
+    }
+
+    /* ======================================================
+       CABEÇALHO RESPONSIVO
+       ====================================================== */
+    header {
+      background-color: var(--cor-card);
+      border-bottom: 3px solid var(--cor-secundaria);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      padding: 12px 0;
+    }
+
+    .header-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column; /* Mobile first: empilhado */
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .header-col {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Ajuste para a Logomarca ocupar bem o topo */
+    .header-col.logo-marca img {
+      width: 100%;
+      max-width: 360px; /* Expande bem as laterais no mobile */
+      max-height: 120px;
+      object-fit: contain;
+    }
+
+    /* Espaço para Mensagem/Slogan no Cabeçalho */
+    .mensagem-cabecalho {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--cor-primaria);
+      font-style: italic;
+      letter-spacing: 0.5px;
+      padding: 2px 10px;
+    }
+
+    /* Botão discreto no topo */
+    .btn-voltar-site {
+      display: inline-block;
+      background-color: transparent;
+      color: var(--cor-texto-suave);
+      border: 1px solid var(--cor-borda);
+      padding: 7px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-voltar-site:hover {
+      background-color: var(--cor-borda);
+      color: var(--cor-texto);
+    }
+
+    /* Desktop: Logomarca de um lado, Mensagem ao centro e Botão do outro */
+    @media (min-width: 768px) {
+      header {
+        padding: 15px 0;
+      }
+      .header-container {
+        flex-direction: row;
+        padding: 0 20px;
+      }
+      .header-col.logo-marca {
+        width: auto;
+        justify-content: flex-start;
+      }
+      .header-col.logo-marca img {
+        max-height: 80px;
+      }
+      .header-col.mensagem-col {
+        width: auto;
+        flex-grow: 1;
+      }
+      .header-col.btn-site-col {
+        width: auto;
+        justify-content: flex-end;
+      }
+    }
+
+    /* ======================================================
+       CONTEÚDO DO EDITAL E TÍTULOS
+       ====================================================== */
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .cabecalho-titulo {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid var(--cor-borda);
+      padding-bottom: 20px;
+    }
+
+    /* Destaque para Edital Estratégico */
+    .marca-edital-estrategico {
+      display: block;
+      color: var(--cor-secundaria);
+      font-size: 2.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 5px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .subtitulo-edital {
+      color: var(--cor-primaria);
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .secao-card {
+      background: var(--cor-card);
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      border-left: 4px solid var(--cor-primaria);
+      /* Previne estouro de links longos e palavras contínuas */
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .secao-card h2 {
+      color: var(--cor-primaria);
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .secao-card ul {
+      list-style: none;
+    }
+
+    .secao-card li {
+      margin-bottom: 10px;
+      color: var(--cor-texto-suave);
+    }
+
+    .secao-card strong {
+      color: var(--cor-texto);
+    }
+
+    .sub-secao {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px dashed var(--cor-borda);
+    }
+
+    .sub-secao h3 {
+      color: var(--cor-secundaria);
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .materia-titulo {
+      font-weight: bold;
+      color: var(--cor-primaria);
+      margin-top: 12px;
+      display: block;
+    }
+
+    /* Links dentro do card */
+    .secao-card a {
+      color: var(--cor-primaria);
+      font-weight: bold;
+      text-decoration: underline;
+      /* Garante a quebra de URLs muito extensas no mobile */
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .secao-card a:hover {
+      color: var(--cor-secundaria);
+    }
+
+    /* ======================================================
+       BLOCO DE BOTÕES DE AÇÃO (CTA & COMPARTILHAR)
+       ====================================================== */
+    .cta-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 35px 0;
+    }
+
+    /* Botão Principal */
+    .btn-preparacao {
+      display: inline-block;
+      background-color: var(--cor-secundaria);
+      color: #FFFFFF;
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 16px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      text-transform: uppercase;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .btn-preparacao:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      filter: brightness(1.05);
+    }
+
+    /* Botão Compartilhar (Menor e Discreto) */
+    .btn-compartilhar {
+      background-color: transparent;
+      color: var(--cor-cinza-neutro);
+      border: 1px solid var(--cor-cinza-neutro);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-compartilhar:hover {
+      background-color: var(--cor-cinza-neutro);
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="header-container">
+      <!-- 1. Logomarca -->
+      <div class="header-col logo-marca">
+        <img src="Logo1.jpg" alt="Logomarca Escale Concursos">
+      </div>
+
+      <!-- 2. Espaço para Mensagem / Slogan -->
+      <div class="header-col mensagem-col">
+        <p class="mensagem-cabecalho">
+          <span style="font-size: 1.4rem; font-weight: bold; display: block;">PREPARE-SE COM QUEM SABE</span>
+          Persevere com fé, força e foco.
+        </p>
+      </div>
+
+      <!-- 3. Botão Ir Para o Site -->
+      <div class="header-col btn-site-col">
+        <a href="https://escaleconcursos.senebr.com.br" class="btn-voltar-site">Ir para o site</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="container">
+
+    <!-- TÍTULOS -->
+    <div class="cabecalho-titulo">
+      <span class="marca-edital-estrategico">Edital Estratégico</span>
+      <h1 class="subtitulo-edital">Resumo Prático do Edital Nº 001/2026 - Concurso Público de Exu (PE)</h1>
+    </div>
+
+    <!-- 1. CRONOGRAMA, BANCA E INSCRIÇÕES -->
+    <section class="secao-card">
+      <h2>1. Cronograma, Banca e Inscrições</h2>
+      <ul>
+        <li><strong>Banca Organizadora:</strong> Instituto IGEDUC</li>
+        <li><strong>Início das Inscrições:</strong> 15/07/2026 às 00:00</li>
+        <li><strong>Término das Inscrições:</strong> 31/08/2026 às 23:59</li>
+        <li><strong>Período de Solicitação de Isenção:</strong> 16/07/2026 (00:00) a 18/07/2026 (23:59)</li>
+        <li><strong>Data Limite para Pagamento da Taxa:</strong> Data de vencimento do boleto bancário gerado ao finalizar a inscrição</li>
+        <li><strong>Valor da Taxa de Inscrição:</strong>
+          <br>- Nível Fundamental: R$ 85,00
+          <br>- Nível Médio e Técnico: R$ 125,00
+          <br>- Nível Superior, Professores, Agente de Trânsito e Orientador de Trânsito: R$ 150,00
+        </li>
+        <li><strong>Onde se inscrever:</strong> Exclusivamente via internet, no Portal Oficial do IGEDUC – Área do Candidato (<a href="https://igeduc.org.br/informacoes/158/" target="_blank" rel="noopener noreferrer">igeduc.org.br/informacoes/158/</a>)</li>
+      </ul>
+    </section>
+
+    <!-- 2. DATA, HORÁRIO E LOCAIS DA PROVA -->
+    <section class="secao-card">
+      <h2>2. Data, Horário e Locais da Prova Objetiva</h2>
+      <ul>
+        <li><strong>Data exata da aplicação das provas:</strong> 18 de outubro de 2026 (domingo)</li>
+        <li><strong>Turno e Horários:</strong> Turno da Manhã
+          <br>- Abertura dos Portões: 07:00
+          <br>- Fechamento dos Portões: 07:45
+          <br>- Início da Prova: 08:00
+          <br>- Saída permitida sem caderno de questões: a partir das 11:30
+          <br>- Saída permitida com caderno de questões: a partir das 11:45
+          <br>- Término da Prova: 12:00
+        </li>
+        <li><strong>Duração Total da Prova:</strong> 4 horas</li>
+        <li><strong>Cidades de Aplicação das Provas:</strong> Exu - PE (com possibilidade de alocação em cidades vizinhas da região em caso de indisponibilidade ou excesso de candidatos)</li>
+        <li><strong>Observações sobre Fases Subsequentes:</strong> A Avaliação de Títulos para os cargos do Magistério/Professores será realizada de forma digital/online na Área do Candidato do site da banca ou nos locais indicados nos editais específicos de convocação.</li>
+      </ul>
+    </section>
+
+    <!-- 3. QUANTIDADE DE VAGAS E REQUISITOS BÁSICOS -->
+    <section class="secao-card">
+      <h2>3. Quantidade de Vagas e Requisitos Básicos</h2>
+      
+      <div class="sub-secao" style="margin-top: 0; padding-top: 0; border-top: none;">
+        <h3>Requisitos Básicos de Ingresso</h3>
+        <ul>
+          <li><strong>Idade:</strong> Mínima de 18 anos completos na data da posse. Não há limite máximo, respeitando a aposentadoria compulsória</li>
+          <li><strong>Escolaridade:</strong> Conclusão do nível exigido para o cargo (Fundamental, Médio, Técnico ou Superior) em instituição reconhecida pelo MEC</li>
+          <li><strong>Registros/Habilitação:</strong> Registro ativo no conselho de classe/órgão profissional competente (quando exigido) e CNH na categoria exigida (para motoristas e agentes de trânsito)</li>
+        </ul>
+      </div>
+
+      <p style="margin-top: 15px; font-size: 1.1rem;"><strong>Modalidade:</strong> Vagas de provimento imediato e formação de Cadastro de Reserva (CR)</p>
+      
+      <div class="sub-secao">
+        <h3>1. Professor de Língua Portuguesa (Total: 5 vagas)</h3>
+        <p style="margin-bottom: 8px;"><strong>Remuneração e Carga Horária:</strong> R$ 3.847,97 / 150h mensais</p>
+        <ul>
+          <li><strong>Ampla Concorrência (AC):</strong> 4 vagas</li>
+          <li><strong>Pessoas com Deficiência (PCD):</strong> 1 vaga</li>
+          <li><strong>Requisito Específico:</strong> Licenciatura Plena em Letras/Língua Portuguesa</li>
+        </ul>
+      </div>
+
+      <div class="sub-secao">
+        <h3>2. Demais Cargos de Professor (Matemática, História, Geografia, Ciências, Pedagogia, etc.)</h3>
+        <p style="margin-bottom: 8px;"><strong>Remuneração e Carga Horária:</strong> Conforme piso do Magistério municipal</p>
+        <ul>
+          <li><strong>Vagas:</strong> Imediatas + CR (conforme Anexo do Edital)</li>
+          <li><strong>Requisito Específico:</strong> Licenciatura Plena na área específica ou Pedagogia</li>
+        </ul>
+      </div>
+
+      <div class="sub-secao">
+        <h3>3. Outros Cargos de Nível Superior (Saúde, Administração, Técnica)</h3>
+        <p style="margin-bottom: 8px;"><strong>Remuneração:</strong> Conforme tabela oficial do Edital</p>
+        <ul>
+          <li><strong>Vagas:</strong> Imediatas + CR</li>
+          <li><strong>Requisito Específico:</strong> Diploma de graduação na área + Registro Profissional</li>
+        </ul>
+      </div>
+
+      <div class="sub-secao">
+        <h3>4. Nível Médio, Técnico e Fundamental</h3>
+        <p style="margin-bottom: 8px;"><strong>Remuneração:</strong> Conforme tabela oficial do Edital</p>
+        <ul>
+          <li><strong>Nível Médio e Técnico:</strong> Vagas imediatas + CR (Administrativo, Enfermagem, Trânsito)</li>
+          <li><strong>Nível Fundamental:</strong> Vagas imediatas + CR (Apoio Operacional)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- BLOCO DE AÇÃO 1 -->
+    <div class="cta-container">
+      <a href="https://go.hotmart.com/P106115838M?dp=1" class="btn-preparacao" target="_blank">
+        Iniciar Preparação
+      </a>
+      <button onclick="compartilharPagina()" class="btn-compartilhar">
+        🔗 Compartilhar Edital
+      </button>
+    </div>
+
+    <!-- 4. ESTRUTURA DAS PROVAS -->
+    <section class="secao-card">
+      <h2>4. Estrutura das Provas (Objetiva, Discursiva e Títulos)</h2>
+      
+      <div class="sub-secao" style="margin-top: 0; padding-top: 0; border-top: none;">
+        <h3>Prova Objetiva</h3>
+        <ul>
+          <li><strong>Modelo da banca:</strong> Múltipla escolha (5 alternativas: A, B, C, D, E)</li>
+          <li><strong>Quantidade total de questões:</strong> 50 questões</li>
+          <li><strong>Conhecimentos Gerais:</strong> 20 questões (peso 1,25 | valor máximo: 25,0 pontos)</li>
+          <li><strong>Conhecimentos Específicos:</strong> 30 questões (peso 2,50 | valor máximo: 75,0 pontos)</li>
+          <li><strong>Pontuação máxima:</strong> 100,0 pontos</li>
+          <li><strong>Crivo de Eliminação:</strong> É eliminado o candidato que obtiver pontuação inferior a 70,0 pontos na nota final OU que obtiver nota 0,0 (zero) em qualquer uma das áreas de conhecimento (Gerais ou Específicos)</li>
+        </ul>
+      </div>
+
+      <div class="sub-secao">
+        <h3>Prova Discursiva</h3>
+        <ul>
+          <li><strong></strong> Não haverá prova discursiva/redação. A Prova Objetiva é a única etapa escrita eliminatória/classificatória.</li>
+        </ul>
+      </div>
+
+      <div class="sub-secao">
+        <h3>Avaliação de Títulos (Apenas para Cargos do Magistério/Professores)</h3>
+        <ul>
+          <li><strong>Natureza:</strong> Caráter exclusivamente classificatório, valendo até 5,0 pontos adicionais</li>
+          <li><strong>Especialização (Lato Sensu - mínimo 360h):</strong> 1,0 ponto (máximo de 1 título)</li>
+          <li><strong>Mestrado (Stricto Sensu):</strong> 3,0 pontos (máximo de 1 título)</li>
+          <li><strong>Doutorado (Stricto Sensu):</strong> 5,0 pontos (máximo de 1 título)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5. CONTEÚDO PROGRAMÁTICO E FASES COMPLEMENTARES -->
+    <section class="secao-card">
+      <h2>5. Conteúdo Programático (Assuntos por Disciplina)</h2>
+
+      <!-- A) CONHECIMENTOS BÁSICOS -->
+      <div class="sub-secao" style="margin-top: 0; padding-top: 0; border-top: none;">
+        <h3>A) Conhecimentos Básicos (Comum aos cargos de Nível Superior / Magistério)</h3>
+        
+        <span class="materia-titulo">Língua Portuguesa (Leitura, Interpretação e Aspectos Textuais)</span>
+        <p>1. Compreensão e interpretação de textos verbais e não verbais. 2. Tipologia e gêneros textuais. 3. Coesão e coerência textual. 4. Semântica: sinonímia, antonímia, paronímia, homonímia, hiperonímia e hiponímia. 5. Denotação e conotação (figuras de linguagem).</p>
+
+        <span class="materia-titulo">Noções de Direito Administrativo e Constitucional / Legislação Aplicada</span>
+        <p>1. Princípios fundamentais da Administração Pública (Art. 37 da CF/88). 2. Deveres e direitos dos servidores públicos municipais. 3. Ética no serviço público. 4. Lei Orgânica do Município de Exu (aspectos gerais e organização municipal).</p>
+
+        <span class="materia-titulo">Conhecimentos Pedagógicos e Legislação Educacional (Específico para Magistério)</span>
+        <p>1. Lei de Diretrizes e Bases da Educação Nacional — LDB (Lei nº 9.394/1996 e suas alterações). 2. Estatuto da Criança e do Adolescente — ECA (Lei nº 8.069/1990 — artigos relativos à educação). 3. Base Nacional Comum Curricular (BNCC): estrutura, competências gerais e especificidades para o Ensino Fundamental. 4. Planejamento docente, avaliação da aprendizagem e projetos pedagógicos. 5. Didática e teorias da aprendizagem.</p>
+      </div>
+
+      <!-- B) CONHECIMENTOS ESPECÍFICOS - PROFESSOR DE LÍNGUA PORTUGUESA -->
+      <div class="sub-secao">
+        <h3>B) Conhecimentos Específicos - Cargo: Professor de Língua Portuguesa</h3>
+        
+        <span class="materia-titulo">Língua Portuguesa (Análise Linguística e Gramática)</span>
+        <p>1. <strong>Fonética e Fonologia:</strong> ortografia oficial, acentuação gráfica e crase. 2. <strong>Morfologia:</strong> estrutura e formação de palavras; classes de palavras (substantivo, adjetivo, artigo, numeral, pronome, verbo, advérbio, preposição, conjunção e interjeição) — flexões, emprego e valores sintático-semânticos. 3. <strong>Sintaxe:</strong> termos essenciais, integrantes e acessórios da oração; orações coordenadas e subordinadas; concordância verbal e nominal; regência verbal e nominal; colocação pronominal (próclise, mesóclise e ênclise). 4. <strong>Pontuação:</strong> emprego dos sinais de pontuação e seus efeitos de sentido. 5. <strong>Variação Linguística:</strong> níveis de linguagem, adequação vocabular e preconceito linguístico.</p>
+
+        <span class="materia-titulo">Literatura e Didática da Língua</span>
+        <p>1. <strong>Teoria Literária e Literatura Brasileira:</strong> conceitos de texto literário; gêneros literários; principais movimentos literários no Brasil (do Quinhentismo ao Modernismo e Contemporaneidade). 2. <strong>Ensino de Língua Portuguesa:</strong> concepções de linguagem e ensino; prática de leitura, produção textual e análise linguística em sala de aula de acordo com a BNCC.</p>
+      </div>
+
+      <!-- C) FASES COMPLEMENTARES -->
+      <div class="sub-secao">
+        <h3>C) Fases Complementares do Concurso</h3>
+        <ul>
+          <li><strong>Avaliação de Títulos:</strong> Etapa digital/online de caráter exclusivamente classificatório aplicável aos cargos de Professor.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- BLOCO DE AÇÃO 2 -->
+    <div class="cta-container">
+      <a href="https://go.hotmart.com/P106115838M?dp=1" class="btn-preparacao" target="_blank">
+        Iniciar Preparação
+      </a>
+      <button onclick="compartilharPagina()" class="btn-compartilhar">
+        🔗 Compartilhar Edital
+      </button>
+    </div>
+
+  </main>
+
+  <!-- SCRIPT DE COMPARTILHAMENTO -->
+  <script>
+    function compartilharPagina() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Edital Estratégico - Prefeitura de Exu-PE',
+          text: 'Confira o resumo prático do Edital do Concurso Público da Prefeitura de Exu (PE)!',
+          url: window.location.href
+        }).catch(console.error);
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link do Edital copiado para a área de transferência!');
+      }
+    }
+  </script>
+
+</body>
+</html>
