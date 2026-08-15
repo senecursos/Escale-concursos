@@ -256,6 +256,25 @@
     }
     .btn-commented-questions:hover { background: #15803d; }
 
+    /* BOTÃO DISCRETO VOLTAR AO TOPO */
+    .btn-back-to-top {
+      background: transparent;
+      color: #64748b;
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      align-self: center;
+      transition: all 0.2s;
+      margin-top: 4px;
+    }
+    .btn-back-to-top:hover {
+      background: #e2e8f0;
+      color: #1e293b;
+    }
+
     /* TELA DE RESULTADO */
     #result-screen { display: none; background: var(--card-bg); border-radius: 12px; padding: 30px 20px; border: 1px solid var(--border-color); text-align: center; }
     .score-badge { font-size: 3rem; font-weight: 900; color: var(--primary-green); margin: 10px 0; }
@@ -293,7 +312,8 @@
           📲 Compartilhar Simulado
         </button>
 
-        <button class="btn-top-commented" onclick="irParaVendas()">
+        <!-- NOVO BOTÃO SIMULADO COMENTADO (DIRECIONA PARA O RODAPÉ) -->
+        <button class="btn-top-commented" id="btn-top-commented" onclick="irParaVendas()">
           📚 Simulado Comentado
         </button>
       </div>
@@ -308,10 +328,17 @@
         Finalizar Simulado
       </button>
 
-      <a href="https://go.hotmart.com/A107178149I?dp=1 target="_blank" class="btn-commented-questions" id="btn-buy-pdf">
+      <!-- BOTÃO PARA VENDA DO CADERNO COMENTADO (VALOR ATUALIZADO PARA R$ 9,90) -->
+      <a href="https://go.hotmart.com/A107178149I?dp=1" target="_blank" class="btn-commented-questions" id="btn-buy-pdf">
         📚 Veja as questões comentadas deste simulado (R$ 9,90)
       </a>
+
+      <!-- BOTÃO DISCRETO VOLTAR AO TOPO -->
+      <button class="btn-back-to-top" onclick="voltarAoTopo()">
+        ⬆ Voltar ao topo
+      </button>
     </div>
+    
 
     <!-- TELA DE RESULTADO -->
     <div id="result-screen">
@@ -1569,14 +1596,24 @@ Bruno Carbinatto (com adaptações)`,
       }
     }
 
-    function irParaVendas() {
+        function irParaVendas() {
       const btnVendas = document.getElementById('btn-buy-pdf');
       if (btnVendas) {
         btnVendas.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }
 
+    function voltarAoTopo() {
+      const btnTopo = document.getElementById('btn-top-commented');
+      if (btnTopo) {
+        btnTopo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
     carregarSimulado();
-  </script>
+</script>
+
 </body>
 </html>
