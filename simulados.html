@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escale Concursos - Simulados Grátis</title>
+  <style>
+    :root {
+      --primary-color: #3f4d34; /* Verde Militar Escuro */
+      --accent-color: #4b5e3e;  /* Verde Militar */
+      --gold-accent: #c59b27;   /* Amarelo Dourado */
+      --bg-light: #ffffff;
+      --card-bg: #f8fafc;
+      --border-color: #e2e8f0;
+      --text-dark: #0f172a;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.4;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 4px 12px 16px 12px;
+    }
+
+    /* CABEÇALHO */
+    header {
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .header-image-container {
+      width: 100%;
+      margin-bottom: 8px;
+    }
+
+    .header-image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .header-titles {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .header-titles h2 {
+      color: #1a365d;
+      font-size: 1.8rem;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: -0.2px;
+      text-transform: uppercase;
+      margin-bottom: -2px;
+      line-height: 1.1;
+    }
+
+    .header-titles p {
+      color: var(--gold-accent);
+      font-size: 0.95rem;
+      font-style: italic;
+      font-weight: 600;
+      margin-top: 0px;
+    }
+
+    /* LINHA DIVISÓRIA MANTIDA */
+    .divider-line {
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 8px;
+    }
+
+    /* PUBLICIDADE 2x2 */
+    .ad-section-title {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #94a3b8;
+      text-align: center;
+      margin-top: 2px;
+      margin-bottom: 4px;
+    }
+
+    .ads-grid-2x2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 8px; /* REDUZIDO PARA APROXIMAR O BOTÃO DOS ANÚNCIOS */
+    }
+
+    .ad-card {
+      background-color: #e2e8f0;
+      border: 1px dashed #cbd5e1;
+      border-radius: 6px;
+      aspect-ratio: 3 / 4; /* AJUSTADO PARA 3x4 PERFEITO EM DISPOSITIVOS MÓVEIS */
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4px;
+      margin: 0 auto;
+      overflow: hidden;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .ad-card:hover {
+      background-color: #fefce8;
+      border-color: var(--gold-accent);
+    }
+
+    .ad-card a {
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: 700;
+      font-size: 0.8rem;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.25;
+    }
+
+    .ad-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    /* DESKTOP RESPONSIVO */
+    @media (min-width: 500px) {
+      .ads-grid-2x2 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* BOTÃO PRINCIPAL DE SIMULADOS */
+    .nav-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .main-nav-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      transition: background-color 0.2s, transform 0.1s;
+      width: 100%;
+      text-align: left;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    }
+
+    .main-nav-btn:active {
+      transform: scale(0.99);
+    }
+
+    .btn-icon {
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+      color: var(--gold-accent);
+    }
+
+    /* SEÇÃO EXPANSÍVEL (NÍVEL 1: CONCURSOS) */
+    .collapsible-content {
+      display: none;
+      margin-bottom: 20px;
+      padding-top: 8px;
+    }
+
+    .collapsible-content.active {
+      display: block;
+    }
+
+    .concursos-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* CARD DO CONCURSO (BOTÃO DE EXPANSÃO DO NÍVEL 2) */
+    .concurso-item-btn {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .concurso-item-btn:hover {
+      border-color: var(--gold-accent);
+      background-color: #fefce8;
+    }
+
+    .concurso-info h3 {
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .concurso-info p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .concurso-arrow {
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: var(--gold-accent);
+      margin-left: 8px;
+    }
+
+    /* LISTA SUB-EXPANSÍVEL (NÍVEL 2: SIMULADOS) */
+    .sub-collapsible-content {
+      display: none;
+      padding: 8px 0 4px 12px;
+      border-left: 2px dashed var(--gold-accent);
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
+
+    .sub-collapsible-content.active {
+      display: block;
+    }
+
+    .simulados-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .simulado-card {
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--text-dark);
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .simulado-card:hover {
+      border-color: var(--gold-accent);
+      background-color: #fefce8;
+    }
+
+    .simulado-info h4 {
+      font-size: 0.8rem;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .simulado-info p {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- CABEÇALHO -->
+    <header>
+      <div class="header-image-container">
+        <!-- Substitua pelo caminho real da imagem da marca se necessário -->
+      </div>
+
+      <div class="header-titles">
+        <h2>ESCALE CONCURSOS</h2>
+        <p>Aqui se constrói uma aprovação.</p>
+      </div>
+
+      <!-- LINHA DIVISÓRIA -->
+      <div class="divider-line"></div>
+    </header>
+
+    <!-- ANÚNCIOS -->
+    <div class="ad-section-title">Espaço Publicitário</div>
+    <div class="ads-grid-2x2">
+      <div class="ad-card">
+        <a href="https://wa.me/5588994409549?text=Ol%C3%A1%2C%20gostaria%20de%20anunciar%20minha%20marca%20no%20seu%20site." target="_blank" rel="noopener">
+          Clique para anunciar sua marca aqui
+        </a>
+      </div>
+      <div class="ad-card">
+        <a href="https://wa.me/5588994409549?text=Ol%C3%A1%2C%20gostaria%20de%20anunciar%20minha%20marca%20no%20seu%20site." target="_blank" rel="noopener">
+          Clique para anunciar sua marca aqui
+        </a>
+      </div>
+      <div class="ad-card">
+        <a href="https://wa.me/5588994409549?text=Ol%C3%A1%2C%20gostaria%20de%20anunciar%20minha%20marca%20no%20seu%20site." target="_blank" rel="noopener">
+          Clique para anunciar sua marca aqui
+        </a>
+      </div>
+      <div class="ad-card">
+        <a href="https://wa.me/5588994409549?text=Ol%C3%A1%2C%20gostaria%20de%20anunciar%20minha%20marca%20no%20seu%20site." target="_blank" rel="noopener">
+          Clique para anunciar sua marca aqui
+        </a>
+      </div>
+    </div>
+
+    <!-- BOTÃO PRINCIPAL DE SIMULADOS -->
+    <div class="nav-buttons">
+      
+      <button class="main-nav-btn" onclick="toggleSection('concursos-list', 'icon-concursos')">
+        <span>📝 Escolha o concurso desejado</span>
+        <span id="icon-concursos" class="btn-icon">▼</span>
+      </button>
+
+      <!-- LISTA DE CONCURSOS (NÍVEL 1) -->
+      <div id="concursos-list" class="collapsible-content">
+        <div class="concursos-list">
+
+          <!-- CONCURSO 01 -->
+          <div>
+            <button class="concurso-item-btn" onclick="toggleSubSection('simulados-conc-01', 'arrow-conc-01')">
+              <div class="concurso-info">
+                <h3>Concurso PM-Alagoas</h3>
+                <p>Clique para ver os simulados disponíveis</p>
+              </div>
+              <span id="arrow-conc-01" class="concurso-arrow">▼</span>
+            </button>
+            <div id="simulados-conc-01" class="sub-collapsible-content">
+              <div class="simulados-list">
+                <a href="pmcebraspe01.html" class="simulado-card"><div class="simulado-info"><h4>Simulado PMCEBRASPE01</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 02</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 03</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 04</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 05</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 06</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 07</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 08</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 09</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 10</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONCURSO 02 -->
+          <div>
+            <button class="concurso-item-btn" onclick="toggleSubSection('simulados-conc-02', 'arrow-conc-02')">
+              <div class="concurso-info">
+                <h3>Em breve</h3>
+                <p>Clique para ver os simulados disponíveis</p>
+              </div>
+              <span id="arrow-conc-02" class="concurso-arrow">▼</span>
+            </button>
+            <div id="simulados-conc-02" class="sub-collapsible-content">
+              <div class="simulados-list">
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 01</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 02</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 03</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 04</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 05</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 06</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 07</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 08</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 09</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 10</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONCURSO 03 -->
+          <div>
+            <button class="concurso-item-btn" onclick="toggleSubSection('simulados-conc-03', 'arrow-conc-03')">
+              <div class="concurso-info">
+                <h3>Em breve</h3>
+                <p>Clique para ver os simulados disponíveis</p>
+              </div>
+              <span id="arrow-conc-03" class="concurso-arrow">▼</span>
+            </button>
+            <div id="simulados-conc-03" class="sub-collapsible-content">
+              <div class="simulados-list">
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 01</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 02</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 03</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 04</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 05</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 06</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 07</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 08</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 09</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 10</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONCURSO 04 -->
+          <div>
+            <button class="concurso-item-btn" onclick="toggleSubSection('simulados-conc-04', 'arrow-conc-04')">
+              <div class="concurso-info">
+                <h3>Em breve</h3>
+                <p>Clique para ver os simulados disponíveis</p>
+              </div>
+              <span id="arrow-conc-04" class="concurso-arrow">▼</span>
+            </button>
+            <div id="simulados-conc-04" class="sub-collapsible-content">
+              <div class="simulados-list">
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 01</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 02</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 03</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 04</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 05</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 06</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 07</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 08</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 09</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 10</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONCURSO 05 -->
+          <div>
+            <button class="concurso-item-btn" onclick="toggleSubSection('simulados-conc-05', 'arrow-conc-05')">
+              <div class="concurso-info">
+                <h3>Em breve</h3>
+                <p>Clique para ver os simulados disponíveis</p>
+              </div>
+              <span id="arrow-conc-05" class="concurso-arrow">▼</span>
+            </button>
+            <div id="simulados-conc-05" class="sub-collapsible-content">
+              <div class="simulados-list">
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 01</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 02</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 03</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 04</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 05</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 06</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 07</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 08</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 09</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 10</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONCURSO 06 -->
+          <div>
+            <button class="concurso-item-btn" onclick="toggleSubSection('simulados-conc-06', 'arrow-conc-06')">
+              <div class="concurso-info">
+                <h3>Em breve</h3>
+                <p>Clique para ver os simulados disponíveis</p>
+              </div>
+              <span id="arrow-conc-06" class="concurso-arrow">▼</span>
+            </button>
+            <div id="simulados-conc-06" class="sub-collapsible-content">
+              <div class="simulados-list">
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 01</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 02</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 03</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 04</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 05</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 06</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 07</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 08</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 09</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 10</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONCURSO 07 -->
+          <div>
+            <button class="concurso-item-btn" onclick="toggleSubSection('simulados-conc-07', 'arrow-conc-07')">
+              <div class="concurso-info">
+                <h3>Em breve</h3>
+                <p>Clique para ver os simulados disponíveis</p>
+              </div>
+              <span id="arrow-conc-07" class="concurso-arrow">▼</span>
+            </button>
+            <div id="simulados-conc-07" class="sub-collapsible-content">
+              <div class="simulados-list">
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 01</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 02</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 03</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 04</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 05</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 06</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 07</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 08</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 09</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 10</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONCURSO 08 -->
+          <div>
+            <button class="concurso-item-btn" onclick="toggleSubSection('simulados-conc-08', 'arrow-conc-08')">
+              <div class="concurso-info">
+                <h3>Em breve</h3>
+                <p>Clique para ver os simulados disponíveis</p>
+              </div>
+              <span id="arrow-conc-08" class="concurso-arrow">▼</span>
+            </button>
+            <div id="simulados-conc-08" class="sub-collapsible-content">
+              <div class="simulados-list">
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 01</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 02</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 03</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 04</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 05</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 06</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 07</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 08</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 09</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 10</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONCURSO 09 -->
+          <div>
+            <button class="concurso-item-btn" onclick="toggleSubSection('simulados-conc-09', 'arrow-conc-09')">
+              <div class="concurso-info">
+                <h3>Em breve</h3>
+                <p>Clique para ver os simulados disponíveis</p>
+              </div>
+              <span id="arrow-conc-09" class="concurso-arrow">▼</span>
+            </button>
+            <div id="simulados-conc-09" class="sub-collapsible-content">
+              <div class="simulados-list">
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 01</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 02</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 03</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 04</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 05</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 06</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 07</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 08</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 09</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 10</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONCURSO 10 -->
+          <div>
+            <button class="concurso-item-btn" onclick="toggleSubSection('simulados-conc-10', 'arrow-conc-10')">
+              <div class="concurso-info">
+                <h3>Em breve</h3>
+                <p>Clique para ver os simulados disponíveis</p>
+              </div>
+              <span id="arrow-conc-10" class="concurso-arrow">▼</span>
+            </button>
+            <div id="simulados-conc-10" class="sub-collapsible-content">
+              <div class="simulados-list">
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 01</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 02</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 03</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 04</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 05</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 06</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 07</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 08</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 09</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+                <a href="#" class="simulado-card"><div class="simulado-info"><h4>Simulado 10</h4><p>Questões no padrão da banca</p></div><span class="concurso-arrow">→</span></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    /* Função para abrir/fechar o nível principal (Escolha o concurso) */
+    function toggleSection(sectionId, iconId) {
+      const content = document.getElementById(sectionId);
+      const icon = document.getElementById(iconId);
+
+      if (content.classList.contains('active')) {
+        content.classList.remove('active');
+        icon.textContent = '▼';
+      } else {
+        content.classList.add('active');
+        icon.textContent = '▲';
+      }
+    }
+
+    /* Função para abrir/fechar os simulados de cada concurso (Nível 2) */
+    function toggleSubSection(subSectionId, arrowId) {
+      const content = document.getElementById(subSectionId);
+      const arrow = document.getElementById(arrowId);
+
+      if (content.classList.contains('active')) {
+        content.classList.remove('active');
+        arrow.textContent = '▼';
+      } else {
+        content.classList.add('active');
+        arrow.textContent = '▲';
+      }
+    }
+  </script>
+
+</body>
+</html>

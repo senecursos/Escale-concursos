@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escale Concursos</title>
+  <style>
+    :root {
+      --primary-color: #3f4d34; /* Verde Militar Escuro */
+      --accent-color: #4b5e3e;  /* Verde Militar */
+      --gold-accent: #c59b27;   /* Amarelo Dourado */
+      --bg-light: #ffffff;
+      --card-bg: #f8fafc;
+      --border-color: #e2e8f0;
+      --text-dark: #0f172a;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.4;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 4px 12px 16px 12px;
+    }
+
+    /* CABEÇALHO */
+    header {
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .header-image-container {
+      width: 100%;
+      margin-bottom: 8px;
+    }
+
+    .header-image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .header-titles {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .header-titles h2 {
+      color: #1a365d;
+      font-size: 1.8rem;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: -0.2px;
+      text-transform: uppercase;
+      margin-bottom: -2px;
+      line-height: 1.1;
+    }
+
+    .header-titles p {
+      color: var(--gold-accent);
+      font-size: 0.95rem;
+      font-style: italic;
+      font-weight: 600;
+      margin-top: 0px;
+    }
+
+    /* LINHA DIVISÓRIA MANTIDA */
+    .divider-line {
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 8px;
+    }
+
+    /* PUBLICIDADE 2x2 */
+    .ad-section-title {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #94a3b8;
+      text-align: center;
+      margin-top: 2px;
+      margin-bottom: 4px;
+    }
+
+    .ads-grid-2x2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .ad-card {
+      background-color: #e2e8f0;
+      border: 1px dashed #cbd5e1;
+      border-radius: 6px;
+      aspect-ratio: 3 / 4;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4px;
+      margin: 0 auto;
+      overflow: hidden;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .ad-card:hover {
+      background-color: #fefce8;
+      border-color: var(--gold-accent);
+    }
+
+    .ad-card a {
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: 700;
+      font-size: 0.8rem;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.25;
+    }
+
+    .ad-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    /* DESKTOP RESPONSIVO */
+    @media (min-width: 500px) {
+      .ads-grid-2x2 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* BOTÃO PRINCIPAL VERDE MILITAR */
+    .nav-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .main-nav-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      transition: background-color 0.2s, transform 0.1s;
+      width: 100%;
+      text-align: left;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    }
+
+    .main-nav-btn:active {
+      transform: scale(0.99);
+    }
+
+    .btn-icon {
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+      color: var(--gold-accent);
+    }
+
+    /* SEÇÃO EXPANSÍVEL */
+    .collapsible-content {
+      display: none;
+      margin-bottom: 20px;
+      padding-top: 8px;
+    }
+
+    .collapsible-content.active {
+      display: block;
+    }
+
+    /* LISTA DE DISCIPLINAS */
+    .items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .item-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--text-dark);
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .item-card:hover {
+      border-color: var(--gold-accent);
+      background-color: #fefce8;
+    }
+
+    .item-info h3 {
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .item-info p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .item-arrow {
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: var(--gold-accent);
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- CABEÇALHO -->
+    <header>
+      <div class="header-image-container">
+        <!-- Substitua 'banner-escale.jpg' pelo caminho real da imagem da sua marca -->
+      </div>
+
+      <div class="header-titles">
+        <h2>ESCALE CONCURSOS</h2>
+        <p>Aqui se constrói uma aprovação.</p>
+      </div>
+
+      <!-- LINHA DIVISÓRIA -->
+      <div class="divider-line"></div>
+    </header>
+
+    <!-- ANÚNCIOS -->
+    <div class="ad-section-title">Espaço Publicitário</div>
+    <div class="ads-grid-2x2">
+      <div class="ad-card">
+        <a href="https://wa.me/5588994409549?text=Ol%C3%A1%2C%20gostaria%20de%20anunciar%20minha%20marca%20no%20seu%20site." target="_blank" rel="noopener">
+          Clique para anunciar sua marca aqui
+        </a>
+      </div>
+      <div class="ad-card">
+        <a href="https://wa.me/5588994409549?text=Ol%C3%A1%2C%20gostaria%20de%20anunciar%20minha%20marca%20no%20seu%20site." target="_blank" rel="noopener">
+          Clique para anunciar sua marca aqui
+        </a>
+      </div>
+      <div class="ad-card">
+        <a href="https://wa.me/5588994409549?text=Ol%C3%A1%2C%20gostaria%20de%20anunciar%20minha%20marca%20no%20seu%20site." target="_blank" rel="noopener">
+          Clique para anunciar sua marca aqui
+        </a>
+      </div>
+      <div class="ad-card">
+        <a href="https://wa.me/5588994409549?text=Ol%C3%A1%2C%20gostaria%20de%20anunciar%20minha%20marca%20no%20seu%20site." target="_blank" rel="noopener">
+          Clique para anunciar sua marca aqui
+        </a>
+      </div>
+    </div>
+
+    <!-- BOTÃO ÚNICO DE DISCIPLINAS -->
+    <div class="nav-buttons">
+      
+      <button class="main-nav-btn" onclick="toggleSection('disciplinas-list', 'icon-disciplinas')">
+        <span>📚 Escolha a disciplina que deseja estudar</span>
+        <span id="icon-disciplinas" class="btn-icon">▼</span>
+      </button>
+
+      <!-- LISTA DE DISCIPLINAS -->
+      <div id="disciplinas-list" class="collapsible-content">
+        <div class="items-list">
+          <a href="https://portugues.senebr.com.br" class="item-card">
+            <div class="item-info">
+              <h3>Língua Portuguesa / Redação</h3>
+              <p>Resumos e teoria direcionada</p>
+            </div>
+            <span class="item-arrow">→</span>
+          </a>
+          <a href="#" class="item-card">
+            <div class="item-info">
+              <h3>Raciocínio Lógico-Matemático (Em breve)</h3>
+              <p>Resumos e teoria direcionada</p>
+            </div>
+            <span class="item-arrow">→</span>
+          </a>
+          <a href="#" class="item-card">
+            <div class="item-info">
+              <h3>Noções de Computação (Em breve)</h3>
+              <p>Resumos e teoria direcionada</p>
+            </div>
+            <span class="item-arrow">→</span>
+          </a>
+          <a href="#" class="item-card">
+            <div class="item-info">
+              <h3>Noções de Direito Constitucional (Em breve)</h3>
+              <p>Resumos e teoria direcionada</p>
+            </div>
+            <span class="item-arrow">→</span>
+          </a>
+          <a href="#" class="item-card">
+            <div class="item-info">
+              <h3>Noções de Direito Administrativo (Em breve)</h3>
+              <p>Resumos e teoria direcionada</p>
+            </div>
+            <span class="item-arrow">→</span>
+          </a>
+          <a href="#" class="item-card">
+            <div class="item-info">
+              <h3>Noções de Direito Penal (Em breve)</h3>
+              <p>Resumos e teoria direcionada</p>
+            </div>
+            <span class="item-arrow">→</span>
+          </a>
+          <a href="#" class="item-card">
+            <div class="item-info">
+              <h3>Noções de Direito Processual Penal (Em breve)</h3>
+              <p>Resumos e teoria direcionada</p>
+            </div>
+            <span class="item-arrow">→</span>
+          </a>
+          <a href="#" class="item-card">
+            <div class="item-info">
+              <h3>Legislação Extravagante & Direitos Humanos (Em breve)</h3>
+              <p>Resumos e teoria direcionada</p>
+            </div>
+            <span class="item-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    function toggleSection(sectionId, iconId) {
+      const content = document.getElementById(sectionId);
+      const icon = document.getElementById(iconId);
+
+      if (content.classList.contains('active')) {
+        content.classList.remove('active');
+        icon.textContent = '▼';
+      } else {
+        content.classList.add('active');
+        icon.textContent = '▲';
+      }
+    }
+  </script>
+
+</body>
+</html>

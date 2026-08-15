@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulado | Escale Concursos</title>
+  <style>
+    :root {
+      /* PALETA ATUALIZADA: VERDE MILITAR E DOURADO ESCALE */
+      --primary-green: #3b4e3a;      /* Verde Militar Principal */
+      --dark-green: #293828;         /* Verde Militar Escuro */
+      --accent-gold: #d99b26;        /* Dourado */
+      --accent-green: #16a34a;       /* Verde de Sucesso / Botão Vendas */
+      --bg-light: #f8fafc;
+      --card-bg: #ffffff;
+      --border-color: #cbd5e1;
+      --error-red: #dc2626;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+    body { background-color: var(--bg-light); color: #1e293b; line-height: 1.5; padding-bottom: 60px; }
+
+    /* BARRA FIXA SUPERIOR */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      background: var(--primary-green);
+      color: #fff;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      z-index: 100;
+    }
+    .top-bar .info-title { font-weight: 800; font-size: 0.95rem; text-transform: uppercase; }
+    .top-bar .timer { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.9rem; }
+
+    .container { max-width: 800px; margin: 10px auto 20px auto; padding: 0 12px; }
+
+    /* SEÇÃO DO TÍTULO E LOGO DO TOPO */
+    .header-section {
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 0 5px;
+    }
+
+    .main-logo {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      margin: 5px auto 4px auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .main-title {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--primary-green);
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-top: 0;
+    }
+    .sub-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #64748b;
+      margin-top: 4px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .top-buttons-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* BOTÃO COM MINIATURA DA LOGO */
+    .btn-brand {
+      background: var(--primary-green);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.2s;
+      text-align: left;
+      line-height: 1.2;
+    }
+    .btn-brand:hover { background: var(--dark-green); }
+
+    .btn-brand-icon {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      border-radius: 6px;
+      background: #fff;
+      padding: 2px;
+      flex-shrink: 0;
+    }
+
+    .btn-share {
+      background: #e2e8f0;
+      color: #334155;
+      border: 1px solid var(--border-color);
+      padding: 12px 18px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .btn-share:hover { background: #cbd5e1; }
+
+    .btn-top-commented {
+      background: var(--accent-green);
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-top-commented:hover { background: #15803d; }
+
+    /* ESTILO DAS QUESTÕES */
+    .simulado-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+    
+    .q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .q-number { font-weight: 800; color: var(--primary-green); font-size: 0.9rem; text-transform: uppercase; }
+    .q-materia { 
+      background: #e2e8f0; 
+      color: #334155; 
+      font-size: 0.75rem; 
+      font-weight: 700; 
+      padding: 3px 8px; 
+      border-radius: 4px; 
+      text-transform: uppercase;
+    }
+
+    /* TEXTO DE APOIO */
+    .support-text-box {
+      background: #f1f5f9;
+      border-left: 4px solid var(--primary-green);
+      padding: 14px;
+      margin-bottom: 16px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.93rem;
+      color: #334155;
+      white-space: pre-line;
+      line-height: 1.6;
+    }
+    .support-text-title {
+      font-weight: 800;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--primary-green);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .q-text { font-size: 1rem; margin-bottom: 16px; text-align: justify; white-space: pre-line; }
+
+    /* OPÇÕES DE RESPOSTA */
+    .options-grid { display: flex; flex-direction: column; gap: 8px; }
+    .opt-btn {
+      padding: 12px 16px;
+      border: 2px solid var(--border-color);
+      background: #fff;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .opt-btn:hover { border-color: var(--primary-green); background: #f1f5f9; }
+    .opt-btn.selected { border-color: var(--primary-green); background: var(--primary-green); color: #ffffff; }
+
+    /* ÁREA DE AÇÃO FINAL DO RODAPÉ */
+    .bottom-actions {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-finish {
+      width: 100%;
+      background: var(--accent-gold);
+      color: #fff;
+      border: none;
+      padding: 16px;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: background 0.2s;
+    }
+    .btn-finish:hover { background: #b8801d; }
+
+    .btn-commented-questions {
+      width: 100%;
+      background: var(--accent-green);
+      color: #fff;
+      border: none;
+      padding: 16px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: block;
+      transition: background 0.2s;
+    }
+    .btn-commented-questions:hover { background: #15803d; }
+
+    /* TELA DE RESULTADO */
+    #result-screen { display: none; background: var(--card-bg); border-radius: 12px; padding: 30px 20px; border: 1px solid var(--border-color); text-align: center; }
+    .score-badge { font-size: 3rem; font-weight: 900; color: var(--primary-green); margin: 10px 0; }
+    .summary-text { font-size: 1.1rem; color: #475569; margin-bottom: 24px; }
+    
+    .review-item { text-align: left; padding: 12px; border-bottom: 1px solid var(--border-color); font-size: 0.9rem; }
+    .review-correct { color: var(--accent-green); font-weight: 800; }
+    .review-incorrect { color: var(--error-red); font-weight: 800; }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA FIXA SUPERIOR -->
+  <div class="top-bar">
+    <span class="info-title">Simulado PM</span>
+    <span class="timer" id="timer-display">Tempo: 00:00</span>
+  </div>
+
+  <div class="container">
+    
+    <!-- CABEÇALHO DO SIMULADO -->
+    <div class="header-section">
+      <img src="Logo1.jpg" alt="Escale Concursos" class="main-logo" onerror="this.style.display='none'">
+
+      <h1 class="main-title">Simulado PMCEBRASPE01</h1>
+      <h2 class="sub-title">Padrão CEBRASPE</h2>
+
+      <div class="top-buttons-group">
+        <a href="https://escaleconcursos.senebr.com.br" class="btn-brand" id="btn-escale">
+          <img src="logoescale.jpg" alt="Logo Escale Concursos" class="btn-brand-icon" onerror="this.style.display='none'">
+          <span>PREPARE-SE CONOSCO!<br><small style="font-weight: 400; opacity: 0.9;">(Ir para o site)</small></span>
+        </a>
+
+        <button class="btn-share" onclick="compartilharSimulado()">
+          📲 Compartilhar Simulado
+        </button>
+
+        <button class="btn-top-commented" onclick="irParaVendas()">
+          📚 Simulado Comentado
+        </button>
+      </div>
+    </div>
+
+    <!-- ÁREA ONDE AS QUESTÕES SERÃO GERADAS -->
+    <div id="quiz-container"></div>
+
+    <!-- GRUPO DE BOTÕES FINAIS -->
+    <div class="bottom-actions">
+      <button class="btn-finish" id="btn-submit" onclick="finalizarSimulado()">
+        Finalizar Simulado
+      </button>
+
+      <a href="https://go.hotmart.com/A107178149I?dp=1 target="_blank" class="btn-commented-questions" id="btn-buy-pdf">
+        📚 Veja as questões comentadas deste simulado (R$ 9,90)
+      </a>
+    </div>
+
+    <!-- TELA DE RESULTADO -->
+    <div id="result-screen">
+      <h2 style="color: var(--primary-green);">RESULTADO DO SIMULADO</h2>
+      <div class="score-badge" id="score-percentage">0%</div>
+      <p class="summary-text" id="score-summary">Você acertou 0 de 0 questões.</p>
+      
+      <h3 style="text-align: left; color: var(--primary-green); margin: 20px 0 10px 0; border-bottom: 2px solid var(--border-color); padding-bottom: 5px;">
+        Gabarito e Correção:
+      </h3>
+      <div id="review-list"></div>
+    </div>
+
+  </div>
+
+  <script>
+    /* ===================================================================
+       1. CADASTRO DE QUESTÕES (BANCO MATRIZ)
+       =================================================================== */
+    const bancoQuestoes = [
+      {
+        id: 1,
+        materia: "Língua Portuguesa",
+        textoApoio: `Texto CG2A1
+A alusão ao princípio republicano tornou-se extremamente frequente no Brasil, não só em textos acadêmicos e decisões judiciais, como também nos debates travados na sociedade por pessoas alheias ao mundo do direito. O tema tem vindo à baila, por exemplo, em discussões sobre a corrupção e seu combate; sobre privilégios concedidos a autoridades públicas e poderosos de todo tipo; sobre a persistência no país de cultura patrimonialista e desigualitária, que não separa o público do privado e não trata a todos com o mesmo respeito e consideração. Existe na sociedade a difusa percepção, infelizmente correta, de que, embora nossa forma de governo seja a república e não a monarquia, falta República — com “r” maiúsculo — às nossas relações políticas e sociais.
+
+A Constituição Federal de 1988 consagrou o princípio republicano em seu art. 1.º e acolheu diversos elementos e institutos que guardam estreita relação com o ideário republicano: o direito à igualdade; a legitimidade de todo cidadão para propor ação popular visando à garantia da coisa pública; os princípios da moralidade, publicidade e impessoalidade administrativa; as exigências constitucionais de concurso público e licitação; entre tantos outros.
+
+O próprio nome atribuído ao país — República Federativa do Brasil — sinaliza a centralidade do princípio republicano entre nós. Essa centralidade foi reforçada pelo povo brasileiro no plebiscito ocorrido em 1993, quando, por expressiva maioria, optamos pela manutenção da forma republicana de governo, em detrimento da monarquia. Porém, entre a proclamação do princípio e a realidade há um abismo que ainda não fomos capazes de transpor nestes trinta anos de vigência da Carta de 1988.
+
+O republicanismo projeta um ideal ambicioso para a política. Deseja-se que a política — compreendida em sentido amplo — tenha importância para as pessoas, que não devem limitar suas atividades e atenção a seus interesses e negócios privados. Ademais, espera-se que a política não se resuma à disputa entre forças movidas por interesses egoísticos, mas se volte à busca coletiva do bem comum.
+
+Nessa chave, a esfera pública é idealmente concebida não como algo similar ao mercado — em que os agentes visam apenas a defender os próprios interesses —, mas como um fórum, em que existe disputa, mas também troca de razões e argumentos, objetivando-se a identificação e a persecução do interesse público. Não se afirma que essa seja a realidade da política nas sociedades contemporâneas. Trata-se, isso sim, do ideal normativo a ser perseguido para a construção do Estado republicano.
+Daniel Sarmento (com adaptações)`,
+        enunciado: "01. No segundo parágrafo, todo o trecho subsequente aos dois-pontos constitui uma enumeração na qual se discriminam os “diversos elementos e institutos que guardam estreita relação com o ideário republicano”.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 2,
+        materia: "Língua Portuguesa",
+        textoApoio: "Texto CG2A1 (consultar questão 1)",
+        enunciado: "02. O texto classifica-se como predominantemente argumentativo, o que se evidencia pela organização do discurso e pelo posicionamento do autor em relação ao assunto abordado.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 3,
+        materia: "Língua Portuguesa",
+        textoApoio: "Texto CG2A1 (consultar questão 1)",
+        enunciado: "03. No primeiro período do texto, a expressão “como também” tem sentido aditivo, pois introduz uma informação adicional acerca dos âmbitos sociais em que se verifica a alusão ao republicanismo.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 4,
+        materia: "Língua Portuguesa",
+        textoApoio: "Texto CG2A1 (consultar questão 1)",
+        enunciado: "04. A expressão “Nessa chave” (primeiro período do último parágrafo) poderia ser substituída por Sob esse ângulo, sem prejuízo da coerência textual.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 5,
+        materia: "Língua Portuguesa",
+        textoApoio: "Texto CG2A1 (consultar questão 1)",
+        enunciado: "05. Por meio do emprego da expressão “isso sim” (último período do texto), o autor retoma e, ao mesmo tempo, confirma a ideia apresentada anteriormente.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 6,
+        materia: "Língua Portuguesa",
+        textoApoio: "Texto CG2A1 (consultar questão 1)",
+        enunciado: "06. O referente das formas pronominais “suas” e “seus”, no segundo período do quarto parágrafo, é “pessoas”.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 7,
+        materia: "Língua Portuguesa",
+        textoApoio: "Texto CG2A1 (consultar questão 1)",
+        enunciado: "07. O termo “Ademais” (último período do quarto parágrafo) introduz uma oração que expressa consequência em relação à afirmação feita no período imediatamente anterior.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 8,
+        materia: "Língua Portuguesa",
+        textoApoio: "Texto CG2A1 (consultar questão 1)",
+        enunciado: "08. O trecho “que ainda” (último período do terceiro parágrafo) poderia ser substituído por do qual ainda, sem prejuízo da correção gramatical e do sentido do texto.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 9,
+        materia: "Língua Portuguesa",
+        textoApoio: "Texto CG2A1 (consultar questão 1)",
+        enunciado: "09. Conclui-se das relações de sentido estabelecidas no quarto parágrafo que o vocábulo “política” (último período) retoma, por coesão referencial, “republicanismo” (primeiro período).",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 10,
+        materia: "Língua Portuguesa",
+        textoApoio: "Texto CG2A1 (consultar questão 1)",
+        enunciado: "10. Considerado o republicanismo previsto na Constituição Federal de 1988, conforme apresentado no texto, infere-se que a política deve espelhar o paradigma do mercado.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 11,
+        materia: "Língua Portuguesa",
+        textoApoio: `Texto PMSD2
+Imaginar é um dom comum a todos os seres humanos — e também uma daquelas características que nos diferenciam dos outros animais, incapazes de atingir esse nível de abstração. Apesar disso, a criatividade parece a muitos de nós algo inacessível, difícil de cultivar, restrita apenas àqueles que já nasceram com aptidões artísticas ou inventivas.
+
+Isso não é verdade. Nas últimas décadas, a psicologia e a neurociência começaram a desvendar o processo de surgimento de ideias originais no nosso cérebro — e descobriram estratégias que qualquer um pode adotar para aperfeiçoar a própria capacidade criativa, mesmo que você se considere desprovido desse traquejo.
+
+O que se pode chamar de estudo científico da criatividade começou só na década de 1950, quando o psicólogo americano J. P. Guilford publicou as bases desse campo de pesquisa. Ele se interessou em responder uma pergunta essencial: de onde vêm as ideias criativas?
+
+Para isso, Guilford propôs que o raciocínio humano se divide em dois tipos: o convergente e o divergente. Ambos podem ser usados para resolver problemas ou chegar a conclusões após uma análise, mas funcionam de maneira bem diferentes.
+
+O pensamento convergente é aquele que busca uma única solução para um impasse específico. Ele segue uma ordem estruturada, avançando e refinando uma mesma ideia em vez de experimentar várias resoluções diferentes. Pense, por exemplo, numa questão de uma prova de matemática. Pode até haver várias maneiras de se chegar ao resultado, mas o mais fácil (e comum) é escolher um único método e seguir com ele até o final.
+
+Já o pensamento divergente é mais fluido e caótico: ele explora diversas ideias diferentes ao mesmo tempo, muitas vezes misturando as soluções e conectando-as de maneiras pouco óbvias. É o raciocínio típico dos brainstormings, por exemplo. Segundo Guilford, a criatividade é um produto direto da nossa capacidade de pensar de forma divergente. Ao fazer conexões entre coisas aparentemente desconexas, criamos ideias inéditas. Até hoje, essa explicação é a mais aceita pelos cientistas.
+Bruno Carbinatto (com adaptações)`,
+        enunciado: "11. De acordo com o texto, muitas pessoas descreem da própria capacidade criativa.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 12,
+        materia: "Língua Portuguesa",
+        textoApoio: "Texto PMSD2 (consultar questão 11)",
+        enunciado: "12. É opcional o emprego do acento indicativo de crase no vocábulo “àqueles” (último período do primeiro parágrafo).",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 13,
+        materia: "Língua Portuguesa",
+        textoApoio: "Texto PMSD2 (consultar questão 11)",
+        enunciado: "13. No quinto parágrafo, os termos “aquele” (primeiro período) e “Ele” (segundo período) têm o mesmo referente.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 14,
+        materia: "Língua Portuguesa",
+        textoApoio: "Texto PMSD2 (consultar questão 11)",
+        enunciado: "14. Entende-se da leitura do texto que a criatividade é fruto da combinação entre os pensamentos convergente e divergente.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 15,
+        materia: "Língua Portuguesa",
+        textoApoio: "Texto PMSD2 (consultar questão 11)",
+        enunciado: "15. O autor do texto argumenta contra a proposta de J. P. Guilford sobre o raciocínio humano.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 16,
+        materia: "Matemática",
+        textoApoio: "",
+        enunciado: "16. Considere que 3 auditores, trabalhando 8 horas por dia, todos com o mesmo ritmo de trabalho, sejam capazes de fiscalizar 180 notas fiscais em 5 dias. Nessas mesmas condições, uma equipe de 5 auditores terá fiscalizado, em 4 dias, 200 notas fiscais.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 17,
+        materia: "Matemática",
+        textoApoio: "",
+        enunciado: "17. Em um evento promovido por uma corretora de investimentos, o número de pessoas presentes que ainda não são investidoras é igual a 75% do número de pessoas presentes que já são investidoras. Nessa situação, conclui-se que mais de 60% das pessoas presentes ao evento são investidoras.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 18,
+        materia: "Matemática",
+        textoApoio: "",
+        enunciado: "18. Considere-se que um produto cujo preço era de R$ 3.000,00 teve seu preço reajustado em dois semestres consecutivos, pela mesma taxa de reajuste, passando a custar R$ 4.320,00 após o segundo reajuste. Nesse caso, conclui-se que a taxa de reajuste utilizada para corrigir o preço desse produto foi de 20%.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 19,
+        materia: "Matemática",
+        textoApoio: "",
+        enunciado: "19. O preço de venda de qualquer produto de uma loja é igual ao custo do produto acrescido da margem de lucro fixa praticada pela loja. Sabe-se, ainda, que se a loja vender um produto com 50% de desconto no seu preço de venda, então o lucro dessa venda será igual a 20% do lucro inicial. Nessa situação, conclui-se que se essa loja adquire um produto por R$ 300,00 o preço de venda desse produto será igual a R$ 800,00.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 20,
+        materia: "Matemática",
+        textoApoio: "",
+        enunciado: "20. Dividir a quantia de R$ 3.520 em partes inversamente proporcionais a 1, 2 e 3 resulta, respectivamente, nas partes R$ 1.920, R$ 960 e R$ 640.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 21,
+        materia: "Matemática",
+        textoApoio: "",
+        enunciado: "21. Caso toda a produção de uma fábrica seja destinada aos públicos infantil, jovem e adulto, de modo que as porcentagens da produção destinadas a cada um desses públicos sejam inversamente proporcionais, respectivamente, aos números 2, 3 e 6, então mais de 30% da produção dessa fábrica destinar-se-á ao público jovem.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 22,
+        materia: "Matemática",
+        textoApoio: "",
+        enunciado: "22. Um investimento de R$ 5000 a uma taxa de juros simples de 8% ao ano resultará em um montante de R$ 5400 após 3 anos.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 23,
+        materia: "Matemática",
+        textoApoio: "",
+        enunciado: "23. Considere que um capital tenha sido aplicado à taxa de 5% ao mês, durante 2 meses, no regime de juros compostos. Então, para produzir o mesmo montante no mesmo prazo e no regime de juros simples, esse capital deveria ser aplicado a uma taxa mensal superior a 5%.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 24,
+        materia: "Matemática",
+        textoApoio: "",
+        enunciado: "24. Se um empréstimo de R$ 3000 foi feito a uma taxa de juros simples de 5% ao mês, após 1 ano, o montante total será de R$ 3600.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 25,
+        materia: "Matemática",
+        textoApoio: "",
+        enunciado: "25. Se um empréstimo de R$ 2000 foi feito a uma taxa de juros simples de 10% ao mês, após 6 meses, o montante total será de R$ 3200.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 26,
+        materia: "Matemática",
+        textoApoio: "",
+        enunciado: "26. A dízima periódica 2,555... é inferior a 70/30.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 27,
+        materia: "Matemática",
+        textoApoio: "",
+        enunciado: "27. O valor da divisão de 2/5 por 1,6 é maior que 0,3.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 28,
+        materia: "Matemática",
+        textoApoio: "Uma equipe com 8 funcionários ficou responsável por catalogar e armazenar os processos de uma prefeitura. Essa equipe tem a capacidade de catalogar 27 processos em quatro dias úteis, trabalhando seis horas por dia. Todos os funcionários têm a mesma capacidade de trabalho.",
+        enunciado: "28. Aumentando-se a equipe para 12 funcionários, seria possível catalogar os 27 processos em menos de dois dias úteis, trabalhando seis horas por dia.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 29,
+        materia: "Matemática",
+        textoApoio: "Uma equipe com 8 funcionários ficou responsável por catalogar e armazenar os processos de uma prefeitura. Essa equipe tem a capacidade de catalogar 27 processos em quatro dias úteis, trabalhando seis horas por dia. Todos os funcionários têm a mesma capacidade de trabalho.",
+        enunciado: "29. Se a equipe tivesse 10 funcionários, seria possível catalogar mais de 32 processos, trabalhando seis horas por dia, durante quatro dias úteis.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 30,
+        materia: "Matemática",
+        textoApoio: "Uma equipe com 8 funcionários ficou responsável por catalogar e armazenar os processos de uma prefeitura. Essa equipe tem a capacidade de catalogar 27 processos em quatro dias úteis, trabalhando seis horas por dia. Todos os funcionários têm a mesma capacidade de trabalho.",
+        enunciado: "30. Se trabalhasse 8 horas por dia, a equipe seria capaz de catalogar mais de 35 processos em quatro dias úteis.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 31,
+        materia: "Noções de Informática",
+        textoApoio: "",
+        enunciado: "31. No menu de segurança do Windows 10, é possível visualizar a que rede o computador está conectado por meio da opção Firewall e proteção de rede.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 32,
+        materia: "Noções de Informática",
+        textoApoio: "",
+        enunciado: "32. Como opção de entrada aos dispositivos do usuário, o Windows Hello permite conexão por meio de reconhecimento facial ou impressão digital.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 33,
+        materia: "Noções de Informática",
+        textoApoio: "",
+        enunciado: "33. No Excel, ao aplicar o recurso de proteção a uma planilha, não é possível permitir que determinados usuários insiram dados em células específicas sem compartilhar a senha de proteção.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 34,
+        materia: "Noções de Informática",
+        textoApoio: "",
+        enunciado: "34. O MS Excel permite a identificação de células precedentes e dependentes a partir de determinada célula, desde que ela possua uma fórmula associada.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 35,
+        materia: "Noções de Informática",
+        textoApoio: "",
+        enunciado: "35. Spyware é um programa que se replica ao infectar arquivos ou documentos que contenham código executável.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 36,
+        materia: "Noções de Informática",
+        textoApoio: "",
+        enunciado: "36. Um backup do tipo total copia todos os arquivos para restaurá-los em caso de perda dos dados originais.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 37,
+        materia: "Noções de Informática",
+        textoApoio: "",
+        enunciado: "37. É seguro conectar qualquer pendrive ao computador, desde que ele seja aberto inicialmente no modo somente leitura, pois vírus não conseguem se propagar sem permissão explícita do usuário.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 38,
+        materia: "Noções de Informática",
+        textoApoio: "",
+        enunciado: "38. O serviço de armazenamento em nuvem permite salvar arquivos, bancos de dados e outras informações em servidores remotos tal que a acessibilidade e a escalabilidade são vantagens frente aos dispositivos de armazenamento local.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 39,
+        materia: "Noções de Informática",
+        textoApoio: "",
+        enunciado: "39. Por meio de programas de correio eletrônico denominados webmails, os usuários podem acessar suas contas a partir de computadores com acesso à Internet.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 40,
+        materia: "Noções de Informática",
+        textoApoio: "",
+        enunciado: "40. Com o Google Chrome, é possível instalar extensões como tradutores ou bloqueadores de anúncios e sincronizar os favoritos do usuário em qualquer dispositivo com uma conta Google.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+            {
+        id: 41,
+        materia: "Conhecimentos do Estado de Alagoas",
+        textoApoio: "",
+        enunciado: "41. O sertão de Alagoas possui áreas com altitude superior a 1.000 metros que, por receberem ventos provenientes da bacia do São Francisco, são mais úmidas e apresentam uma vegetação de maior porte, com forte presença de palmeiras, que as demais regiões do sertão.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 42,
+        materia: "Conhecimentos do Estado de Alagoas",
+        textoApoio: "",
+        enunciado: "42. Devido à pequena densidade demográfica e às fugas de potenciais combatentes, Alagoas teve grande dificuldade para recrutar soldados para lutarem na guerra do Paraguai: ao longo de todo o conflito, o contingente alagoano na guerra não chegou a mil soldados.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 43,
+        materia: "Conhecimentos do Estado de Alagoas",
+        textoApoio: "",
+        enunciado: "43. A partir de 1850, a exportação de escravos de Alagoas para outras províncias se tornou importante atividade comercial e propiciou a presença significativa de mão de obra livre nos engenhos e nas fazendas alagoanas já na década de 1860.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 44,
+        materia: "Conhecimentos do Estado de Alagoas",
+        textoApoio: "",
+        enunciado: "44. Entre 1832 e 1835, a região que abrigava Palmares foi palco da Cabanada, movimento rural que contou com a participação de diferentes segmentos sociais, com predominância de populares e que teve como principal líder o mulato Vicente Ferreira de Paula.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 45,
+        materia: "Conhecimentos do Estado de Alagoas",
+        textoApoio: "",
+        enunciado: "45. Alagoas aderiu ao movimento constitucionalista português em 1821, quando o então governador Sebastião Francisco de Melo e Póvoas, com amplo apoio das elites de Maceió e Alagoas, proclamou fidelidade ao rei, às Cortes e à Constituição.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 46,
+        materia: "Conhecimentos do Estado de Alagoas",
+        textoApoio: "",
+        enunciado: "46. Em 11 de junho de 1891, a primeira Constituição do Estado de Alagoas foi assinada. Neste contexto, o regime político do Brasil era Monárquico.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 47,
+        materia: "Conhecimentos do Estado de Alagoas",
+        textoApoio: "",
+        enunciado: "47. Em 1630, holandeses invadiram Pernambuco, chegando a ocupar Alagoas até 1645, quando os portugueses reconquistaram o controle da região.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 48,
+        materia: "Conhecimentos do Estado de Alagoas",
+        textoApoio: "",
+        enunciado: "48. Tradicionalmente um dos produtos agrícolas mais produzidos pelo estado de Alagoas é o pequi.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 49,
+        materia: "Conhecimentos do Estado de Alagoas",
+        textoApoio: "",
+        enunciado: "49. A região onde hoje se encontra o estado de Alagoas já foi invadida no século XVI por franceses.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 50,
+        materia: "Conhecimentos do Estado de Alagoas",
+        textoApoio: "",
+        enunciado: "50. Um dos pontos turísticos localizados no estado de Alagoas é a Praia de Barra Grande.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+            {
+        id: 51,
+        materia: "Legislação Pertinente ao Policial Militar de Alagoas",
+        textoApoio: "Em relação ao que dispõe a Lei estadual n.º 5.346/1992 (Estatuto dos Policiais Militares do Estado de Alagoas), julgue os itens a seguir.",
+        enunciado: "51. Considera-se de natureza civil o exercício, por policial militar, de cargo ou função não especificado na legislação da corporação.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 52,
+        materia: "Legislação Pertinente ao Policial Militar de Alagoas",
+        textoApoio: "Em relação ao que dispõe a Lei estadual n.º 5.346/1992 (Estatuto dos Policiais Militares do Estado de Alagoas), julgue os itens a seguir.",
+        enunciado: "52. Os conceitos de posto, graduação e precedência são aplicados indiscriminadamente aos oficiais e às praças.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 53,
+        materia: "Legislação Pertinente ao Policial Militar de Alagoas",
+        textoApoio: "Em relação ao que dispõe a Lei estadual n.º 5.346/1992 (Estatuto dos Policiais Militares do Estado de Alagoas), julgue os itens a seguir.",
+        enunciado: "53. Licença para tratar de interesse particular poderá ser concedida, pelo prazo máximo de um ano, ao policial militar com três anos de efetivo serviço.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 54,
+        materia: "Legislação Pertinente ao Policial Militar de Alagoas",
+        textoApoio: "No que se refere ao Decreto n.º 37.042/1996, o qual aprova o Regulamento Disciplinar da Polícia Militar do Estado de Alagoas, julgue os itens que se seguem.",
+        enunciado: "54. A hierarquia e a disciplina constituem a base institucional da Polícia Militar, devendo ser observadas pelos policiais na ativa e na inatividade.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 55,
+        materia: "Legislação Pertinente ao Policial Militar de Alagoas",
+        textoApoio: "No que se refere ao Decreto n.º 37.042/1996, o qual aprova o Regulamento Disciplinar da Polícia Militar do Estado de Alagoas, julgue os itens que se seguem.",
+        enunciado: "55. O policial militar deve obediência aos seus superiores hierárquicos, salvo em caso de ato de serviço.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 56,
+        materia: "Legislação Pertinente ao Policial Militar de Alagoas",
+        textoApoio: "No que se refere ao Decreto n.º 37.042/1996, o qual aprova o Regulamento Disciplinar da Polícia Militar do Estado de Alagoas, julgue os itens que se seguem.",
+        enunciado: "56. Mesmo que emanadas de autoridade incompetente, as ordens devem ser prontamente obedecidas pelos subordinados.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 57,
+        materia: "Legislação Pertinente ao Policial Militar de Alagoas",
+        textoApoio: "A respeito dos crimes resultantes de preconceitos de raça ou de cor previstos na Lei nº 7.716/1989, sobre crimes hediondos, da lei de drogas e do Código de Trânsito Brasileiro, julgue os seguintes itens.",
+        enunciado: "57. Nos crimes de racismo, é obrigatório que a vítima esteja acompanhada de advogado ou defensor público em todos os atos processuais.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 58,
+        materia: "Legislação Pertinente ao Policial Militar de Alagoas",
+        textoApoio: "A respeito dos crimes resultantes de preconceitos de raça ou de cor previstos na Lei nº 7.716/1989, sobre crimes hediondos, da lei de drogas e do Código de Trânsito Brasileiro, julgue os seguintes itens.",
+        enunciado: "58. Equipara-se a crime hediondo o tráfico ilícito de drogas na forma privilegiada.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 59,
+        materia: "Legislação Pertinente ao Policial Militar de Alagoas",
+        textoApoio: "A respeito dos crimes resultantes de preconceitos de raça ou de cor previstos na Lei nº 7.716/1989, sobre crimes hediondos, da lei de drogas e do Código de Trânsito Brasileiro, julgue os seguintes itens.",
+        enunciado: "59. O SISNAD visa, principalmente, contribuir para a inclusão social da família, de modo a torná-la menos vulnerável a assumir comportamentos de risco que contribuam para o uso indevido de drogas.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 60,
+        materia: "Legislação Pertinente ao Policial Militar de Alagoas",
+        textoApoio: "A respeito dos crimes resultantes de preconceitos de raça ou de cor previstos na Lei nº 7.716/1989, sobre crimes hediondos, da lei de drogas e do Código de Trânsito Brasileiro, julgue os seguintes itens.",
+        enunciado: "60. As normas estabelecidas no Código de Trânsito Brasileiro aplicam-se às vias terrestres públicas, urbanas e rurais, entretanto não alcançam as vias internas pertencentes aos condomínios constituídos por unidades autônomas.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+            {
+        id: 61,
+        materia: "Noções de Direito Administrativo",
+        textoApoio: "Acerca dos princípios fundamentais que regem a administração, dos poderes da administração e dos atos administrativos, julgue os itens a seguir.",
+        enunciado: "61. Embora não estejam previstos expressamente na Constituição vigente, os princípios da indisponibilidade, da razoabilidade e da segurança jurídica devem orientar a atividade da administração pública.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 62,
+        materia: "Noções de Direito Administrativo",
+        textoApoio: "Acerca dos princípios fundamentais que regem a administração, dos poderes da administração e dos atos administrativos, julgue os itens a seguir.",
+        enunciado: "62. Apesar de o princípio da moralidade exigir que os atos da administração pública sejam de ampla divulgação, veda-se a publicidade de atos que violem a vida privada do cidadão.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 63,
+        materia: "Noções de Direito Administrativo",
+        textoApoio: "Acerca dos princípios fundamentais que regem a administração, dos poderes da administração e dos atos administrativos, julgue os itens a seguir.",
+        enunciado: "63. O poder hierárquico permite, em caráter excepcional e por motivos relevantes devidamente justificados, a avocação por tempo indeterminado de competência atribuída a órgão hierarquicamente inferior.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 64,
+        materia: "Noções de Direito Administrativo",
+        textoApoio: "Acerca dos princípios fundamentais que regem a administração, dos poderes da administração e dos atos administrativos, julgue os itens a seguir.",
+        enunciado: "64. Por meio do poder regulamentar, cabe à administração pública criar mecanismos de complementação das leis, a fim de possibilitar a sua efetiva aplicabilidade.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 65,
+        materia: "Noções de Direito Administrativo",
+        textoApoio: "Acerca dos princípios fundamentais que regem a administração, dos poderes da administração e dos atos administrativos, julgue os itens a seguir.",
+        enunciado: "65. A administração pública exerce o poder disciplinar ao aplicar sanções, por exemplo, a um motorista particular que dirige seu veículo em velocidade acima da máxima permitida.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 66,
+        materia: "Noções de Direito Administrativo",
+        textoApoio: "Acerca dos princípios fundamentais que regem a administração, dos poderes da administração e dos atos administrativos, julgue os itens a seguir.",
+        enunciado: "66. Os atributos dos atos administrativos sintetizam-se na imperatividade, na revogabilidade, na tipicidade e na estabilidade.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 67,
+        materia: "Noções de Direito Administrativo",
+        textoApoio: "Acerca dos princípios fundamentais que regem a administração, dos poderes da administração e dos atos administrativos, julgue os itens a seguir.",
+        enunciado: "67. A administração pública pode anular ou revogar seus atos administrativos; em caso de revogação, deve ser justificada a ilegalidade do ato e os efeitos são retroativos à sua publicação.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 68,
+        materia: "Noções de Direito Administrativo",
+        textoApoio: "Acerca dos princípios fundamentais que regem a administração, dos poderes da administração e dos atos administrativos, julgue os itens a seguir.",
+        enunciado: "68. São irrevogáveis os atos administrativos que, instituídos por lei, confiram direito adquirido.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 69,
+        materia: "Noções de Direito Administrativo",
+        textoApoio: "Julgue os itens subsecutivos, a respeito da administração pública direta e indireta.",
+        enunciado: "69. Por serem autônomas e descentralizadas, as entidades da administração pública indireta não estão sujeitas ao controle e à fiscalização do Estado.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 70,
+        materia: "Noções de Direito Administrativo",
+        textoApoio: "Julgue os itens subsecutivos, a respeito da administração pública direta e indireta.",
+        enunciado: "70. As secretarias dos governos estaduais e das prefeituras municipais são exemplos de órgãos da administração direta; para a execução dos serviços públicos nesses órgãos, não é necessária a criação de novas personalidades jurídicas.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+            {
+        id: 71,
+        materia: "Noções de Direito Constitucional",
+        textoApoio: "De acordo com a Constituição Federal de 1988 (CF) e o entendimento do STF, julgue os itens que se seguem, a respeito dos direitos e garantias fundamentais.",
+        enunciado: "71. Os direitos e as garantias fundamentais só podem ser assim considerados caso estejam expressamente previstos na CF.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 72,
+        materia: "Noções de Direito Constitucional",
+        textoApoio: "De acordo com a Constituição Federal de 1988 (CF) e o entendimento do STF, julgue os itens que se seguem, a respeito dos direitos e garantias fundamentais.",
+        enunciado: "72. A obtenção de certidões em repartições públicas, para esclarecimento de situação de interesse pessoal, é direito assegurado a todos e independe do pagamento de taxa.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 73,
+        materia: "Noções de Direito Constitucional",
+        textoApoio: "De acordo com a Constituição Federal de 1988 (CF) e o entendimento do STF, julgue os itens que se seguem, a respeito dos direitos e garantias fundamentais.",
+        enunciado: "73. São equivalentes às emendas constitucionais os tratados internacionais sobre direitos humanos aprovados na Câmara dos Deputados e no Senado Federal, em dois turnos, por três quintos dos votos dos membros de cada uma dessas casas.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 74,
+        materia: "Noções de Direito Constitucional",
+        textoApoio: "De acordo com a Constituição Federal de 1988 (CF) e o entendimento do STF, julgue os itens que se seguem, a respeito dos direitos e garantias fundamentais.",
+        enunciado: "74. Só a lei pode obrigar a pessoa a fazer ou deixar de fazer alguma coisa.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 75,
+        materia: "Noções de Direito Constitucional",
+        textoApoio: "De acordo com a Constituição Federal de 1988 (CF) e o entendimento do STF, julgue os itens que se seguem, a respeito dos direitos e garantias fundamentais.",
+        enunciado: "75. A prática de racismo constitui crime inafiançável e imprescritível.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 76,
+        materia: "Noções de Direito Constitucional",
+        textoApoio: "No que se refere a noções de segurança pública, julgue os itens a seguir.",
+        enunciado: "76. As forças armadas são instituições nacionais permanentes e regulares, cuja organização institucional se baseia na hierarquia, na disciplina e na ética militar.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 77,
+        materia: "Noções de Direito Constitucional",
+        textoApoio: "No que se refere a noções de segurança pública, julgue os itens a seguir.",
+        enunciado: "77. De acordo com a Constituição Federal de 1988, as funções de policiamento ostensivo e manutenção da ordem pública são competência da polícia militar, cabendo à guarda municipal, nos municípios em que for constituída, a proteção de seus bens, serviços e instalações.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 78,
+        materia: "Noções de Direito Constitucional",
+        textoApoio: "No que se refere a noções de segurança pública, julgue os itens a seguir.",
+        enunciado: "78. As polícias civis são subordinadas aos governadores dos estados-membros, e a elas competem as funções de polícia judiciária, a apuração de infrações penais — à exceção das militares — e a execução das atividades de defesa civil.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 79,
+        materia: "Noções de Direito Constitucional",
+        textoApoio: "No que concerne à organização político-administrativa do Estado, julgue os seguintes itens, de acordo com a Constituição Federal.",
+        enunciado: "79. É inconstitucional lei estadual que atribua aos policiais militares do estado a prestação voluntária de serviços de guarda de imóveis locais e de guarda de quartéis da corporação.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 80,
+        materia: "Noções de Direito Constitucional",
+        textoApoio: "No que concerne à organização político-administrativa do Estado, julgue os seguintes itens, de acordo com a Constituição Federal.",
+        enunciado: "80. Compete privativamente à União legislar sobre orçamento público.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+            {
+        id: 81,
+        materia: "Noções de Direito Processual Penal",
+        textoApoio: "Com relação ao inquérito policial, julgue os itens que se seguem.",
+        enunciado: "81. O princípio da ampla defesa e do contraditório é amplamente aplicável ao inquérito policial, uma vez que este é procedimento meramente administrativo.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 82,
+        materia: "Noções de Direito Processual Penal",
+        textoApoio: "Com relação ao inquérito policial, julgue os itens que se seguem.",
+        enunciado: "82. Uma das principais características do inquérito policial é a sua indisponibilidade, não podendo a autoridade policial proceder ao seu arquivamento, ainda que o fato apurado não configure crime.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 83,
+        materia: "Noções de Direito Processual Penal",
+        textoApoio: "Com relação ao inquérito policial, julgue os itens que se seguem.",
+        enunciado: "83. O delegado de polícia, mediante despacho nos autos do inquérito policial, poderá determinar a incomunicabilidade do indiciado sempre que o interesse da sociedade ou a conveniência da investigação o permitir.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 84,
+        materia: "Noções de Direito Processual Penal",
+        textoApoio: "Com relação ao inquérito policial, julgue os itens que se seguem.",
+        enunciado: "84. O inquérito policial é peça imprescindível para a propositura da ação penal pública ou da ação penal privada.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 85,
+        materia: "Noções de Direito Processual Penal",
+        textoApoio: "Com relação ao inquérito policial, julgue os itens que se seguem.",
+        enunciado: "85. No curso do IP, poderá ser realizado apenas o exame de corpo de delito; as demais perícias terão de ser realizadas na fase judicial.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 86,
+        materia: "Noções de Direito Processual Penal",
+        textoApoio: "Com relação ao inquérito policial, julgue os itens que se seguem.",
+        enunciado: "86. Ao receber a notitia criminis, a autoridade policial tem o dever, em qualquer caso, de pronto, de instaurar o IP.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 87,
+        materia: "Noções de Direito Processual Penal",
+        textoApoio: "Acerca da ação penal, julgue os itens subsequentes.",
+        enunciado: "87. O juiz, em qualquer fase do processo, ao reconhecer extinta a punibilidade, deverá declará-lo de ofício.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 88,
+        materia: "Noções de Direito Processual Penal",
+        textoApoio: "Acerca da ação penal, julgue os itens subsequentes.",
+        enunciado: "88. Situação hipotética: Antônio e Pedro são autores de um mesmo crime contra João. Assertiva: Nessa situação, João poderá renunciar ao exercício de seu direito de queixa em relação a Antônio e mantê-lo em relação a Pedro.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 89,
+        materia: "Noções de Direito Processual Penal",
+        textoApoio: "Acerca da ação penal, julgue os itens subsequentes.",
+        enunciado: "89. A legitimação ativa para a ação penal e a definição de sua natureza decorre da lei, sendo, de regra, ação pública, salvo se a lei expressamente a declara privativa do ofendido.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 90,
+        materia: "Noções de Direito Processual Penal",
+        textoApoio: "Acerca da ação penal, julgue os itens subsequentes.",
+        enunciado: "90. A ação penal pública condicionada à representação da vítima inicia-se mediante o recebimento da queixa pelo juiz competente.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 91,
+        materia: "Noções de Direito Penal Militar",
+        textoApoio: "À luz do disposto no Código Penal Militar (CPM), julgue os itens a seguir.",
+        enunciado: "91. Consideram-se crimes militares em tempo de paz apenas os previstos no CPM, excluindo-se, em qualquer situação, a legislação penal comum, em observância ao princípio da especialidade.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 92,
+        materia: "Noções de Direito Penal Militar",
+        textoApoio: "À luz do disposto no Código Penal Militar (CPM), julgue os itens a seguir.",
+        enunciado: "92. O princípio da retroatividade autoriza a aplicação de lei penal militar que, posterior ao fato, favoreça o agente.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 93,
+        materia: "Noções de Direito Penal Militar",
+        textoApoio: "À luz do disposto no Código Penal Militar (CPM), julgue os itens a seguir.",
+        enunciado: "93. Considera-se crime militar a prática de ato obsceno por agente militar em lugar sujeito à administração militar, consumando-se o crime independentemente de o ato ter sido presenciado por terceiros.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 94,
+        materia: "Noções de Direito Penal Militar",
+        textoApoio: "À luz do disposto no Código Penal Militar (CPM), julgue os itens a seguir.",
+        enunciado: "94. No âmbito do CPM, não há previsão expressa da figura do arrependimento posterior como causa de diminuição de pena, mas apenas como circunstância atenuante.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 95,
+        materia: "Noções de Direito Penal Militar",
+        textoApoio: "À luz do disposto no Código Penal Militar (CPM), julgue os itens a seguir.",
+        enunciado: "95. Sendo o autor do crime militar um militar da ativa, a embriaguez, em regra, agrava a pena, ao passo que, sendo ele um civil, a agravante da embriaguez somente incide se esta for preordenada.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 96,
+        materia: "Noções de Direito Penal Militar",
+        textoApoio: "À luz do disposto no Código Penal Militar (CPM), julgue os itens a seguir.",
+        enunciado: "96. Aplica-se a lei penal militar, sem prejuízo de convenções, tratados e regras de direito internacional, ao crime cometido, no todo ou em parte, no território nacional ou fora dele, exceto no caso de o agente estar sendo processado ou ter sido julgado pela justiça estrangeira.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 97,
+        materia: "Noções de Direito Penal Militar",
+        textoApoio: "À luz do disposto no Código Penal Militar (CPM), julgue os itens a seguir.",
+        enunciado: "97. A deserção é configurada quando o militar se ausenta, sem licença, da unidade em que serve ou do lugar em que deve permanecer por mais de oito dias.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 98,
+        materia: "Noções de Direito Penal Militar",
+        textoApoio: "À luz do disposto no Código Penal Militar (CPM), julgue os itens a seguir.",
+        enunciado: "98. A pena para o crime de deserção é agravada se o agente for oficial.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 99,
+        materia: "Noções de Direito Penal Militar",
+        textoApoio: "À luz do disposto no Código Penal Militar (CPM), julgue os itens a seguir.",
+        enunciado: "99. Em relação ao tempo do crime, o Código Penal Militar adotou a teoria da atividade.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 100,
+        materia: "Noções de Direito Penal Militar",
+        textoApoio: "À luz do disposto no Código Penal Militar (CPM), julgue os itens a seguir.",
+        enunciado: "100. Nos termos das disposições gerais do CPM, é cabível para os crimes militares a cominação das penas privativas de liberdade, restritivas de direitos e de multa, conforme também prevê o Código Penal comum.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 101,
+        materia: "Noções de Direito Processual Penal Militar",
+        textoApoio: "Julgue os itens seguintes, conforme o Código de Processo Penal Militar.",
+        enunciado: "101. A ação penal militar é pública e poderá ser promovida por denúncia do Ministério Público Militar ou do juiz federal militar.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 102,
+        materia: "Noções de Direito Processual Penal Militar",
+        textoApoio: "Julgue os itens seguintes, conforme o Código de Processo Penal Militar.",
+        enunciado: "102. Se houver conflito, no caso concreto, entre as normas do CPPM e as de direito internacional constantes de convenção ou tratado de que o Brasil seja signatário, será aplicado o CPPM.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 103,
+        materia: "Noções de Direito Processual Penal Militar",
+        textoApoio: "Julgue os itens seguintes, conforme o Código de Processo Penal Militar.",
+        enunciado: "103. O inquérito policial militar somente pode ser instaurado em virtude de requisição do Ministério Público Militar ou de decisão do STM.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 104,
+        materia: "Noções de Direito Processual Penal Militar",
+        textoApoio: "Julgue os itens seguintes, conforme o Código de Processo Penal Militar.",
+        enunciado: "104. Uma vez apresentada a denúncia, o Ministério Público Militar não pode desistir da ação penal.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 105,
+        materia: "Noções de Direito Processual Penal Militar",
+        textoApoio: "Julgue os itens seguintes, conforme o Código de Processo Penal Militar.",
+        enunciado: "105. O Código de Processo Penal Militar é aplicável aos militares das Forças Armadas e aos membros das polícias militares dos estados.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 106,
+        materia: "Noções de Direito Processual Penal Militar",
+        textoApoio: "Julgue os itens seguintes, conforme o Código de Processo Penal Militar.",
+        enunciado: "106. O Código de Processo Penal Militar não se aplica a civis, mesmo que envolvidos em crimes militares.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 107,
+        materia: "Noções de Direito Processual Penal Militar",
+        textoApoio: "Julgue os itens seguintes, conforme o Código de Processo Penal Militar.",
+        enunciado: "107. As disposições do Código de Processo Penal Militar são aplicáveis tanto em tempo de guerra como em tempo de paz.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 108,
+        materia: "Noções de Direito Processual Penal Militar",
+        textoApoio: "Julgue os itens seguintes, conforme o Código de Processo Penal Militar.",
+        enunciado: "108. O objeto do inquérito policial militar é a apuração sumária de fato que configure crime militar, bem como de sua autoria. Se ficar evidenciado que a infração penal cometida não configura crime militar, o encarregado do inquérito deverá comunicar o fato à autoridade policial competente.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 109,
+        materia: "Noções de Direito Processual Penal Militar",
+        textoApoio: "Julgue os itens seguintes, conforme o Código de Processo Penal Militar.",
+        enunciado: "109. A competência para a apuração de crime militar será determinada, em regra, pelo local da infração e, no caso de tentativa de crime, pelo local de residência ou domicílio do acusado.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 110,
+        materia: "Noções de Direito Processual Penal Militar",
+        textoApoio: "Julgue os itens seguintes, conforme o Código de Processo Penal Militar.",
+        enunciado: "110. Quando estiver sujeito a prisão antes de condenação definitiva, o policial militar licenciado a bem da disciplina não perderá o direito de recolhimento a quartel ou prisão especial.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 111,
+        materia: "Noções de Direitos Humanos",
+        textoApoio: "A respeito da história dos direitos humanos e do Pacto de São José, julgue os itens a seguir.",
+        enunciado: "111. Os direitos humanos de segunda geração estão relacionados às liberdades individuais, como por exemplo, direitos civis e políticos.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 112,
+        materia: "Noções de Direitos Humanos",
+        textoApoio: "A respeito da história dos direitos humanos e do Pacto de São José, julgue os itens a seguir.",
+        enunciado: "112. Qualquer cidadão poderá submeter um caso à corte interamericana de direitos humanos, desde que esteja relacionado à suposta violação de direitos humanos.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 113,
+        materia: "Noções de Direitos Humanos",
+        textoApoio: "A respeito da história dos direitos humanos e do Pacto de São José, julgue os itens a seguir.",
+        enunciado: "113. A terceira geração dos direitos humanos diz respeito aos direitos de titularidade coletiva, a exemplo da paz mundial e do meio ambiente equilibrado, consagrando o princípio da solidariedade.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 114,
+        materia: "Noções de Direitos Humanos",
+        textoApoio: "A respeito da história dos direitos humanos e do Pacto de São José, julgue os itens a seguir.",
+        enunciado: "114. Os membros da comissão interamericana de direitos humanos serão eleitos pelos membros da corte interamericana de direitos humanos.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 115,
+        materia: "Noções de Direitos Humanos",
+        textoApoio: "A respeito da história dos direitos humanos e do Pacto de São José, julgue os itens a seguir.",
+        enunciado: "115. A primeira afirmação histórica dos direitos humanos coincide com a internacionalização desses direitos, materializada por meio da DUDH, também denominada Declaração de Paris, no contexto da criação da ONU.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 116,
+        materia: "Noções de Direitos Humanos",
+        textoApoio: "A respeito da história dos direitos humanos e do Pacto de São José, julgue os itens a seguir.",
+        enunciado: "116. Segundo os direitos expressamente previstos no Pacto de São José da Costa Rica, a confissão de pessoa acusada de delito só é válida se feita sem coação.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 117,
+        materia: "Noções de Direitos Humanos",
+        textoApoio: "A respeito da história dos direitos humanos e do Pacto de São José, julgue os itens a seguir.",
+        enunciado: "117. O Estado que abolir a pena de morte não poderá restabelecê-la.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 0
+      },
+      {
+        id: 118,
+        materia: "Noções de Direitos Humanos",
+        textoApoio: "A respeito da história dos direitos humanos e do Pacto de São José, julgue os itens a seguir.",
+        enunciado: "118. A CADH admite a possibilidade de asilo, em território estrangeiro, de pessoa que cometa crime comum não vinculado à atividade política.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 119,
+        materia: "Noções de Direitos Humanos",
+        textoApoio: "A respeito da história dos direitos humanos e do Pacto de São José, julgue os itens a seguir.",
+        enunciado: "119. A primeira afirmação histórica dos direitos humanos ocorreu concomitantemente à ascensão das ideias socialistas no século XIX.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      },
+      {
+        id: 120,
+        materia: "Noções de Direitos Humanos",
+        textoApoio: "A respeito da história dos direitos humanos e do Pacto de São José, julgue os itens a seguir.",
+        enunciado: "120. Todos os direitos humanos foram afirmados em um único momento histórico.",
+        tipo: "ME",
+        opcoes: ["A) Certo", "B) Errado"],
+        gabarito: 1
+      }
+
+    ];
+
+    /* ===================================================================
+       2. LÓGICA DE FUNCIONAMENTO DO SIMULADO
+       =================================================================== */
+    let respostasUsuario = {};
+    let segundosDecorridos = 0;
+    
+    /* CRONÔMETRO AUTOMÁTICO (MM:SS OU HH:MM:SS) */
+    let cronometro = setInterval(() => {
+      segundosDecorridos++;
+      
+      const horas = Math.floor(segundosDecorridos / 3600);
+      const min = Math.floor((segundosDecorridos % 3600) / 60);
+      const seg = segundosDecorridos % 60;
+
+      const minStr = String(min).padStart(2, '0');
+      const segStr = String(seg).padStart(2, '0');
+
+      if (horas > 0) {
+        const horasStr = String(horas).padStart(2, '0');
+        document.getElementById('timer-display').innerText = `Tempo: ${horasStr}:${minStr}:${segStr}`;
+      } else {
+        document.getElementById('timer-display').innerText = `Tempo: ${minStr}:${segStr}`;
+      }
+    }, 1000);
+
+    function carregarSimulado() {
+      const container = document.getElementById('quiz-container');
+      container.innerHTML = '';
+
+      bancoQuestoes.forEach((q, index) => {
+        const card = document.createElement('div');
+        card.className = 'simulado-card';
+        
+        const materiaHTML = q.materia ? `<span class="q-materia">${q.materia}</span>` : '';
+        let textoApoioHTML = q.textoApoio ? `
+          <div class="support-text-box">
+            <span class="support-text-title">📖 Texto de Apoio / Contexto</span>
+            ${q.textoApoio}
+          </div>
+        ` : '';
+
+        let opcoesHTML = '';
+        q.opcoes.forEach((opt, optIndex) => {
+          opcoesHTML += `
+            <button class="opt-btn" id="q${q.id}-opt${optIndex}" onclick="selecionarResposta(${q.id}, ${optIndex})">
+              ${opt}
+            </button>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="q-header">
+            <span class="q-number">Questão ${index + 1}</span>
+            ${materiaHTML}
+          </div>
+          ${textoApoioHTML}
+          <p class="q-text">${q.enunciado}</p>
+          <div class="options-grid">${opcoesHTML}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function selecionarResposta(questaoId, opcaoIndex) {
+      respostasUsuario[questaoId] = opcaoIndex;
+      const qData = bancoQuestoes.find(q => q.id === questaoId);
+      
+      qData.opcoes.forEach((_, idx) => {
+        const btn = document.getElementById(`q${questaoId}-opt${idx}`);
+        if (btn) btn.classList.remove('selected');
+      });
+
+      const btnSelecionado = document.getElementById(`q${questaoId}-opt${opcaoIndex}`);
+      if (btnSelecionado) btnSelecionado.classList.add('selected');
+    }
+
+    function finalizarSimulado() {
+      if (Object.keys(respostasUsuario).length < bancoQuestoes.length) {
+        if (!confirm("Você possui questões não respondidas. Deseja finalizar mesmo assim?")) {
+          return;
+        }
+      }
+
+      clearInterval(cronometro);
+
+      let totalAcertos = 0;
+      const reviewContainer = document.getElementById('review-list');
+      reviewContainer.innerHTML = '';
+
+      bancoQuestoes.forEach((q, index) => {
+        const respUsuario = respostasUsuario[q.id];
+        const acertou = respUsuario === q.gabarito;
+        if (acertou) totalAcertos++;
+
+        const reviewItem = document.createElement('div');
+        reviewItem.className = 'review-item';
+        
+        const textoRespostaUsuario = respUsuario !== undefined ? q.opcoes[respUsuario] : 'Não respondida';
+        const textoGabarito = q.opcoes[q.gabarito];
+
+        reviewItem.innerHTML = `
+          <strong>Q${index + 1}:</strong> ${acertou ? '<span class="review-correct">✓ ACERTOU</span>' : '<span class="review-incorrect">✕ ERROU</span>'}<br>
+          <small>Sua resposta: ${textoRespostaUsuario} | <strong>Gabarito: ${textoGabarito}</strong></small>
+        `;
+        reviewContainer.appendChild(reviewItem);
+      });
+
+      const porcentagem = Math.round((totalAcertos / bancoQuestoes.length) * 100);
+
+      document.getElementById('quiz-container').style.display = 'none';
+      document.getElementById('btn-submit').style.display = 'none';
+      
+      document.getElementById('score-percentage').innerText = `${porcentagem}%`;
+      document.getElementById('score-summary').innerText = `Você acertou ${totalAcertos} de ${bancoQuestoes.length} questões.`;
+      document.getElementById('result-screen').style.display = 'block';
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function compartilharSimulado() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Simulado PM | Escale Concursos',
+          text: 'Faça este simulado gratuito no padrão Cebraspe e teste seus conhecimentos!',
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link do simulado copiado para a área de transferência!');
+      }
+    }
+
+    function irParaVendas() {
+      const btnVendas = document.getElementById('btn-buy-pdf');
+      if (btnVendas) {
+        btnVendas.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    carregarSimulado();
+  </script>
+</body>
+</html>
