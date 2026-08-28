@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Escale Concursos</title>
+  <title>Escale Concursos - Disciplinas</title>
+
+<!-- 1. Métrica de Acessos -->
+  <script src="analytics.js"></script>
+
+  <!-- 2. Gerenciador Central de Anúncios -->
+  <script src="anuncios.js"></script>
+  
   <style>
     :root {
       --primary-color: #3f4d34; /* Verde Militar Escuro */
@@ -42,13 +49,17 @@
     }
 
     .header-image-container {
-      width: 100%;
+      width: calc(100% + 20px); 
+      margin-left: -10px;       
+      margin-right: -10px;
       margin-bottom: 8px;
     }
 
+    /* Imagem ajustada para no máximo 90px de altura */
     .header-image-container img {
       width: 100%;
-      height: auto;
+      max-height: 110px;
+      object-fit: contain;
       display: block;
       border-radius: 4px;
     }
@@ -58,32 +69,21 @@
       margin-bottom: 12px;
     }
 
-    .header-titles h2 {
-      color: #1a365d;
-      font-size: 1.8rem;
-      font-weight: 900;
-      font-style: italic;
-      letter-spacing: -0.2px;
-      text-transform: uppercase;
-      margin-bottom: -2px;
-      line-height: 1.1;
-    }
-
     .header-titles p {
       color: var(--gold-accent);
       font-size: 0.95rem;
       font-style: italic;
       font-weight: 600;
-      margin-top: 0px;
+      margin-top: 4px;
     }
 
-    /* LINHA DIVISÓRIA MANTIDA */
+    /* LINHA DIVISÓRIA */
     .divider-line {
       border-bottom: 2px solid #e2e8f0;
       margin-bottom: 8px;
     }
 
-    /* PUBLICIDADE 2x2 */
+    /* PUBLICIDADE 9x16 */
     .ad-section-title {
       font-size: 0.65rem;
       text-transform: uppercase;
@@ -98,14 +98,14 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
-      margin-bottom: 8px;
+      margin-bottom: 16px;
     }
 
     .ad-card {
       background-color: #e2e8f0;
       border: 1px dashed #cbd5e1;
       border-radius: 6px;
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 9 / 16;
       width: 100%;
       display: flex;
       align-items: center;
@@ -142,11 +142,20 @@
       border-radius: 4px;
     }
 
-    /* DESKTOP RESPONSIVO */
-    @media (min-width: 500px) {
-      .ads-grid-2x2 {
-        grid-template-columns: repeat(4, 1fr);
-      }
+    /* CAIXA DE MENSAGEM / DESCONTO (TEXTO LIMPO E APROXIMADO) */
+    .info-box {
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      margin-top: -10px; /* Puxa para perto dos quadros de publicidade */
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .info-box p {
+      font-size: 0.75rem;
+      color: #94a3b8; /* Cinza claro idêntico ao título da publicidade */
+      font-weight: 500;
     }
 
     /* BOTÃO PRINCIPAL VERDE MILITAR */
@@ -247,11 +256,10 @@
     <!-- CABEÇALHO -->
     <header>
       <div class="header-image-container">
-        <!-- Substitua 'banner-escale.jpg' pelo caminho real da imagem da sua marca -->
+        <img src="Logo1.jpg" alt="Logo Escale Concursos">
       </div>
 
       <div class="header-titles">
-        <h2>ESCALE CONCURSOS</h2>
         <p>Aqui se constrói uma aprovação.</p>
       </div>
 
@@ -259,7 +267,7 @@
       <div class="divider-line"></div>
     </header>
 
-    <!-- ANÚNCIOS -->
+    <!-- ANÚNCIOS (2 ESPAÇOS EM FORMATO 9x16) -->
     <div class="ad-section-title">Espaço Publicitário</div>
     <div class="ads-grid-2x2">
       <div class="ad-card">
@@ -272,16 +280,11 @@
           Clique para anunciar sua marca aqui
         </a>
       </div>
-      <div class="ad-card">
-        <a href="https://wa.me/5588994409549?text=Ol%C3%A1%2C%20gostaria%20de%20anunciar%20minha%20marca%20no%20seu%20site." target="_blank" rel="noopener">
-          Clique para anunciar sua marca aqui
-        </a>
-      </div>
-      <div class="ad-card">
-        <a href="https://wa.me/5588994409549?text=Ol%C3%A1%2C%20gostaria%20de%20anunciar%20minha%20marca%20no%20seu%20site." target="_blank" rel="noopener">
-          Clique para anunciar sua marca aqui
-        </a>
-      </div>
+    </div>
+
+    <!-- CAIXA DE TEXTO / INFORMAÇÕES DE DESCONTO -->
+    <div class="info-box">
+      <p>Você receberá desconto se...</p>
     </div>
 
     <!-- BOTÃO ÚNICO DE DISCIPLINAS -->
